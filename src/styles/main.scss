@@ -21,7 +21,7 @@
 }
 
 html {
-	line-height: 1.5;
+	line-height: 1.6;
 }
 
 body {
@@ -34,6 +34,9 @@ body {
 
 	a {
 		color: var(--content-foreground);
+
+		text-decoration: none;
+		border-bottom: white 1px solid;
 
 		&:hover {
 		}
@@ -167,7 +170,7 @@ table tfoot td {
 	bottom: 0;
 }
 
-.sidebar {
+body .sidebar {
 	.menu {
 		text-align: left;
 		list-style: none;
@@ -182,7 +185,8 @@ table tfoot td {
 			border-bottom: var(--content-foreground-light) 1px solid;
 
 			a {
-				text-decoration: none;;
+				text-decoration: none;
+				border: none;
 			}
 
 			[aria-current] {
@@ -202,9 +206,7 @@ table tfoot td {
 	}
 }
 
-a.no-decoration {
-	text-decoration: none;
-	border-bottom: white 1px solid;
+a {
 }
 
 @import "parts/home-page";

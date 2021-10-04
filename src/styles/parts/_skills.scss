@@ -1,16 +1,18 @@
 .skills {
 	display: flex;
-
+	flex-wrap: wrap;
+	margin-top:40px;
 
 	.category {
 
 		margin-right: 30px;
 		border-right: var(--content-foreground-light) 1px solid;
 		padding-right: 30px;
-		min-width: 14vw;
+		padding-bottom: 30px;
+		width: 250px;
 
 		&:last-child {
-			border:none;
+			margin:0;
 		}
 
 		.category-name {
@@ -27,12 +29,7 @@
 		.skill {
 			display: flex;
 			align-items: center;
-			font-size: .8em;
-
-			a {
-				text-decoration: none;
-				border-bottom: white 1px solid;
-			}
+			font-size: .9em;
 
 			.icon {
 				margin-right: 10px;
