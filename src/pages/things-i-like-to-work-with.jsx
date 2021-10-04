@@ -5,7 +5,7 @@ import WebpackIcon from "../components/icons/webpack";
 import MysqlIcon from "../components/icons/mysql";
 import TypescriptIcon from "../components/icons/typescript";
 
-const TagsPage = () => (
+const ThingsILikeToWorkWith = () => (
   <DefaultLayout>
     <div className="content-box clearfix">
       <div className="tiltww">
@@ -67,15 +67,4 @@ const TagsPage = () => (
   </DefaultLayout>
 );
 
-export default TagsPage;
-
-export const pageQuery = graphql`
-	query {
-		allMarkdownRemark(limit: 2000) {
-			group(field: frontmatter___tags) {
-				fieldValue
-				totalCount
-			}
-		}
-	}
-`;
+export default ThingsILikeToWorkWith;
