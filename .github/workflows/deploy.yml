@@ -48,6 +48,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
+          cname: pieterwillekens.nl
       - name: Sleep for 20 seconds to wait for deployment to complete
         uses: jakejarvis/wait-action@master
         with:
