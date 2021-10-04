@@ -4,12 +4,14 @@
 @font-face {
 	font-family: 'JetBrains Mono';
 	font-weight: bold;
+	font-display: swap;
 	src:  url('../../node_modules/jetbrains-mono/fonts/webfonts/JetBrainsMono-ExtraBold.woff2') format('woff2')
 }
 
 @font-face {
 	font-family: 'JetBrains Mono';
 	font-weight: normal;
+	font-display: swap;
 	src:  url('../../node_modules/jetbrains-mono/fonts/webfonts/JetBrainsMono-Regular.woff2') format('woff2')
 }
 
