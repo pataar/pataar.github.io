@@ -1,0 +1,59 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - master  # Set a branch name to trigger deployment
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true  # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      - name: Setup Node
+        uses: actions/setup-node@v2.4.1
+        with:
+          node-version: '16.x'
+
+      - name: Cache Gatsby
+        uses: actions/cache@v2
+        with:
+          path: |
+            public
+            .cache
+          key: ${{ runner.os }}-gatsby-build-${{ github.run_id }}-1
+          restore-keys: |
+            ${{ runner.os }}-gatsby-build-
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}-1
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - run: npm ci --no-audit
+      #- run: npm run format
+      #- run: npm run test
+      - run: npm run build -- --log-pages
+        env:
+          PREFIX_PATHS: true
+          CI: true
+          PRESERVE_FILE_DOWNLOAD_CACHE : true
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+      - name: Sleep for 20 seconds to wait for deployment to complete
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '20s'
+      - name: Cloudflare Purge Cache
+        uses: jakejarvis/cloudflare-purge-action@v0.3.0
+        env:
+          CLOUDFLARE_TOKEN: ${{secrets.CLOUDFLARE_TOKEN}}
+          CLOUDFLARE_ZONE: c83845c6fa8b184eabec2721f23d3f68

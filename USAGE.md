@@ -1,3 +1,0 @@
-* ruby
-* bundle
-* bundle exec jekyll serve --watch
