@@ -12,7 +12,7 @@ const ThingsILikeToWorkWith = () => (
         <h1>Things I like to work with</h1>
         <p>
           While I code I like to use a combination of several languages and frameworks. These items are the ones that I
-          use the most at the moment.
+          use the most at the moment. Ordered by preference.
         </p>
         <div className="skills-wrapper">
           <div className="skills">
@@ -20,10 +20,10 @@ const ThingsILikeToWorkWith = () => (
               <div className="category-name">
                 <span>Languages</span>
               </div>
-              <Skill label="JavaScript (ES6+)" icon="js" />
               <Skill label="TypeScript" iconRaw={<TypescriptIcon />} url="https://www.typescriptlang.org/" />
-              <Skill label="PHP" icon="php" url="" />
+              <Skill label="JavaScript (ES6+)" icon="js" />
               <Skill label="NodeJS" icon="node-js" url="https://nodejs.org/" />
+              <Skill label="PHP" icon="php" url="" />
               <Skill label="SQL" iconRaw={<MysqlIcon />} />
               <Skill label="Sass" icon="sass" />
             </div>
@@ -31,18 +31,18 @@ const ThingsILikeToWorkWith = () => (
               <div className="category-name">
                 <span>Frameworks & libraries</span>
               </div>
-              <Skill label="Laravel" icon="laravel" url="https://laravel.com/" />
               <Skill label="React" icon="react" url="https://reactjs.org/" />
-              <Skill label="Angular" icon="angular" url="https://angular.io/" />
+              <Skill label="Laravel" icon="laravel" url="https://laravel.com/" />
               <Skill label="Vue" icon="vuejs" url="https://vuejs.org/" />
+              <Skill label="Angular" icon="angular" url="https://angular.io/" />
             </div>
             <div className="category">
               <div className="category-name">
                 <span>Tools</span>
               </div>
               <Skill label="Git" icon="git" url="https://git-scm.com/" />
-              <Skill label="Gulp" icon="gulp" />
               <Skill label="Webpack" iconRaw={<WebpackIcon />} url="https://webpack.js.org/" />
+              <Skill label="Gulp" icon="gulp" />
             </div>
             <br />
             <div className="category">
@@ -56,9 +56,9 @@ const ThingsILikeToWorkWith = () => (
               <div className="category-name">
                 <span>DevOps</span>
               </div>
-              <Skill label="Gitlab (CI)" icon="gitlab" url="https://gitlab.com/" />
-              <Skill label="Github (actions)" icon="github" url="https://github.com/" />
               <Skill label="Docker" icon="docker" />
+              <Skill label="Github (actions)" icon="github" url="https://github.com/" />
+              <Skill label="Gitlab (CI)" icon="gitlab" url="https://gitlab.com/" />
             </div>
           </div>
         </div>
