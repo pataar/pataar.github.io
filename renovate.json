@@ -1,5 +1,22 @@
 {
   "extends": [
     "config:base"
-  ]
+  ],
+  	"packageRules": [
+		{
+			"description": "Packages that can be auto-updated",
+			"matchPackagePatterns": ["^@typescript-eslint/", "^@typescript-eslint/", "@commitlint/", "^eslint", "^gatsby", "^@gatsby"],
+			"matchPackageNames": ["lint-staged", "phpunit/phpunit", "mlocati/php-extension-installer", "prettier"],
+
+			"groupName": "auto-updatable dev-dependencies",
+			"groupSlug": "update-dev-dependencies",
+
+			"matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+			"platformAutomerge": true,
+			"stabilityDays": 1,
+			"automerge": true,
+			"schedule": ["after 9pm on Wednesday", "after 9pm on Friday", "before 7am on Monday"]
+		}
+	]
+  
 }
