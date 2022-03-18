@@ -1,22 +1,39 @@
 {
-  "extends": [
-    "config:base"
-  ],
-  	"packageRules": [
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": [
+		"config:base"
+	],
+	"timezone": "Europe/Amsterdam",
+	"packageRules": [
 		{
 			"description": "Packages that can be auto-updated",
-			"matchPackagePatterns": ["^@typescript-eslint/", "^@typescript-eslint/", "@commitlint/", "^eslint", "^gatsby", "^@gatsby"],
-			"matchPackageNames": ["lint-staged", "phpunit/phpunit", "mlocati/php-extension-installer", "prettier"],
-
+			"matchPackagePatterns": [
+				"^@typescript-eslint/",
+				"^@typescript-eslint/",
+				"@commitlint/",
+				"^eslint"
+			],
+			"matchPackageNames": [
+				"lint-staged",
+				"prettier",
+				"node"
+			],
 			"groupName": "auto-updatable dev-dependencies",
 			"groupSlug": "update-dev-dependencies",
-
-			"matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+			"matchUpdateTypes": [
+				"minor",
+				"patch",
+				"pin",
+				"digest"
+			],
 			"platformAutomerge": true,
 			"stabilityDays": 1,
 			"automerge": true,
-			"schedule": ["after 9pm on Wednesday", "after 9pm on Friday", "before 7am on Monday"]
+			"schedule": [
+				"after 9pm on Wednesday",
+				"after 9pm on Friday",
+				"before 7am on Monday"
+			]
 		}
 	]
-  
 }
