@@ -11,7 +11,8 @@
 				"^@typescript-eslint/",
 				"^@typescript-eslint/",
 				"@commitlint/",
-				"^eslint"
+				"^eslint",
+				"^gatsby"
 			],
 			"matchPackageNames": [
 				"lint-staged",
