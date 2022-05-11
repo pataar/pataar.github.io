@@ -1,5 +1,1 @@
-{
-    "componentChunkName": "component---src-templates-tags-jsx",
-    "path": "/tags/cli/",
-    "result": {"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"fields":{"slug":"/tips-to-improve-workflow/"},"frontmatter":{"title":"10 Tips to improve the default MacOS terminal","date":"May 31, 2021"}}}]}},"pageContext":{"tag":"CLI"}},
-    "staticQueryHashes": ["944268525"]}
+{"componentChunkName":"component---src-templates-tags-jsx","path":"/tags/cli/","result":{"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"fields":{"slug":"/tips-to-improve-workflow/"},"frontmatter":{"title":"10 Tips to improve the default MacOS terminal","date":"May 31, 2021"}}}]}},"pageContext":{"tag":"CLI"}},"staticQueryHashes":["944268525"]}
