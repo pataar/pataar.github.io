@@ -26,6 +26,7 @@ const ThingsILikeToWorkWith = () => (
               <Skill label="PHP" icon="php" url="" />
               <Skill label="SQL" iconRaw={<MysqlIcon />} />
               <Skill label="Sass" icon="sass" />
+              <Skill label="Go" icon="golang" />
             </div>
             <div className="category">
               <div className="category-name">
@@ -42,13 +43,13 @@ const ThingsILikeToWorkWith = () => (
               </div>
               <Skill label="Git" icon="git" url="https://git-scm.com/" />
               <Skill label="Webpack" iconRaw={<WebpackIcon />} url="https://webpack.js.org/" />
-              <Skill label="Gulp" icon="gulp" />
             </div>
             <br />
             <div className="category">
               <div className="category-name">
                 <span>Operating Systems</span>
               </div>
+              <Skill label="Debian" icon="debian" />
               <Skill label="Ubuntu" icon="ubuntu" />
               <Skill label="MacOS" icon="apple" />
             </div>
