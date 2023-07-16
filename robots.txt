@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pieterwillekens.nl/sitemap-index.xml
