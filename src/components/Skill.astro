@@ -1,0 +1,32 @@
+---
+import "devicon/devicon.min.css";
+
+const {icon, label} = Astro.props;
+---
+
+<div class="skill">
+    <div class="icon">
+        <slot name="icon"></slot>
+        {icon && <i class={`devicon-${icon}`}></i>}
+    </div>
+    <div class="label">
+        <slot/>
+    </div>
+
+</div>
+<style>
+
+    .skill {
+        align-items: center;
+        display: flex;
+        font-size: .9em;
+        @apply my-3 h-10;
+
+    }
+
+    .skill .icon {
+        font-size: 2em;
+        margin-right: 10px;
+        width: 32px;
+    }
+</style>

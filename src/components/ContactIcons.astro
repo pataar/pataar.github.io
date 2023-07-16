@@ -1,0 +1,74 @@
+---
+import "devicon/devicon.min.css";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faEnvelope} from "@fortawesome/free-solid-svg-icons";
+import {
+    faStackOverflow,
+    faDev,
+    faTwitter,
+    faMastodon,
+    faGithub,
+    faGitlab,
+    faNpm
+} from "@fortawesome/free-brands-svg-icons";
+---
+
+<ul>
+    <li>
+        <a href="https://twitter.com/1pieter" target="_blank" rel="noreferrer">
+            <FontAwesomeIcon fixedWidth={true} icon={faTwitter}/>
+
+        </a>
+    </li>
+    <li>
+        <a href="https://mastodon.social/@pataar" target="_blank" rel="noreferrer">
+            <FontAwesomeIcon fixedWidth={true} icon={faMastodon}/>
+
+        </a>
+    </li>
+    <li>
+        <a href="https://github.com/pataar" target="_blank" rel="noreferrer">
+            <FontAwesomeIcon fixedWidth={true} icon={faGithub}/>
+
+        </a>
+    </li>
+    <li>
+        <a href="https://gitlab.com/pataar" target="_blank" rel="noreferrer">
+            <FontAwesomeIcon fixedWidth={true} icon={faGitlab}/>
+
+        </a>
+    </li>
+    <li>
+        <a href="https://npmjs.com/pataar" target="_blank" rel="noreferrer">
+            <FontAwesomeIcon fixedWidth={true} icon={faNpm}/>
+
+        </a>
+    </li>
+    <br/>
+    <li>
+        <a href="https://stackoverflow.com/users/3173382/pataar" target="_blank" rel="noreferrer">
+            <FontAwesomeIcon fixedWidth={true} icon={faStackOverflow}/>
+        </a>
+    </li>
+    <li>
+        <a href="https://dev.to/pataar" target="_blank" rel="noreferrer">
+            <FontAwesomeIcon fixedWidth={true} icon={faDev}/>
+        </a>
+    </li>
+    <li>
+        <a href="mailto:pataar@pm.me" target="_blank" rel="noreferrer">
+            <FontAwesomeIcon fixedWidth={true} icon={faEnvelope}/>
+        </a>
+    </li>
+</ul>
+
+<style>
+    li {
+        @apply inline-block w-4 h-4 m-1;
+    }
+
+    li a {
+        @apply h-10 no-underline;
+
+    }
+</style>

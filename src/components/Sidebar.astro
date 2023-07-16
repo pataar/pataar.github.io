@@ -1,0 +1,64 @@
+---
+import { Image } from "astro:assets";
+import head from "../assets/icon.png";
+import Navigation from "./Navigation.astro";
+import ContactIcons from "./ContactIcons.astro";
+
+const year = new Date().getFullYear();
+---
+
+<div class="bg-orange-200 dark:bg-orange-800 w-60 p-3 flex flex-col h-full">
+	<div class="header text-center p-7 flex-shrink">
+		<a href="/" class="block mx-3 mb-3 hover:scale-90 transition-all">
+			<Image alt="Pieter's cartoon head" src={head} width="140" />
+		</a>
+		<span class="uppercase">Pieter Willekens</span>
+		<small class="block opacity-60 my-2">● ● ●</small>
+		<span class="italic">Dad, developer and drummer.</span>
+	</div>
+
+	<div
+		class="flex-1 justify-center flex flex-col border-t-slate-900 dark:border-t-slate-200 border-2 border-x-0 border-b-0">
+		<Navigation />
+	</div>
+
+	<div class="bottom text-center">
+		<h3 class="contact-title flex-shrink">Contact me</h3>
+
+		<ContactIcons />
+
+		<small class="my-2 block">{year} © Pieter Willekens</small>
+		<small>
+			<a target="_blank" class="no-decoration opacity-60" href="https://github.com/pataar/pataar.github.io">
+				source of this website
+			</a>
+		</small>
+	</div>
+</div>
+
+<style>
+	.contact-title {
+		font-size: 12px;
+		font-weight: 400;
+		margin: 0 0 5px;
+		position: relative;
+		text-align: center;
+		text-transform: uppercase;
+	}
+
+	.contact-title:after,
+	.contact-title:before {
+		@apply bg-slate-900 dark:bg-slate-200;
+		content: "";
+		display: block;
+		height: 2px;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		width: calc(50% - 48px);
+	}
+
+	.contact-title:after {
+		right: 0;
+	}
+</style>

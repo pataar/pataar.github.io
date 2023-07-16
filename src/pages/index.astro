@@ -1,0 +1,41 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+---
+
+<Layout title="Home">
+	<main>
+		<h1>Hi there.</h1>
+		<h2>My name is Pieter Willekens. I am a 30 year old developer from the Netherlands.</h2>
+		<p>
+			I am a developer that likes to know and learn everything about technology. The continuously evolving aspect of it
+			really keeps it interesting. I feel there's always something to discover and explore.
+		</p>
+		<p>
+			I currently work for a company called <a href="https://www.interactivestudios.nl">Interactive Studios</a>, which
+			is a company that mainly develops health related products. One of them is the
+			<a href="https://www.patientjourneyapp.com">Patient Journey App</a>, an app that provides relevant information to
+			patients at the right time. This app is my main focus at Interactive Studios. I'm either programming for the
+			application or scripting to improve the CI pipelines. I also do a lot of server administration regarding the
+			application. (Docker is awesome!)
+		</p>
+		<p>
+			During programming I'm doing backend work in the LAMP stack, and frontend work in React and Typescript. In the
+			future I would like to learn <a href="https://www.rust-lang.org">rust</a> because of its speed and efficiency and
+			<a href="https://flutter.dev">Flutter</a> (in combination with Dart) for its cross-platform capabilities.
+			Contributing to Open Source projects is also something that I like doing and would like to do much more.
+		</p>
+		<p>
+			Next to work, I'm a dad, play the drums, often listen to some vinyl records, tinkering with IoT and home
+			automation and into gaming. I'm a big fan of movies and TV series as well. Especially everything Star Wars and
+			Lord of the Rings related.
+		</p>
+		<p>Other interests of mine are astronomy, physics and a bit of philosophy. On amateur level of course.</p>
+	</main>
+</Layout>
+
+<style>
+	p {
+		@apply mb-3;
+	}
+</style>
