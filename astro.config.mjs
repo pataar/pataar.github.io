@@ -9,6 +9,7 @@ export default defineConfig({
   experimental: {
     assets: true
   },
+  site: 'https://pieterwillekens.nl',
   build: {
     inlineStylesheets: 'auto'
   },
