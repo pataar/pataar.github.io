@@ -1,47 +1,32 @@
 {
-  "private": true,
+  "name": "pale-parsec",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "6.4.0",
-    "gatsby": "4.25.5",
-    "gatsby-plugin-image": "2.25.0",
-    "gatsby-plugin-manifest": "4.25.0",
-    "gatsby-plugin-react-helmet": "5.25.0",
-    "gatsby-plugin-sass": "5.25.0",
-    "gatsby-plugin-sharp": "4.25.1",
-    "gatsby-remark-copy-linked-files": "5.25.0",
-    "gatsby-remark-images": "6.25.0",
-    "gatsby-remark-prismjs": "6.25.0",
-    "gatsby-source-filesystem": "4.25.0",
-    "gatsby-transformer-remark": "5.25.1",
-    "gatsby-transformer-sharp": "4.25.0",
-    "jetbrains-mono": "1.0.6",
-    "prismjs": "1.29.0",
-    "prop-types": "15.8.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-helmet": "6.1.0",
-    "sass": "1.62.0"
+    "@astrojs/react": "^2.2.1",
+    "@astrojs/sitemap": "^1.4.0",
+    "@astrojs/tailwind": "^4.0.0",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-brands-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
+    "astro": "^2.8.3",
+    "devicon": "^2.15.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "tailwindcss": "^3.0.24"
   },
   "devDependencies": {
-    "eslint": "8.38.0",
-    "eslint-config-prettier": "8.8.0",
-    "eslint-plugin-graphql": "4.0.0",
-    "eslint-plugin-json": "3.1.0",
-    "eslint-plugin-prettier": "4.2.1",
-    "eslint-plugin-react": "7.32.2",
-    "eslint-plugin-react-hooks": "4.6.0",
-    "prettier": "2.8.7"
-  },
-  "scripts": {
-    "build": "gatsby build",
-    "dev": "gatsby develop",
-    "develop": "gatsby develop",
-    "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
-    "lint": "eslint --ext .js,.jsx --fix --ignore-pattern public .",
-    "format": "prettier --write src content",
-    "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js"
-  },
-  "volta": {
-    "node": "18.15.0"
+    "prettier": "^3.0.0",
+    "prettier-plugin-astro": "^0.11.0"
   }
 }

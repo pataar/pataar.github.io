@@ -1,0 +1,30 @@
+---
+const routes = {
+	"/": "Home",
+	"/likes": "Things I like to work with",
+};
+
+const currentPath = Astro.url.pathname;
+---
+
+{
+	Object.entries(routes).map(([path, name], index) => {
+		const active = currentPath === path ? "active" : "";
+		return (
+			<span>
+				{index !== 0 && (
+					<div aria-hidden="true" class="my-4 font-light opacity-10 ">
+						<hr class="border-t-slate-900 dark:border-t-slate-200" />
+					</div>
+				)}
+				<a
+					class={`${
+						active ? "dark:text-white text-black font-bold" : "text-gray-700 dark:text-gray-300"
+					} my-2 no-underline hover:underline underline-offset-4`}
+					href={path}>
+					> {name}
+				</a>
+			</span>
+		);
+	})
+}
