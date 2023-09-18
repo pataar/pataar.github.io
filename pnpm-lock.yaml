@@ -932,7 +932,7 @@ packages:
       '@babel/parser': 7.22.14
       '@babel/types': 7.22.17
       '@types/babel__generator': 7.6.4
-      '@types/babel__template': 7.4.1
+      '@types/babel__template': 7.4.2
       '@types/babel__traverse': 7.20.1
     dev: false
 
@@ -942,8 +942,8 @@ packages:
       '@babel/types': 7.22.17
     dev: false
 
-  /@types/babel__template@7.4.1:
-    resolution: {integrity: sha512-azBFKemX6kMg5Io+/rdGT0dkGreboUVR0Cdm3fz9QJWpaQGJRQXl7C+6hOTCZcMll7KFyEQpgbYI2lHdsS4U7g==}
+  /@types/babel__template@7.4.2:
+    resolution: {integrity: sha512-/AVzPICMhMOMYoSx9MoKpGDKdBRsIXMNByh1PXSZoa+v6ZoLa8xxtsT/uLQ/NJm0XVAWl/BvId4MlDeXJaeIZQ==}
     dependencies:
       '@babel/parser': 7.22.14
       '@babel/types': 7.22.17
