@@ -13,8 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: withastro/action@v1
-        with:
-          package-manager: "bun"
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
