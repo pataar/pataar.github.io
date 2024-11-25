@@ -10,7 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "3.6.2",
+    "@astrojs/react": "3.6.3",
     "@astrojs/sitemap": "3.2.1",
     "@astrojs/tailwind": "5.1.2",
     "@fortawesome/fontawesome-common-types": "^6.6.0",
