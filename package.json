@@ -18,7 +18,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "@types/react": "^18.3.18",
+    "@types/react": "^19.0.2",
     "@types/react-dom": "^18.3.5",
     "astro": "5.1.1",
     "devicon": "^2.16.0",
