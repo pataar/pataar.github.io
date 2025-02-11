@@ -1,35 +1,35 @@
 {
-  "name": "pale-parsec",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/react": "4.2.0",
-    "@astrojs/sitemap": "3.2.1",
-    "@astrojs/tailwind": "5.1.5",
-    "@fortawesome/fontawesome-common-types": "^6.7.2",
-    "@fortawesome/fontawesome-svg-core": "^6.7.2",
-    "@fortawesome/free-brands-svg-icons": "^6.7.2",
-    "@fortawesome/free-solid-svg-icons": "^6.7.2",
-    "@fortawesome/react-fontawesome": "^0.2.2",
-    "@types/react": "^19.0.2",
-    "@types/react-dom": "^19.0.2",
-    "astro": "5.2.5",
-    "devicon": "^2.16.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "tailwindcss": "^3.4.17"
-  },
-  "devDependencies": {
-    "prettier": "^3.4.2",
-    "prettier-plugin-astro": "^0.14.1",
-    "react-compiler-runtime": "^19.0.0-beta-201e55d-20241215",
-    "sharp": "^0.33.5"
-  }
+	"name": "pale-parsec",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"start": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"@astrojs/react": "4.2.0",
+		"@astrojs/sitemap": "3.2.1",
+		"@astrojs/tailwind": "6.0.0",
+		"@fortawesome/fontawesome-common-types": "^6.7.2",
+		"@fortawesome/fontawesome-svg-core": "^6.7.2",
+		"@fortawesome/free-brands-svg-icons": "^6.7.2",
+		"@fortawesome/free-solid-svg-icons": "^6.7.2",
+		"@fortawesome/react-fontawesome": "^0.2.2",
+		"astro": "5.2.5",
+		"devicon": "^2.16.0",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"tailwindcss": "^4.0.6"
+	},
+	"devDependencies": {
+		"react-compiler-runtime": "^19.0.0-beta-e552027-20250112",
+		"sharp": "^0.33.5",
+		"@tailwindcss/vite": "^4.0.6",
+		"@types/react": "^19.0.8",
+		"@types/react-dom": "^19.0.3",
+		"@biomejs/biome": "^1.9.4"
+	}
 }
