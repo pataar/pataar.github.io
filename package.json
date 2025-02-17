@@ -28,7 +28,7 @@
 		"react-compiler-runtime": "^19.0.0-beta-e552027-20250112",
 		"sharp": "^0.33.5",
 		"@tailwindcss/vite": "^4.0.6",
-		"@types/react": "^19.0.8",
+		"@types/react": "^19.0.9",
 		"@types/react-dom": "^19.0.3",
 		"@biomejs/biome": "^1.9.4"
 	}
