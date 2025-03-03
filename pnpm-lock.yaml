@@ -61,8 +61,8 @@ importers:
         specifier: ^19.0.4
         version: 19.0.4(@types/react@19.0.10)
       react-compiler-runtime:
-        specifier: ^19.0.0-beta-21e868a-20250216
-        version: 19.0.0-beta-21e868a-20250216(react@19.0.0)
+        specifier: ^19.0.0-beta-714736e-20250131
+        version: 19.0.0-beta-714736e-20250131(react@19.0.0)
       sharp:
         specifier: ^0.33.5
         version: 0.33.5
@@ -1637,8 +1637,8 @@ packages:
   radix3@1.1.2:
     resolution: {integrity: sha512-b484I/7b8rDEdSDKckSSBA8knMpcdsXudlE/LNL639wFoHKwLbEkQFZHWEYwDC0wa0FKUcCY+GAF73Z7wxNVFA==}
 
-  react-compiler-runtime@19.0.0-beta-21e868a-20250216:
-    resolution: {integrity: sha512-iuvC3CeBVNHGdNbyD64+fJG87P0+FT+h0DJrhF43RUqTNklLxnEJC5+B9bWQP65RtLVP6uZkIbbhoOnw5/SXSA==}
+  react-compiler-runtime@19.0.0-beta-714736e-20250131:
+    resolution: {integrity: sha512-RJQqbR2zIobjLZ242MRQlWlyxLDxw0fRxbniImHxSsBqHSf35vK8CsClA37MfO729M3n4jCIawI3BCdBHksOvA==}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0 || ^19.0.0 || ^0.0.0-experimental
 
@@ -3806,7 +3806,7 @@ snapshots:
 
   radix3@1.1.2: {}
 
-  react-compiler-runtime@19.0.0-beta-21e868a-20250216(react@19.0.0):
+  react-compiler-runtime@19.0.0-beta-714736e-20250131(react@19.0.0):
     dependencies:
       react: 19.0.0
 
