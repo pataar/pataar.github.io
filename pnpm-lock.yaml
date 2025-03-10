@@ -16,7 +16,7 @@ importers:
         version: 3.2.1
       '@astrojs/tailwind':
         specifier: 6.0.0
-        version: 6.0.0(astro@5.4.2(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.35.0)(typescript@5.7.3)(yaml@2.7.0))(tailwindcss@4.0.8)
+        version: 6.0.0(astro@5.4.2(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.35.0)(typescript@5.7.3)(yaml@2.7.0))(tailwindcss@4.0.12)
       '@fortawesome/fontawesome-common-types':
         specifier: ^6.7.2
         version: 6.7.2
@@ -45,8 +45,8 @@ importers:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
       tailwindcss:
-        specifier: ^4.0.8
-        version: 4.0.8
+        specifier: ^4.0.12
+        version: 4.0.12
     devDependencies:
       '@biomejs/biome':
         specifier: ^1.9.4
@@ -2013,9 +2013,6 @@ packages:
   tailwindcss@4.0.12:
     resolution: {integrity: sha512-bT0hJo91FtncsAMSsMzUkoo/iEU0Xs5xgFgVC9XmdM9bw5MhZuQFjPNl6wxAE0SiQF/YTZJa+PndGWYSDtuxAg==}
 
-  tailwindcss@4.0.8:
-    resolution: {integrity: sha512-Me7N5CKR+D2A1xdWA5t5+kjjT7bwnxZOE6/yDI/ixJdJokszsn2n++mdU5yJwrsTpqFX2B9ZNMBJDwcqk9C9lw==}
-
   tapable@2.2.1:
     resolution: {integrity: sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==}
     engines: {node: '>=6'}
@@ -2396,13 +2393,13 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 3.24.1
 
-  '@astrojs/tailwind@6.0.0(astro@5.4.2(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.35.0)(typescript@5.7.3)(yaml@2.7.0))(tailwindcss@4.0.8)':
+  '@astrojs/tailwind@6.0.0(astro@5.4.2(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.35.0)(typescript@5.7.3)(yaml@2.7.0))(tailwindcss@4.0.12)':
     dependencies:
       astro: 5.4.2(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.35.0)(typescript@5.7.3)(yaml@2.7.0)
       autoprefixer: 10.4.20(postcss@8.5.2)
       postcss: 8.5.2
       postcss-load-config: 4.0.2(postcss@8.5.2)
-      tailwindcss: 4.0.8
+      tailwindcss: 4.0.12
     transitivePeerDependencies:
       - ts-node
 
@@ -4450,8 +4447,6 @@ snapshots:
   strip-bom@3.0.0: {}
 
   tailwindcss@4.0.12: {}
-
-  tailwindcss@4.0.8: {}
 
   tapable@2.2.1: {}
 
