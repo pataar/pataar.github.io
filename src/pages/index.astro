@@ -1,8 +1,5 @@
 ---
-import Card from "../components/Card.astro";
 import Layout from "../layouts/Layout.astro";
-import {DateTime} from "luxon";
-
 ---
 
 <Layout title="Home">
@@ -37,6 +34,7 @@ import {DateTime} from "luxon";
 </Layout>
 
 <style>
+	@reference "tailwindcss";
 	p {
 		@apply mb-3;
 	}

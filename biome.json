@@ -1,7 +1,7 @@
 {
 	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
 	"vcs": { "enabled": false, "clientKind": "git", "useIgnoreFile": false },
-	"files": { "ignoreUnknown": false, "ignore": ["src/styles/devicon.min.css"] },
+	"files": { "ignoreUnknown": false, "ignore": ["src/styles/devicon.min.css", ".astro/"] },
 	"formatter": {
 		"enabled": true,
 		"useEditorconfig": true,
@@ -14,7 +14,12 @@
 		"bracketSpacing": true
 	},
 	"organizeImports": { "enabled": true },
-	"linter": { "enabled": true, "rules": { "recommended": true } },
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true
+		}
+	},
 	"javascript": {
 		"formatter": {
 			"jsxQuoteStyle": "double",

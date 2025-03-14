@@ -1,7 +1,7 @@
 ---
 import "devicon/devicon.min.css";
 
-const { icon, label } = Astro.props;
+const { icon } = Astro.props;
 ---
 
 <div class="skill">
@@ -14,6 +14,7 @@ const { icon, label } = Astro.props;
 	</div>
 </div>
 <style>
+	@reference "tailwindcss";
 	.skill {
 		align-items: center;
 		display: flex;
