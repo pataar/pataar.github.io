@@ -10,7 +10,7 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/react": "4.2.0",
+		"@astrojs/react": "4.2.1",
 		"@astrojs/sitemap": "3.2.1",
 		"@astrojs/tailwind": "6.0.0",
 		"@fortawesome/fontawesome-common-types": "^6.7.2",
@@ -18,18 +18,18 @@
 		"@fortawesome/free-brands-svg-icons": "^6.7.2",
 		"@fortawesome/free-solid-svg-icons": "^6.7.2",
 		"@fortawesome/react-fontawesome": "^0.2.2",
-		"astro": "5.2.5",
+		"astro": "5.4.2",
 		"devicon": "^2.16.0",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
-		"tailwindcss": "^4.0.6"
+		"tailwindcss": "^4.0.12"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^1.9.4",
-		"@tailwindcss/vite": "^4.0.6",
-		"@types/react": "^19.0.8",
-		"@types/react-dom": "^19.0.3",
-		"react-compiler-runtime": "^19.0.0-beta-e552027-20250112",
-		"sharp": "^0.33.5"
+		"react-compiler-runtime": "^19.0.0-beta-40c6c23-20250301",
+		"sharp": "^0.33.5",
+		"@tailwindcss/vite": "^4.0.12",
+		"@types/react": "^19.0.10",
+		"@types/react-dom": "^19.0.4",
+		"@biomejs/biome": "^1.9.4"
 	}
 }
