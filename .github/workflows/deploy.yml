@@ -12,7 +12,7 @@ jobs:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v4
-      - uses: withastro/action@v3
+      - uses: withastro/action@v4
         with:
           package-manager: bun
       - name: Deploy
