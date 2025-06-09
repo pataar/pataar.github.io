@@ -3,19 +3,19 @@
 # Please see the documentation for all configuration options:
 # https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
 
-version: 2
-updates:
-  - package-ecosystem: "npm" # See documentation for possible values
-    directory: "/" # Location of package manifests
-    schedule:
-      interval: "weekly"
-    allow:
-      # Allow both direct and indirect updates for all packages
-      - dependency-type: "direct"
-  - package-ecosystem: "github-actions" # See documentation for possible values
-    directory: "/" # Location of package manifests
-    schedule:
-      interval: "weekly"
-    allow:
-      # Allow both direct and indirect updates for all packages
-      - dependency-type: "direct"
+# version: 2
+# updates:
+#   - package-ecosystem: "npm" # See documentation for possible values
+#     directory: "/" # Location of package manifests
+#     schedule:
+#       interval: "weekly"
+#     allow:
+#       # Allow both direct and indirect updates for all packages
+#       - dependency-type: "direct"
+#   - package-ecosystem: "github-actions" # See documentation for possible values
+#     directory: "/" # Location of package manifests
+#     schedule:
+#       interval: "weekly"
+#     allow:
+#       # Allow both direct and indirect updates for all packages
+#       - dependency-type: "direct"
