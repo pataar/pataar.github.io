@@ -10,27 +10,28 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/react": "4.2.3",
-		"@astrojs/sitemap": "3.3.0",
+		"@astrojs/react": "4.3.0",
+		"@astrojs/sitemap": "3.5.1",
 		"@astrojs/tailwind": "6.0.2",
 		"@fortawesome/fontawesome-common-types": "^6.7.2",
 		"@fortawesome/fontawesome-svg-core": "^6.7.2",
 		"@fortawesome/free-brands-svg-icons": "^6.7.2",
 		"@fortawesome/free-solid-svg-icons": "^6.7.2",
-		"@fortawesome/react-fontawesome": "^0.2.2",
-		"@tailwindcss/vite": "^4.0.17",
-		"astro": "5.12.4",
-		"devicon": "^2.16.0",
-		"lefthook": "^1.11.5",
-		"react": "^19.0.0",
-		"react-dom": "^19.0.0",
-		"tailwindcss": "^4.0.17"
+		"@fortawesome/react-fontawesome": "^0.2.6",
+		"@tailwindcss/vite": "^4.1.12",
+		"astro": "5.13.3",
+		"devicon": "^2.17.0",
+		"lefthook": "^1.12.3",
+		"react": "^19.1.1",
+		"react-dom": "^19.1.1",
+		"tailwindcss": "^4.1.12"
 	},
 	"devDependencies": {
-		"react-compiler-runtime": "^19.0.0-beta-e552027-20250112",
-		"sharp": "^0.34.0",
-		"@types/react": "^19.0.12",
-		"@types/react-dom": "^19.0.4",
+		"react-compiler-runtime": "^19.0.0-beta-ebf51a3-20250411",
+		"sharp": "^0.34.3",
+		"@types/react": "^19.1.11",
+		"@types/react-dom": "^19.1.7",
 		"@biomejs/biome": "^1.9.4"
-	}
+	},
+	"trustedDependencies": ["@biomejs/biome", "@tailwindcss/oxide"]
 }
