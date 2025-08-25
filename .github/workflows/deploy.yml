@@ -1,34 +1,85 @@
-name: deploy
+name: Deploy
 
 on:
   push:
-    branches:
-      - master  # Set a branch name to trigger deployment
+    branches: [master]
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize]
+
+env:
+  NODE_ENV: production
 
 jobs:
-  deploy:
-    runs-on: ubuntu-20.04
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
+  # Quality checks job
+  quality:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: withastro/action@v4
+      - name: Checkout
+        uses: actions/checkout@v5
+        
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          package-manager: bun
-      - name: Deploy
+          bun-version: latest
+          
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+            
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+        
+      - name: Type check
+        run: bun run astro check
+        
+      - name: Build check
+        run: bun run build
+        
+      - name: Upload build artifacts
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 1
+
+  # Deploy job (only on push to master)
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    needs: quality
+    runs-on: ubuntu-latest
+    concurrency:
+      group: deploy-${{ github.ref }}
+      cancel-in-progress: true
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           cname: www.pieterwillekens.nl
-
-      - name: Sleep for 20 seconds to wait for deployment to complete
-        uses: jakejarvis/wait-action@master
-        with:
-          time: '20s'
-
-      - name: Cloudflare Purge Cache
+          
+      - name: Wait for deployment
+        run: sleep 30
+        
+      - name: Purge Cloudflare cache
         uses: jakejarvis/cloudflare-purge-action@v0.3.0
         env:
-          CLOUDFLARE_TOKEN: ${{secrets.CLOUDFLARE_TOKEN}}
-          CLOUDFLARE_ZONE: c83845c6fa8b184eabec2721f23d3f68
+          CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
+          CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
