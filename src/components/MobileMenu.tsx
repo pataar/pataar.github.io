@@ -40,32 +40,34 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 					×
 				</button>
 
-				<nav className="h-full flex flex-col p-10 pt-24">
+				<nav className="h-full flex flex-col p-6 pt-20">
 					{/* Profile Section - Top */}
 					<div className="text-center flex-shrink-0">
-						<div className="mb-8">
+						<div className="mb-4">
 							<img
 								src={profileImage.src}
 								alt="Pieter's profile"
-								width="160"
-								height="160"
-								className="mx-auto rounded-full object-cover object-top border-6 border-amber-800 shadow-xl w-40 h-40 aspect-square"
+								width="120"
+								height="120"
+								className="mx-auto rounded-full object-cover object-top border-4 border-amber-800 shadow-xl w-24 h-24 sm:w-32 sm:h-32 aspect-square"
 							/>
 						</div>
-						<h2 className="text-3xl font-semibold mb-3 text-amber-800 dark:text-amber-200">Pieter Willekens</h2>
-						<p className="text-lg opacity-75 italic">Dad, developer and drummer.</p>
+						<h2 className="text-xl sm:text-2xl font-semibold mb-2 text-amber-800 dark:text-amber-200">
+							Pieter Willekens
+						</h2>
+						<p className="text-sm sm:text-base opacity-75 italic">Dad, developer and drummer.</p>
 					</div>
 
 					{/* Navigation Links - Center */}
-					<div className="flex-1 flex flex-col justify-center py-16">
-						<div className="space-y-12">
+					<div className="flex-1 flex flex-col justify-center py-8">
+						<div className="space-y-6">
 							{Object.entries(routes).map(([path, name]) => {
 								const active = currentPath === path;
 
 								return (
 									<a
 										key={path}
-										className={`block text-3xl py-6 text-left ${
+										className={`block text-xl sm:text-2xl py-3 text-left ${
 											active
 												? "font-bold text-amber-800 dark:text-amber-200"
 												: "text-amber-700 dark:text-amber-300 hover:text-amber-800 dark:hover:text-amber-200"
@@ -80,11 +82,11 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 					</div>
 
 					{/* Contact Section - Bottom */}
-					<div className="flex-shrink-0 pt-10 border-t border-amber-200 dark:border-amber-700">
-						<h3 className="text-center text-base font-semibold mb-8 text-amber-800 dark:text-amber-200 uppercase tracking-wider">
+					<div className="flex-shrink-0 pt-6 border-t border-amber-200 dark:border-amber-700">
+						<h3 className="text-center text-sm font-semibold mb-4 text-amber-800 dark:text-amber-200 uppercase tracking-wider">
 							Contact Me
 						</h3>
-						<div className="flex justify-center space-x-4 flex-wrap gap-y-4">
+						<div className="flex justify-center space-x-2 flex-wrap gap-y-2">
 							{contacts.map(contact => (
 								<a
 									key={contact.label}
@@ -92,7 +94,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 									target="_blank"
 									rel="noreferrer"
 									aria-label={contact.label}
-									className="px-6 py-3 text-base font-medium rounded-lg bg-amber-200 dark:bg-amber-700 text-amber-800 dark:text-amber-200 hover:scale-105 border border-amber-300 dark:border-amber-600"
+									className="px-3 py-2 text-xs sm:text-sm font-medium rounded-lg bg-amber-200 dark:bg-amber-700 text-amber-800 dark:text-amber-200 hover:scale-105 border border-amber-300 dark:border-amber-600"
 								>
 									{contact.label}
 								</a>
