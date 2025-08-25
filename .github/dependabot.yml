@@ -1,0 +1,48 @@
+# Configuration for Dependabot updates
+# https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+updates:
+  # Enable version updates for npm (JavaScript/TypeScript)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "pataar"
+    commit-message:
+      prefix: "build(deps)"
+      include: "scope"
+    groups:
+      astro:
+        patterns:
+          - "astro*"
+          - "@astrojs/*"
+      react:
+        patterns:
+          - "react*"
+          - "@types/react*"
+      fontawesome:
+        patterns:
+          - "@fortawesome/*"
+      tailwind:
+        patterns:
+          - "tailwind*"
+          - "@tailwindcss/*"
+
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday" 
+      time: "09:00"
+    open-pull-requests-limit: 3
+    reviewers:
+      - "pataar"
+    commit-message:
+      prefix: "ci"
+      include: "scope"
