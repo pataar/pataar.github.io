@@ -2,24 +2,75 @@
 import Sidebar from "../components/Sidebar.astro";
 interface Props {
 	title: string;
+	description?: string;
 }
 
-const { title } = Astro.props;
+const { title, description = "Pieter Willekens - Tech Lead & Full Stack Developer specializing in Laravel, React, TypeScript, and Kubernetes. Helping hundreds of thousands of patients through innovative healthcare applications." } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en" class="bg-white dark:bg-slate-800 font-light h-full">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=512 />
-		<meta name=" generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="author" content="Pieter Willekens" />
+		<meta name="keywords" content="Pieter Willekens, Tech Lead, Full Stack Developer, Laravel, React, TypeScript, Kubernetes, Patient Journey App, Interactive Studios" />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://pieterwillekens.nl/" />
+		<meta property="og:title" content={`${title} | Pieter Willekens`} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content="https://pieterwillekens.nl/og-image.png" />
+		<meta property="og:site_name" content="Pieter Willekens - Developer Portfolio" />
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content="https://pieterwillekens.nl/" />
+		<meta name="twitter:title" content={`${title} | Pieter Willekens`} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content="https://pieterwillekens.nl/og-image.png" />
+
 		<title>{title} | Pieter Willekens</title>
 		<link rel="sitemap" href="/sitemap-index.xml" />
+		<link rel="canonical" href="https://pieterwillekens.nl/" />
+
+		<!-- Performance optimizations -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link rel="dns-prefetch" href="https://github.com" />
+		<link rel="dns-prefetch" href="https://twitter.com" />
 
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+		
+		<!-- Structured Data -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "Person",
+			"name": "Pieter Willekens",
+			"jobTitle": "Tech Lead & Full Stack Developer",
+			"worksFor": {
+				"@type": "Organization",
+				"name": "Interactive Studios"
+			},
+			"url": "https://pieterwillekens.nl",
+			"sameAs": [
+				"https://github.com/pataar",
+				"https://twitter.com/pataar",
+				"https://linkedin.com/in/pieter-willekens"
+			],
+			"knowsAbout": [
+				"Laravel", "React", "TypeScript", "JavaScript", "PHP", "Kubernetes", 
+				"Docker", "Vue.js", "Angular", "Node.js", "MySQL", "DevOps"
+			],
+			"description": "Tech Lead specializing in full-stack development with expertise in Laravel, React, and Kubernetes. Leading development of Patient Journey App helping hundreds of thousands of patients."
+		}
+		</script>
 	</head>
 	<body class="bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-200 h-full">
 		<div class="flex h-full">

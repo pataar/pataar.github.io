@@ -21,7 +21,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Skill from "../components/Skill.astro";
 ---
 
-<Layout title="Things I like to work with">
+<Layout title="Things I like to work with" description="Technologies and tools I enjoy working with: TypeScript, React, Laravel, Kubernetes, Docker, and more. My preferred development stack and DevOps tools.">
 	<header class="intro-section mb-8">
 		<h1 class="text-3xl font-normal mb-4 text-slate-900 dark:text-slate-100">Things I like to work with.</h1>
 		<p class="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
@@ -165,9 +165,10 @@ import Skill from "../components/Skill.astro";
 	}
 
 	.skills .category {
-		@apply border-r dark:border-gray-600 border-gray-200;
+		@apply border-r border-amber-200 dark:border-amber-700;
 		padding-bottom: 30px;
 		padding-right: 20px;
+		background: linear-gradient(to bottom, transparent, rgba(251, 191, 36, 0.05));
 	}
 
 	.skills .category:last-child {
@@ -185,13 +186,15 @@ import Skill from "../components/Skill.astro";
 
 	.skills .category .category-name {
 		align-items: center;
-		@apply border-t border-b dark:border-gray-600 border-gray-200;
+		@apply border-t border-b border-amber-300 dark:border-amber-600 bg-amber-50 dark:bg-amber-900/30;
 		display: flex;
 		font-size: 1.3em;
 		height: 70px;
 		justify-content: center;
 		margin-bottom: 20px;
 		text-align: center;
+		color: #92400e;
+		font-weight: 600;
 	}
 
 	.skills .category a {
