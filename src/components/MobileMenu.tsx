@@ -92,7 +92,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 									target="_blank"
 									rel="noreferrer"
 									aria-label={contact.label}
-									className="px-6 py-3 text-base font-medium rounded-lg bg-amber-200 dark:bg-amber-700 text-amber-800 dark:text-amber-200 hover:scale-105 transition-transform border border-amber-300 dark:border-amber-600"
+									className="px-6 py-3 text-base font-medium rounded-lg bg-amber-200 dark:bg-amber-700 text-amber-800 dark:text-amber-200 hover:scale-105 border border-amber-300 dark:border-amber-600"
 								>
 									{contact.label}
 								</a>

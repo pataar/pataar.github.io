@@ -22,12 +22,11 @@ const currentPath = Astro.url.pathname;
 			const active = currentPath === path ? "active" : "";
 			return (
 				<a
-					class={`menu-item opacity-0 transform translate-y-4 block text-xl py-3 border-b border-amber-200 dark:border-amber-700 transition-all duration-200 ${
+					class={`menu-item opacity-0 transform translate-y-4 block text-xl py-3 border-b border-amber-200 dark:border-amber-700 ${
 						active 
 							? "font-bold text-amber-800 dark:text-amber-200" 
 							: "text-amber-700 dark:text-amber-300 hover:text-amber-800 dark:hover:text-amber-200"
 					}`}
-					style={`transition-delay: ${(index + 1) * 100}ms`}
 					href={path}>
 					{name}
 				</a>
@@ -47,7 +46,6 @@ const currentPath = Astro.url.pathname;
 	}
 
 	.menu-item {
-		transition: opacity 0.6s ease, transform 0.6s ease;
 	}
 
 	.menu-item.animate-in {
