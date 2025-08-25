@@ -21,6 +21,12 @@ const { icon } = Astro.props;
 		display: flex;
 		font-size: 0.9em;
 		@apply my-3 h-10;
+		transition: transform 0.2s ease, opacity 0.2s ease;
+	}
+
+	.skill:hover {
+		transform: translateX(2px);
+		opacity: 0.9;
 	}
 
 	.skill .icon {

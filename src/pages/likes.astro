@@ -155,22 +155,30 @@ import Skill from "../components/Skill.astro";
 	@import "devicon/devicon.min.css";
 
 	.skills {
-		display: flex;
-		flex-wrap: wrap;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 30px;
 		margin-top: 40px;
-		width: 98%;
+		width: 100%;
 	}
 
 	.skills .category {
 		@apply border-r dark:border-gray-600 border-gray-200;
-		margin-right: 30px;
 		padding-bottom: 30px;
-		padding-right: 30px;
-		width: 250px;
+		padding-right: 20px;
 	}
 
-	.skills .category:nth-child(3n) {
-		@apply lg:border-r-0;
+	.skills .category:last-child {
+		@apply border-r-0;
+	}
+
+	@media (max-width: 768px) {
+		.skills {
+			grid-template-columns: 1fr;
+		}
+		.skills .category {
+			@apply border-r-0;
+		}
 	}
 
 	.skills .category .category-name {

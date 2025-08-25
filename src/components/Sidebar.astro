@@ -17,15 +17,20 @@ const year = new Date().getFullYear();
 		<span class="italic">Dad, developer and drummer.</span>
 	</div>
 
-	<div
-		class="flex-1 justify-center flex flex-col border-t-slate-900 dark:border-t-slate-200 border-2 border-x-0 border-b-0">
+	<div class="border-t-slate-900 dark:border-t-slate-200 border-2 border-x-0 border-b-0 pt-4 pb-4">
 		<Navigation />
 	</div>
+
+	<div class="flex-1"></div>
 
 	<div class="bottom text-center">
 		<h3 class="contact-title flex-shrink">Contact me</h3>
 
 		<ContactIcons />
+
+		<div class="divider my-4">
+			<hr class="border-t-slate-900 dark:border-t-slate-200" />
+		</div>
 
 		<small class="my-2 block">{year} © Pieter Willekens</small>
 		<small>
@@ -39,9 +44,9 @@ const year = new Date().getFullYear();
 <style>
 	@reference "tailwindcss";
 	.contact-title {
-		font-size: 12px;
-		font-weight: 400;
-		margin: 0 0 5px;
+		font-size: 14px;
+		font-weight: 500;
+		margin: 0 0 15px;
 		position: relative;
 		text-align: center;
 		text-transform: uppercase;
