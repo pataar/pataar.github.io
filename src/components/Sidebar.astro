@@ -7,10 +7,10 @@ import Navigation from "./Navigation.astro";
 const year = new Date().getFullYear();
 ---
 
-<div class="bg-orange-100 dark:bg-orange-900 w-48 sm:w-60 p-3 flex flex-col h-full">
+<div class="bg-amber-100 dark:bg-amber-800 w-48 sm:w-60 p-3 flex flex-col h-full">
 	<div class="header text-center p-7 flex-shrink">
-		<a href="/" class="block mx-3 mb-3 hover:scale-90 transition-all">
-			<Image alt="Pieter's cartoon head" src={head} width="140" />
+		<a href="/" class="block mb-3 hover:scale-90 transition-all">
+			<Image alt="Pieter's profile" src={head} width="180" height="180" class="profile-pic" />
 		</a>
 		<span class="uppercase">Pieter Willekens</span>
 		<small class="block opacity-60 my-2">● ● ●</small>
@@ -43,6 +43,16 @@ const year = new Date().getFullYear();
 
 <style>
 	@reference "tailwindcss";
+	
+	.profile-pic {
+		border-radius: 50%;
+		object-fit: cover;
+		object-position: center top;
+		border: 3px solid #92400e;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+		aspect-ratio: 1 / 1;
+	}
+	
 	.contact-title {
 		font-size: 14px;
 		font-weight: 500;
