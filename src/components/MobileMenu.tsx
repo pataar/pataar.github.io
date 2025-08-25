@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { contacts } from "../config/contacts";
 import { routes } from "../config/routes";
 
 // Import the profile image
@@ -39,51 +40,64 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 					×
 				</button>
 
-				<nav className="h-full flex flex-col justify-center p-8 pt-20">
-					{/* Profile Section */}
-					<div
-						className={`text-center mb-12 transition-all duration-700 ease-out transform ${
-							isOpen ? "opacity-100 translate-y-0 delay-300" : "opacity-0 translate-y-4"
-						}`}
-					>
-						<div className="mb-6">
+				<nav className="h-full flex flex-col p-10 pt-24">
+					{/* Profile Section - Top */}
+					<div className="text-center flex-shrink-0">
+						<div className="mb-8">
 							<img
 								src={profileImage.src}
 								alt="Pieter's profile"
-								width="120"
-								height="120"
-								className="mx-auto rounded-full object-cover object-top border-4 border-amber-800 shadow-lg w-30 h-30 aspect-square"
+								width="160"
+								height="160"
+								className="mx-auto rounded-full object-cover object-top border-6 border-amber-800 shadow-xl w-40 h-40 aspect-square"
 							/>
 						</div>
-						<h2 className="text-xl font-semibold mb-2 text-amber-800 dark:text-amber-200">Pieter Willekens</h2>
-						<p className="text-sm opacity-75 italic">Dad, developer and drummer.</p>
+						<h2 className="text-3xl font-semibold mb-3 text-amber-800 dark:text-amber-200">Pieter Willekens</h2>
+						<p className="text-lg opacity-75 italic">Dad, developer and drummer.</p>
 					</div>
 
-					{/* Navigation Links */}
-					<div className="space-y-6">
-						{Object.entries(routes).map(([path, name], index) => {
-							const active = currentPath === path;
-							const delay = 400 + index * 100;
+					{/* Navigation Links - Center */}
+					<div className="flex-1 flex flex-col justify-center py-16">
+						<div className="space-y-12">
+							{Object.entries(routes).map(([path, name]) => {
+								const active = currentPath === path;
 
-							return (
+								return (
+									<a
+										key={path}
+										className={`block text-3xl py-6 text-left ${
+											active
+												? "font-bold text-amber-800 dark:text-amber-200"
+												: "text-amber-700 dark:text-amber-300 hover:text-amber-800 dark:hover:text-amber-200"
+										}`}
+										href={path}
+									>
+										&gt; {name}
+									</a>
+								);
+							})}
+						</div>
+					</div>
+
+					{/* Contact Section - Bottom */}
+					<div className="flex-shrink-0 pt-10 border-t border-amber-200 dark:border-amber-700">
+						<h3 className="text-center text-base font-semibold mb-8 text-amber-800 dark:text-amber-200 uppercase tracking-wider">
+							Contact Me
+						</h3>
+						<div className="flex justify-center space-x-4 flex-wrap gap-y-4">
+							{contacts.map(contact => (
 								<a
-									key={path}
-									className={`block text-xl py-3 border-b border-amber-200 dark:border-amber-700 transition-all duration-700 ease-out transform ${
-										isOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-									} ${
-										active
-											? "font-bold text-amber-800 dark:text-amber-200"
-											: "text-amber-700 dark:text-amber-300 hover:text-amber-800 dark:hover:text-amber-200"
-									}`}
-									style={{
-										transitionDelay: `${delay}ms`,
-									}}
-									href={path}
+									key={contact.label}
+									href={contact.url}
+									target="_blank"
+									rel="noreferrer"
+									aria-label={contact.label}
+									className="px-6 py-3 text-base font-medium rounded-lg bg-amber-200 dark:bg-amber-700 text-amber-800 dark:text-amber-200 hover:scale-105 transition-transform border border-amber-300 dark:border-amber-600"
 								>
-									{name}
+									{contact.label}
 								</a>
-							);
-						})}
+							))}
+						</div>
 					</div>
 				</nav>
 			</div>
