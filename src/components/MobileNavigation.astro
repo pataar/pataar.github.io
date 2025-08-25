@@ -1,0 +1,57 @@
+---
+import { routes } from "../config/routes";
+import { Image } from "astro:assets";
+import head from "../assets/icon.png";
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="h-full flex flex-col justify-center p-8 pt-20">
+	<!-- Profile Section -->
+	<div class="text-center mb-12 menu-item opacity-0 transform translate-y-4">
+		<div class="mb-6">
+			<Image alt="Pieter's profile" src={head} width="120" height="120" class="profile-pic-mobile mx-auto" />
+		</div>
+		<h2 class="text-xl font-semibold mb-2 text-amber-800 dark:text-amber-200">Pieter Willekens</h2>
+		<p class="text-sm opacity-75 italic">Dad, developer and drummer.</p>
+	</div>
+
+	<!-- Navigation Links -->
+	<div class="space-y-6">
+		{Object.entries(routes).map(([path, name], index) => {
+			const active = currentPath === path ? "active" : "";
+			return (
+				<a
+					class={`menu-item opacity-0 transform translate-y-4 block text-xl py-3 border-b border-amber-200 dark:border-amber-700 transition-all duration-200 ${
+						active 
+							? "font-bold text-amber-800 dark:text-amber-200" 
+							: "text-amber-700 dark:text-amber-300 hover:text-amber-800 dark:hover:text-amber-200"
+					}`}
+					style={`transition-delay: ${(index + 1) * 100}ms`}
+					href={path}>
+					{name}
+				</a>
+			);
+		})}
+	</div>
+</nav>
+
+<style>
+	.profile-pic-mobile {
+		border-radius: 50%;
+		object-fit: cover;
+		object-position: center top;
+		border: 3px solid #92400e;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+		aspect-ratio: 1 / 1;
+	}
+
+	.menu-item {
+		transition: opacity 0.6s ease, transform 0.6s ease;
+	}
+
+	.menu-item.animate-in {
+		opacity: 1;
+		transform: translateY(0);
+	}
+</style>

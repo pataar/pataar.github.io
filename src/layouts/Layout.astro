@@ -1,5 +1,6 @@
 ---
 import Sidebar from "../components/Sidebar.astro";
+import MobileNavigation from "../components/MobileNavigation.astro";
 interface Props {
 	title: string;
 	description?: string;
@@ -73,16 +74,77 @@ const { title, description = "Pieter Willekens - Tech Lead & Full Stack Develope
 		</script>
 	</head>
 	<body class="bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-200 h-full">
+		<!-- Mobile hamburger menu -->
+		<div class="md:hidden fixed top-0 left-0 right-0 z-50 bg-white dark:bg-slate-800 border-b border-amber-200 dark:border-amber-700 p-4">
+			<div class="flex justify-end items-center">
+				<button id="mobile-menu-button" class="p-2 rounded-md hover:bg-amber-100 dark:hover:bg-amber-800">
+					<div class="hamburger-icon">
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+				</button>
+			</div>
+		</div>
+
+		<!-- Mobile menu fullscreen -->
+		<div id="mobile-menu" class="md:hidden fixed inset-0 z-40 transform -translate-x-full transition-transform duration-500 ease-in-out">
+			<div class="bg-amber-50 dark:bg-amber-900 w-full h-full relative">
+				<button id="mobile-menu-close" class="absolute top-4 right-4 p-3 text-2xl hover:bg-amber-200 dark:hover:bg-amber-700 rounded-md z-50 text-amber-800 dark:text-amber-200">×</button>
+				<MobileNavigation />
+			</div>
+		</div>
+
 		<div class="flex h-full">
-			<div>
+			<div class="hidden md:block">
 				<Sidebar />
 			</div>
-			<div class="flex-1 p-10 h-full overflow-auto">
+			<div class="flex-1 p-4 md:p-10 pt-20 md:pt-10 h-full overflow-auto">
 				<div class="max-w-5xl">
 					<slot />
 				</div>
 			</div>
 		</div>
+
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				const menuButton = document.getElementById('mobile-menu-button');
+				const closeButton = document.getElementById('mobile-menu-close');
+				const mobileMenu = document.getElementById('mobile-menu');
+				const hamburgerIcon = menuButton?.querySelector('.hamburger-icon');
+
+				function openMenu() {
+					mobileMenu.classList.remove('-translate-x-full');
+					hamburgerIcon?.classList.add('active');
+					document.body.style.overflow = 'hidden';
+					
+					// Animate menu items with staggered delay
+					setTimeout(() => {
+						const menuItems = mobileMenu.querySelectorAll('.menu-item');
+						menuItems.forEach((item, index) => {
+							setTimeout(() => {
+								item.classList.add('animate-in');
+							}, index * 100);
+						});
+					}, 200);
+				}
+
+				function closeMenu() {
+					// Remove animations before closing
+					const menuItems = mobileMenu.querySelectorAll('.menu-item');
+					menuItems.forEach(item => {
+						item.classList.remove('animate-in');
+					});
+					
+					mobileMenu.classList.add('-translate-x-full');
+					hamburgerIcon?.classList.remove('active');
+					document.body.style.overflow = '';
+				}
+
+				menuButton?.addEventListener('click', openMenu);
+				closeButton?.addEventListener('click', closeMenu);
+			});
+		</script>
 	</body>
 </html>
 <style is:global>
@@ -125,5 +187,38 @@ const { title, description = "Pieter Willekens - Tech Lead & Full Stack Develope
 
 	p {
 		@apply mb-3;
+	}
+
+	/* Hamburger menu styles */
+	.hamburger-icon {
+		display: flex;
+		flex-direction: column;
+		width: 24px;
+		height: 18px;
+		justify-content: space-between;
+		cursor: pointer;
+	}
+
+	.hamburger-icon span {
+		display: block;
+		height: 2px;
+		width: 100%;
+		background-color: currentColor;
+		border-radius: 1px;
+		transition: all 0.3s ease;
+		transform-origin: center;
+	}
+
+	/* Hamburger animation */
+	.hamburger-icon.active span:nth-child(1) {
+		transform: translateY(8px) rotate(45deg);
+	}
+
+	.hamburger-icon.active span:nth-child(2) {
+		opacity: 0;
+	}
+
+	.hamburger-icon.active span:nth-child(3) {
+		transform: translateY(-8px) rotate(-45deg);
 	}
 </style>
