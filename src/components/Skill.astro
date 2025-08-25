@@ -17,10 +17,8 @@ const { icon } = Astro.props;
 	@reference "tailwindcss";
 	
 	.skill {
-		align-items: center;
-		display: flex;
+		@apply flex items-center my-3 h-10;
 		font-size: 0.9em;
-		@apply my-3 h-10;
 		transition: transform 0.2s ease, opacity 0.2s ease;
 	}
 
@@ -30,8 +28,11 @@ const { icon } = Astro.props;
 	}
 
 	.skill .icon {
-		font-size: 2em;
-		margin-right: 10px;
-		width: 32px;
+		@apply flex items-center justify-start mr-4 w-8 h-8 flex-shrink-0 pl-1;
+		font-size: 1.5em;
+	}
+	
+	.skill .label {
+		@apply flex-1;
 	}
 </style>
