@@ -3,8 +3,8 @@
 
 version: 2
 updates:
-  # Enable version updates for npm (JavaScript/TypeScript)
-  - package-ecosystem: "npm"
+  # Enable version updates for bun (JavaScript/TypeScript)
+  - package-ecosystem: "bun"
     directory: "/"
     schedule:
       interval: "weekly"
