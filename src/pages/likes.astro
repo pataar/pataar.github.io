@@ -24,7 +24,7 @@ import Skill from "../components/Skill.astro";
 <Layout title="Things I like to work with" description="Technologies and tools I enjoy working with: TypeScript, React, Laravel, Kubernetes, Docker, and more. My preferred development stack and DevOps tools.">
 	<header class="intro-section mb-8">
 		<h1 class="text-3xl font-normal mb-4 text-slate-900 dark:text-slate-100">Things I like to work with.</h1>
-		<p class="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+		<p class="text-base leading-relaxed text-slate-700 dark:text-slate-300">
 			While I code I like to use a combination of several languages and frameworks. These are the technologies I enjoy working with the most, ordered by preference.
 		</p>
 	</header>
@@ -158,7 +158,8 @@ import Skill from "../components/Skill.astro";
 
 	.skills {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		grid-template-columns: repeat(3, 1fr);
+		grid-template-rows: repeat(2, 1fr);
 		gap: 30px;
 		margin-top: 40px;
 		width: 100%;
@@ -190,7 +191,7 @@ import Skill from "../components/Skill.astro";
 		@apply bg-slate-50 dark:bg-slate-700/30;
 		@apply text-slate-800 dark:text-slate-200;
 		@apply font-semibold;
-		font-size: 1.3em;
+		font-size: 1.15em;
 		height: 70px;
 		margin-bottom: 20px;
 	}
