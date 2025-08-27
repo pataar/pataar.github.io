@@ -24,7 +24,7 @@
         "@biomejs/biome": "^2.2.2",
         "@types/react": "^19.1.11",
         "@types/react-dom": "^19.1.8",
-        "react-compiler-runtime": "^19.0.0-beta-ebf51a3-20250411",
+        "react-compiler-runtime": "^19.0.0-beta-714736e-20250131",
         "sharp": "^0.34.3",
       },
     },
@@ -796,7 +796,7 @@
 
     "react": ["react@19.1.1", "", {}, "sha512-w8nqGImo45dmMIfljjMwOGtbmC/mk4CMYhWIicdSflH91J9TyCyczcPFXJzrZ/ZXcgGRFeP6BU0BEJTw6tZdfQ=="],
 
-    "react-compiler-runtime": ["react-compiler-runtime@19.0.0-beta-ebf51a3-20250411", "", { "peerDependencies": { "react": "^17.0.0 || ^18.0.0 || ^19.0.0 || ^0.0.0-experimental" } }, "sha512-CetwBv7Wny+4Re6TZRPtVbNMx65CvLNDMkMp2KJ/pRmEc6WLPUoSSBuyY0bML9GPWiO/3LcWQ4iDGKitFU0qng=="],
+    "react-compiler-runtime": ["react-compiler-runtime@19.0.0-beta-714736e-20250131", "", { "peerDependencies": { "react": "^17.0.0 || ^18.0.0 || ^19.0.0 || ^0.0.0-experimental" } }, "sha512-RJQqbR2zIobjLZ242MRQlWlyxLDxw0fRxbniImHxSsBqHSf35vK8CsClA37MfO729M3n4jCIawI3BCdBHksOvA=="],
 
     "react-dom": ["react-dom@19.1.1", "", { "dependencies": { "scheduler": "^0.26.0" }, "peerDependencies": { "react": "^19.1.1" } }, "sha512-Dlq/5LAZgF0Gaz6yiqZCf6VCcZs1ghAJyrsu84Q/GT0gV+mCxbfmKNoGRKBYMJ8IEdGPqu49YWXD02GCknEDkw=="],
 
