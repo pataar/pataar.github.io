@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 
 interface MobileMenuButtonProps {
 	onToggle: (isOpen: boolean) => void;

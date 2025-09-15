@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { contacts } from "../config/contacts";
-import { routes } from "../config/routes";
-
+import { useEffect } from "react";
 // Import the profile image
 import profileImage from "../assets/icon.png";
+import { contacts } from "../config/contacts";
+import { routes } from "../config/routes";
 
 interface MobileMenuProps {
 	isOpen: boolean;

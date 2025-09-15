@@ -1,12 +1,16 @@
 ---
-import Sidebar from "../components/Sidebar.astro";
 import MobileMenuContainer from "../components/MobileMenuContainer.tsx";
+import Sidebar from "../components/Sidebar.astro";
+
 interface Props {
 	title: string;
 	description?: string;
 }
 
-const { title, description = "Pieter Willekens - Tech Lead & Full Stack Developer specializing in Laravel, React, TypeScript, and Kubernetes. Helping hundreds of thousands of patients through innovative healthcare applications." } = Astro.props;
+const {
+	title,
+	description = "Pieter Willekens - Tech Lead & Full Stack Developer specializing in Laravel, React, TypeScript, and Kubernetes. Helping hundreds of thousands of patients through innovative healthcare applications.",
+} = Astro.props;
 ---
 
 <!doctype html>
