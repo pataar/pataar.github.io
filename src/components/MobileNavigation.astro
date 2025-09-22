@@ -18,7 +18,7 @@ const currentPath = Astro.url.pathname;
 
 	<!-- Navigation Links -->
 	<div class="space-y-6">
-		{Object.entries(routes).map(([path, name], index) => {
+		{Object.entries(routes).map(([path, name]) => {
 			const active = currentPath === path ? "active" : "";
 			return (
 				<a
