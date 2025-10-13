@@ -29,8 +29,8 @@
 	"devDependencies": {
 		"@astrojs/check": "^0.9.4",
 		"@biomejs/biome": "^2.2.5",
-		"@types/react": "^19.2.0",
-		"@types/react-dom": "^19.2.0",
+		"@types/react": "^19.2.2",
+		"@types/react-dom": "^19.2.1",
 		"react-compiler-runtime": "^19.1.0-rc.3",
 		"sharp": "^0.34.4"
 	},
