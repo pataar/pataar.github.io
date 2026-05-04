@@ -19,7 +19,7 @@
 		"@fortawesome/free-solid-svg-icons": "^7.2.0",
 		"@fortawesome/react-fontawesome": "^3.3.1",
 		"@tailwindcss/vite": "^4.2.4",
-		"astro": "^6.1.9",
+		"astro": "^6.2.1",
 		"devicon": "^2.17.0",
 		"lefthook": "^2.1.6",
 		"react": "^19.2.5",
@@ -27,7 +27,7 @@
 		"tailwindcss": "^4.2.4"
 	},
 	"devDependencies": {
-		"@astrojs/check": "^0.9.8",
+		"@astrojs/check": "^0.9.9",
 		"@biomejs/biome": "^2.4.14",
 		"@types/react": "^19.2.14",
 		"@types/react-dom": "^19.2.3",
