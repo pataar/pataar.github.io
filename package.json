@@ -22,14 +22,14 @@
 		"astro": "^6.3.7",
 		"devicon": "^2.17.0",
 		"lefthook": "^2.1.8",
-		"react": "^19.2.6",
-		"react-dom": "^19.2.6",
+		"react": "^19.2.7",
+		"react-dom": "^19.2.7",
 		"tailwindcss": "^4.3.0"
 	},
 	"devDependencies": {
 		"@astrojs/check": "^0.9.9",
 		"@biomejs/biome": "^2.4.15",
-		"@types/react": "^19.2.15",
+		"@types/react": "^19.2.16",
 		"@types/react-dom": "^19.2.3",
 		"react-compiler-runtime": "^1.0.0",
 		"sharp": "^0.34.5"
