@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "@fontsource-variable/jetbrains-mono";
 
-/* Tokyo Night (night) — swapped for Tokyo Night Day on light-mode systems */
+/* Tokyo Night (night), swapped for Tokyo Night Day on light-mode systems */
 :root {
 	--tn-bg: #1a1b26;
 	--tn-bg-dark: #16161e;

@@ -6,40 +6,6 @@ import MeCode from "../components/MeCode.astro";
 import Section from "../components/Section.astro";
 import Layout from "../layouts/Layout.astro";
 
-const projects = [
-	{
-		description:
-			"web UI for Klipper 3D printers. I'm part of the Mainsail-crew; this is where my 3D printing hobby and my day job overlap.",
-		name: "mainsail",
-		url: "https://github.com/mainsail-crew/mainsail",
-	},
-	{
-		description: "a terminal dashboard for your GitLab activity, written in Go. Yes, this site and that tool share an aesthetic.",
-		name: "gast",
-		url: "https://github.com/pataar/gast",
-	},
-	{
-		description:
-			"a Prometheus exporter for ride wait times at the Efteling. Built to learn Rust; kept because Grafana dashboards of rollercoaster queues are great.",
-		name: "efteling-node-exporter",
-		url: "https://github.com/pataar/efteling-node-exporter",
-	},
-	{
-		description: "browser detection for Laravel. I keep the package alive through my fork.",
-		name: "browser-detect",
-		url: "https://github.com/pataar/browser-detect",
-	},
-];
-
-const interests = [
-	"#music-and-drums",
-	"#vinyl-collecting",
-	"#iot-and-home-automation",
-	"#3d-printing",
-	"#homelab",
-	"#gaming",
-	"#socializing-with-friends",
-];
 ---
 
 <Layout title="Home">
@@ -69,8 +35,8 @@ const interests = [
 	<Section title="at work" command=":e work.md">
 		<p>
 			I'm tech lead on the <a href="https://www.patientjourneyapp.com">Patient Journey App</a> at{" "}
-			<a href="https://www.interactivestudios.nl">Interactive Studios</a> — an app that guides patients through their
-			treatment, giving them the right information at exactly the right moment. My work runs the whole stack:
+			<a href="https://www.interactivestudios.nl">Interactive Studios</a>, an app that guides patients through their
+			treatment by giving them the right information at exactly the right moment. My work runs the whole stack:
 			application architecture, code review, CI/CD, and keeping our Kubernetes clusters happy.
 		</p>
 	</Section>
@@ -78,30 +44,29 @@ const interests = [
 	<Section title="technologies" command=":e stack.md">
 		<p>
 			Laravel on the backend, React and TypeScript on the frontend, React Native + Expo on mobile, and Kubernetes
-			underneath it all. Lately I've been poking at <a href="https://www.rust-lang.org">Rust</a> — mostly for fun,
-			sometimes for speed. I contribute to open source where I can and want to do more of it.
+			underneath it all. Lately I've been poking at <a href="https://www.rust-lang.org">Rust</a>, mostly for fun and
+			sometimes for speed. Open source is close to my heart, as an idea and in practice: I contribute where I can and
+			want to do more of it. See <a href="/projects/">projects</a> for the results.
 		</p>
 	</Section>
 
-	<Section title="projects" command=":e projects.md">
-		<ul class="space-y-3">
-			{
-				projects.map(project => (
-					<li>
-						<span class="select-none text-comment">- </span>
-						<a href={project.url}>{project.name}</a> — {project.description}
-					</li>
-				))
-			}
-		</ul>
+	<Section title="homelab" command=":e homelab.md">
+		<p>
+			The most over-engineered corner of the house: an Unraid server running more containers than strictly necessary,
+			Home Assistant automating whatever lets itself be automated, and a UniFi network tying it all together. Tinkering
+			with it is half the point; the other half is that the lights turn on by themselves.
+		</p>
 	</Section>
 
 	<Section title="outside of work" command=":e life.md">
-		<p>When I'm not at a keyboard, I'm with my partner, our two kids, and the dog. The rest of my time goes to:</p>
-		<ul class="my-4 flex flex-wrap gap-x-3 gap-y-1.5">
-			{interests.map(interest => <li class="text-sm text-comment">{interest}</li>)}
-		</ul>
-		<p>Big sci-fi and fantasy fan — Star Wars and Lord of the Rings above all.</p>
+		<p>
+			When I'm not at a keyboard, I'm with my partner, our two kids, and the dog. The rest of my time goes to drumming,
+			collecting vinyl, 3D printing, gaming, and evenings with friends.
+		</p>
+		<p>
+			Big sci-fi and fantasy fan, on screen and on paper: Star Wars, Lord of the Rings, and Brandon Sanderson's
+			Mistborn series.
+		</p>
 		<p>Also: astronomy and physics. I will happily lose an evening to a video about black holes.</p>
 	</Section>
 </Layout>

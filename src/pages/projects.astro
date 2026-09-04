@@ -1,0 +1,56 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+interface Project {
+	description: string;
+	name: string;
+	url: string;
+}
+
+const projects: Project[] = [
+	{
+		description:
+			"a terminal dashboard for your GitLab activity, written in Go. Yes, this site and that tool share an aesthetic.",
+		name: "gast",
+		url: "https://github.com/pataar/gast",
+	},
+	{
+		description:
+			"a Prometheus exporter for ride wait times at the Efteling. Built to learn Rust; kept because Grafana dashboards of rollercoaster queues are great.",
+		name: "efteling-node-exporter",
+		url: "https://github.com/pataar/efteling-node-exporter",
+	},
+	{
+		description: "browser detection for Laravel. I keep the package alive through my fork.",
+		name: "browser-detect",
+		url: "https://github.com/pataar/browser-detect",
+	},
+	{
+		description:
+			"web UI for Klipper 3D printers. I was part of the Mainsail-crew for a while, back when my 3D printing hobby and my day job overlapped.",
+		name: "mainsail",
+		url: "https://github.com/mainsail-crew/mainsail",
+	},
+];
+---
+
+<Layout title="Projects" description="Open source projects by Pieter Willekens: terminal tools, Prometheus exporters, Laravel packages, and 3D printing software.">
+	<header>
+		<h1 class="text-3xl font-bold text-fg"><span class="select-none text-comment"># </span>Projects</h1>
+		<p class="mt-4 leading-relaxed text-fg-muted">
+			Open source is close to my heart, as an idea and in practice: software gets better when it's built in the open.
+			I contribute where I can and want to do more of it. Some things I've built or helped build:
+		</p>
+	</header>
+
+	<ul class="mt-10 space-y-4">
+		{
+			projects.map(project => (
+				<li class="rounded-lg border border-edge bg-bg-dark/70 p-5 leading-relaxed text-fg-muted">
+					<span class="select-none text-comment">- </span>
+					<a href={project.url}>{project.name}</a>: {project.description}
+				</li>
+			))
+		}
+	</ul>
+</Layout>

@@ -55,6 +55,7 @@ const categories: Category[] = [
 	{
 		name: "operating systems",
 		skills: [
+			{ icon: "simple-icons:cachyos", label: "CachyOS (daily driver)" },
 			{ icon: "simple-icons:debian", label: "Debian" },
 			{ icon: "simple-icons:ubuntu", label: "Ubuntu" },
 			{ icon: "simple-icons:apple", label: "macOS" },
@@ -78,6 +79,14 @@ const categories: Category[] = [
 			{ icon: "simple-icons:caddy", label: "Caddy" },
 		],
 	},
+	{
+		name: "homelab",
+		skills: [
+			{ icon: "simple-icons:unraid", label: "Unraid" },
+			{ icon: "simple-icons:homeassistant", label: "Home Assistant" },
+			{ icon: "simple-icons:ubiquiti", label: "UniFi" },
+		],
+	},
 ];
 ---
 
@@ -87,7 +96,7 @@ const categories: Category[] = [
 	<header>
 		<h1 class="text-3xl font-bold text-fg"><span class="select-none text-comment"># </span>Things I like to work with.</h1>
 		<p class="mt-4 leading-relaxed text-fg-muted">
-			The languages, frameworks, and tools I reach for first — ordered by preference, not alphabetically.
+			The languages, frameworks, and tools I reach for first, ordered by preference rather than alphabetically.
 		</p>
 	</header>
 
