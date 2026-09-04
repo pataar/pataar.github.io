@@ -4,6 +4,7 @@ import portrait from "../assets/icon.png";
 import ContactIcons from "../components/ContactIcons.astro";
 import MeCode from "../components/MeCode.astro";
 import Section from "../components/Section.astro";
+import TypedName from "../components/TypedName.astro";
 import Layout from "../layouts/Layout.astro";
 
 ---
@@ -19,7 +20,7 @@ import Layout from "../layouts/Layout.astro";
 			/>
 			<div>
 				<h1 class="text-3xl font-bold text-fg">
-					Pieter Willekens<span aria-hidden="true" class="ml-1 animate-blink select-none text-blue">▊</span>
+					<TypedName text="Pieter Willekens" />
 				</h1>
 				<p class="mt-2 text-fg-muted"><span class="text-comment select-none">// </span>Dad, developer and drummer.</p>
 				<div class="mt-4">

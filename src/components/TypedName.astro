@@ -1,0 +1,60 @@
+---
+interface Props {
+	text: string;
+}
+
+const { text } = Astro.props;
+
+// Delays are randomized at build time so the rhythm feels human-typed without shipping any JS.
+let elapsedSeconds = 0.4;
+const words = text.split(" ").map(word => ({
+	letters: word.split("").map(letter => {
+		const delaySeconds = elapsedSeconds;
+		elapsedSeconds += 0.05 + Math.random() * 0.14;
+		return { delaySeconds, letter };
+	}),
+}));
+---
+
+<span class="sr-only">{text}</span>
+<span aria-hidden="true">
+	{
+		words.map((word, index) => (
+			<>
+				<span class="word">
+					{word.letters.map(({ delaySeconds, letter }) => (
+						<span class="letter" style={`animation-delay: ${delaySeconds.toFixed(2)}s`}>
+							{letter}
+						</span>
+					))}
+				</span>
+				{index < words.length - 1 && " "}
+			</>
+		))
+	}<span class="cursor ml-1 animate-blink select-none text-blue">▊</span>
+</span>
+
+<style>
+	.word {
+		display: inline-block;
+	}
+
+	.letter {
+		animation: typed-letter 0s steps(1) forwards;
+		display: inline-block;
+		overflow: hidden;
+		vertical-align: bottom;
+		white-space: pre;
+		width: 0;
+	}
+
+	.cursor {
+		animation-delay: 0.4s;
+	}
+
+	@keyframes typed-letter {
+		to {
+			width: 1ch;
+		}
+	}
+</style>

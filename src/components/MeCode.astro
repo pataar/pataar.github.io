@@ -1,4 +1,9 @@
 ---
+interface Token {
+	class?: string;
+	text: string;
+}
+
 const me = {
 	base: "The Netherlands",
 	name: "Pieter Willekens",
@@ -7,19 +12,69 @@ const me = {
 	stack: ["Laravel", "React", "TS", "K8s"],
 	uptime: "since 1992",
 };
+
+const kw = "text-magenta";
+const prop = "text-blue";
+const str = "text-green";
+const op = "text-cyan";
+
+const keyPadding = Math.max(...Object.keys(me).map(key => key.length));
+const stringValue = (value: string): Token => ({ class: str, text: `"${value}"` });
+const entry = (key: string, values: Token[]): Token[] => [
+	{ text: "  " },
+	{ class: prop, text: key },
+	{ text: `:${" ".repeat(keyPadding - key.length)} ` },
+	...values,
+	{ text: "," },
+];
+
+const stackTokens: Token[] = [
+	{ text: "[" },
+	...me.stack.flatMap((tech, index) => [...(index > 0 ? [{ text: ", " }] : []), stringValue(tech)]),
+	{ text: "]" },
+];
+
+const lines: Token[][] = [
+	[{ class: kw, text: "const" }, { text: " me " }, { class: op, text: "=" }, { text: " {" }],
+	entry("name", [stringValue(me.name)]),
+	entry("role", [stringValue(me.role)]),
+	entry("org", [stringValue(me.org)]),
+	entry("stack", stackTokens),
+	entry("base", [stringValue(me.base)]),
+	entry("uptime", [stringValue(me.uptime)]),
+	[{ text: "} " }, { class: kw, text: "as const" }, { text: ";" }],
+];
+
+// Typing delays are randomized at build time; the animation is pure CSS, no client JS.
+let elapsedSeconds = 1.0;
+const typedLines = lines.map(tokens => {
+	const start = elapsedSeconds;
+	const typedTokens = tokens.map(token => ({
+		class: token.class,
+		chars: token.text.split("").map(char => {
+			const delaySeconds = elapsedSeconds;
+			elapsedSeconds += 0.01 + Math.random() * 0.03;
+			return { char, delaySeconds };
+		}),
+	}));
+	return { end: elapsedSeconds, start, tokens: typedTokens };
+});
 ---
 
 <figure class="overflow-hidden rounded-lg border border-edge bg-bg-dark/70 text-sm" aria-label="me.ts">
-	<figcaption class="border-b border-edge px-4 py-1.5 text-xs text-comment">me.ts <span class="text-green">[+]</span></figcaption>
+	<figcaption class="border-b border-edge px-4 py-1.5 text-xs text-comment">
+		me.ts <span class="text-green">[+]</span>
+	</figcaption>
 	<div class="overflow-x-auto p-4 leading-relaxed">
-	<pre><code><span class="line"><span class="text-magenta">const</span> me <span class="text-cyan">=</span> {'{'}</span>
-<span class="line">	<span class="text-blue">name</span>: <span class="text-green">"{me.name}"</span>,</span>
-<span class="line">	<span class="text-blue">role</span>: <span class="text-green">"{me.role}"</span>,</span>
-<span class="line">	<span class="text-blue">org</span>:  <span class="text-green">"{me.org}"</span>,</span>
-<span class="line">	<span class="text-blue">stack</span>: [{me.stack.map((tech, index) => <Fragment><span class="text-green">"{tech}"</span>{index < me.stack.length - 1 && ", "}</Fragment>)}],</span>
-<span class="line">	<span class="text-blue">base</span>: <span class="text-green">"{me.base}"</span>,</span>
-<span class="line">	<span class="text-blue">uptime</span>: <span class="text-green">"{me.uptime}"</span>,</span>
-<span class="line">{'}'} <span class="text-magenta">as const</span>;</span></code></pre>
+		<pre
+			aria-hidden="true"><code>{typedLines.map((line, index) => {
+	const lineStyle = `--start: ${line.start.toFixed(2)}s; --end: ${line.end.toFixed(2)}s`;
+	const isLast = index === typedLines.length - 1 ? "true" : undefined;
+	return [
+		<span class="line" data-last={isLast} style={lineStyle}>{line.tokens.map(token => <span class={token.class}>{token.chars.map(({ char, delaySeconds }) => <span class="letter" style={`animation-delay: ${delaySeconds.toFixed(2)}s`}>{char}</span>)}</span>)}</span>,
+		"\n",
+	];
+})}</code></pre>
 	</div>
 </figure>
 
@@ -40,5 +95,54 @@ const me = {
 		text-align: right;
 		user-select: none;
 		width: 1ch;
+	}
+
+	.letter {
+		animation: typed-char 0s steps(1) forwards;
+		display: inline-block;
+		overflow: hidden;
+		vertical-align: bottom;
+		white-space: pre;
+		width: 0;
+	}
+
+	@keyframes typed-char {
+		to {
+			width: 1ch;
+		}
+	}
+
+	/* Block cursor rides each line only during that line's typing window */
+	code .line::after {
+		color: var(--tn-blue);
+		content: "▊";
+		opacity: 0;
+		animation: cursor-window calc(var(--end) - var(--start)) linear var(--start) 1;
+	}
+
+	code .line[data-last]::after {
+		animation:
+			cursor-window calc(var(--end) - var(--start)) linear var(--start) 1,
+			cursor-blink 1.2s step-end var(--end) infinite;
+	}
+
+	@keyframes cursor-window {
+		0%,
+		99% {
+			opacity: 1;
+		}
+		100% {
+			opacity: 0;
+		}
+	}
+
+	@keyframes cursor-blink {
+		0%,
+		100% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0;
+		}
 	}
 </style>
