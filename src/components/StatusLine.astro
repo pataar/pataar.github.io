@@ -1,0 +1,29 @@
+---
+import { Icon } from "astro-icon/components";
+import { currentRoute } from "../config/routes";
+import Link from "./Link.astro";
+
+const file = currentRoute(Astro.url.pathname)?.file ?? "[No Name]";
+const filetype = file.includes(".") ? file.split(".").pop() : "txt";
+const year = new Date().getFullYear();
+---
+
+<footer class="sticky bottom-0 z-10 mt-auto border-t border-edge bg-bg-dark text-xs">
+	<div class="mx-auto flex max-w-6xl items-center gap-3 px-4 md:px-8">
+		<span aria-hidden="true" class="bg-blue px-2 py-1.5 font-bold text-bg-dark">NORMAL</span>
+		<span aria-hidden="true" class="hidden items-center gap-1 text-fg-muted md:inline-flex">
+			<Icon name="lucide:git-branch" class="h-3 w-3" /> master
+		</span>
+		<span class="text-fg-muted">{file}</span>
+		<span class="ml-auto text-comment"><span class="hidden sm:inline">{year} </span>© Pieter Willekens</span>
+		<Link
+			href="https://github.com/pataar/pataar.github.io"
+			class="hidden text-comment no-underline hover:text-fg-muted sm:inline">
+			:e source
+		</Link>
+		<span aria-hidden="true" class="hidden text-comment md:inline">utf-8</span>
+		<span aria-hidden="true" class="hidden text-comment md:inline">{filetype}</span>
+		<span aria-hidden="true" class="hidden text-comment md:inline">1:1</span>
+		<span aria-hidden="true" class="hidden bg-blue px-2 py-1.5 font-bold text-bg-dark sm:inline">All</span>
+	</div>
+</footer>

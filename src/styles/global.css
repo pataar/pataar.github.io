@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+/* The latin @font-face lives in Layout.astro, built from the ?url import that also feeds the preload link */
+
+/* Tokyo Night (night), swapped for Tokyo Night Day on light-mode systems */
+:root {
+	--tn-bg: #1a1b26;
+	--tn-bg-dark: #16161e;
+	--tn-bg-highlight: #292e42;
+	--tn-blue: #7aa2f7;
+	--tn-comment: #565f89;
+	--tn-cyan: #7dcfff;
+	--tn-edge: #3b4261;
+	--tn-fg: #c0caf5;
+	--tn-fg-muted: #a9b1d6;
+	--tn-green: #9ece6a;
+	--tn-magenta: #bb9af7;
+	--tn-red: #f7768e;
+}
+
+/* Day palette; fg-muted, comment and green run darker than upstream Tokyo Night Day for WCAG contrast */
+@media (prefers-color-scheme: light) {
+	:root {
+		--tn-bg: #e1e2e7;
+		--tn-bg-dark: #d0d5e3;
+		--tn-bg-highlight: #c4c8da;
+		--tn-blue: #2e7de9;
+		--tn-comment: #71789e;
+		--tn-cyan: #007197;
+		--tn-edge: #a8aecb;
+		--tn-fg: #3760bf;
+		--tn-fg-muted: #4c5d99;
+		--tn-green: #4a632f;
+		--tn-magenta: #9854f1;
+		--tn-red: #f52a65;
+	}
+}
+
+@theme inline {
+	--color-bg: var(--tn-bg);
+	--color-bg-dark: var(--tn-bg-dark);
+	--color-bg-highlight: var(--tn-bg-highlight);
+	--color-blue: var(--tn-blue);
+	--color-comment: var(--tn-comment);
+	--color-cyan: var(--tn-cyan);
+	--color-edge: var(--tn-edge);
+	--color-fg: var(--tn-fg);
+	--color-fg-muted: var(--tn-fg-muted);
+	--color-green: var(--tn-green);
+	--color-magenta: var(--tn-magenta);
+	--color-red: var(--tn-red);
+	--font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+	--animate-blink: blink 1.2s step-end infinite;
+}
+
+@utility panel {
+	@apply rounded-lg border border-edge bg-bg-dark/70 p-5;
+}
+
+/* Typewriter effect shared by TypedName and MeCode: build-time randomized animation-delay per letter */
+.letter {
+	animation: typed 0s steps(1) forwards;
+	display: inline-block;
+	overflow: hidden;
+	vertical-align: bottom;
+	white-space: pre;
+	width: 0;
+}
+
+@keyframes typed {
+	to {
+		width: 1ch;
+	}
+}
+
+@keyframes blink {
+	50% {
+		opacity: 0;
+	}
+}
+
+@layer base {
+	html {
+		background-color: var(--tn-bg);
+		color: var(--tn-fg);
+		font-family: var(--font-mono);
+		font-size: 15px;
+		scrollbar-color: var(--tn-edge) var(--tn-bg);
+		scrollbar-gutter: stable;
+	}
+
+	::selection {
+		background-color: var(--tn-bg-highlight);
+	}
+
+	a {
+		text-decoration: underline;
+		text-decoration-color: var(--tn-comment);
+		text-underline-offset: 4px;
+	}
+
+	a:hover {
+		text-decoration-color: currentColor;
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--tn-blue);
+		outline-offset: 2px;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			animation-delay: 0s !important;
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+		}
+	}
+}

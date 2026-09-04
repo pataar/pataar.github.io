@@ -1,0 +1,21 @@
+{
+	"$schema": "./node_modules/oxlint/configuration_schema.json",
+	"categories": {
+		"correctness": "error",
+		"suspicious": "warn"
+	},
+	"ignorePatterns": [".astro/**", "dist/**"],
+	"rules": {
+		// Astro's src/env.d.ts requires triple-slash references
+		"typescript/triple-slash-reference": "off"
+	},
+	"overrides": [
+		{
+			"files": ["**/*.astro"],
+			"rules": {
+				// template usage isn't visible to the linter
+				"no-unused-vars": "off"
+			}
+		}
+	]
+}

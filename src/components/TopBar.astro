@@ -1,0 +1,32 @@
+---
+import { currentRoute, routes } from "../config/routes";
+
+const activeFile = currentRoute(Astro.url.pathname)?.file;
+---
+
+<header class="sticky top-0 z-10 border-b border-edge bg-bg-dark text-sm">
+	<div class="mx-auto flex max-w-6xl items-center overflow-x-auto px-2 md:px-8">
+		<a href="/" class="mr-2 shrink-0 py-2.5 pl-2 text-cyan no-underline sm:mr-4 sm:pl-0">~/pataar</a>
+		<nav class="flex" aria-label="Main navigation">
+			{
+				routes.map(({ file, label, path }) => {
+					const active = file === activeFile;
+					const [base, extension] = file.split(".");
+					return (
+						<a
+							href={path}
+							title={label}
+							aria-current={active ? "page" : undefined}
+							class:list={[
+								"shrink-0 border-b-2 px-2 py-2.5 no-underline sm:px-3",
+								active ? "border-blue bg-bg text-fg" : "border-transparent text-fg-muted hover:text-fg",
+							]}>
+							{base}
+							<span class="hidden min-[480px]:inline">.{extension}</span>
+						</a>
+					);
+				})
+			}
+		</nav>
+	</div>
+</header>

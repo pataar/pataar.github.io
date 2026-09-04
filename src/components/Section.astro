@@ -1,0 +1,18 @@
+---
+interface Props {
+	command: string;
+	title: string;
+}
+
+const { command, title } = Astro.props;
+---
+
+<section class="mt-10">
+	<h2 class="flex items-baseline text-lg font-semibold text-fg">
+		<span aria-hidden="true" class="select-none text-comment">##&nbsp;</span>{title}
+		<span aria-hidden="true" class="ml-auto text-xs font-normal text-comment">{command}</span>
+	</h2>
+	<div class="panel mt-3 leading-relaxed text-fg-muted">
+		<slot />
+	</div>
+</section>

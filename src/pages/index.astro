@@ -1,111 +1,89 @@
 ---
+import { Image } from "astro:assets";
+import portrait from "../assets/icon.png";
+import ContactIcons from "../components/ContactIcons.astro";
+import Link from "../components/Link.astro";
+import MeCode from "../components/MeCode.astro";
+import Section from "../components/Section.astro";
+import TypedName from "../components/TypedName.astro";
 import Layout from "../layouts/Layout.astro";
+
 ---
 
-<Layout title="Home">
-	<main class="space-y-10">
-		<header class="intro-section">
-			<h1 class="text-3xl font-normal mb-4 text-slate-900 dark:text-slate-100">Hi, I'm Pieter Willekens.</h1>
-			<p class="text-base leading-relaxed text-slate-700 dark:text-slate-300">
-				I'm a developer driven by curiosity about technology. The field's constant evolution keeps me engaged and motivated to explore new possibilities.
-			</p>
-		</header>
-
-		<section class="work-section">
-			<h2 class="section-heading">At work</h2>
-			<div class="content-block">
-				<p>
-					At <a href="https://www.interactivestudios.nl">Interactive Studios</a>, I serve as tech lead for the 
-					<a href="https://www.patientjourneyapp.com">Patient Journey App</a>, a health-focused application that provides patients with contextual information at critical moments. I manage both the technical development and infrastructure, handling everything from application architecture to CI/CD optimization and DevOps work using Kubernetes.
-				</p>
-			</div>
-		</section>
-
-		<section class="tech-section">
-			<h2 class="section-heading">Technologies</h2>
-			<div class="content-block">
-				<p>
-					My technical work spans backend development with Laravel and PHP, frontend development using React and TypeScript, and mobile development with React Native and Expo. I work extensively with Kubernetes for deployment orchestration and am exploring <a href="https://www.rust-lang.org">Rust</a> for its performance characteristics. I actively contribute to open source projects and aim to increase my involvement in the community.
-				</p>
-			</div>
-		</section>
-
-		<section class="interests-section">
-			<h2 class="section-heading">Outside of work</h2>
-			<div class="content-block">
-				<p>
-					Beyond my professional work, I balance family life with my partner, two kids, and our dog, alongside various personal interests:
-				</p>
-				<div class="interest-grid">
-					<span class="interest-tag">Music & Drums</span>
-					<span class="interest-tag">Vinyl Collecting</span>
-					<span class="interest-tag">IoT & Home Automation</span>
-					<span class="interest-tag">3D Printing</span>
-					<span class="interest-tag">Homelab Server</span>
-					<span class="interest-tag">Gaming</span>
-					<span class="interest-tag">Socializing with friends</span>
+<Layout description="Pieter Willekens, tech lead at Interactive Studios. Laravel, React, TypeScript, Kubernetes. Dad, developer and drummer, based in the Netherlands.">
+	<div class="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
+		<header class="flex items-center gap-6">
+			<Image
+				alt="Pieter's profile"
+				src={portrait}
+				width="240"
+				class="h-24 w-24 shrink-0 rounded-full border-2 border-edge object-cover object-[50%_18%] sm:h-28 sm:w-28"
+			/>
+			<div>
+				<h1 class="text-3xl font-bold text-fg">
+					<TypedName text="Pieter Willekens" />
+				</h1>
+				<p class="mt-2 text-fg-muted"><span class="text-comment select-none">// </span>Dad, developer and drummer.</p>
+				<div class="mt-4">
+					<ContactIcons />
 				</div>
-				<p class="mt-4">
-					I'm particularly drawn to science fiction and fantasy, with a special appreciation for Star Wars and Lord of the Rings.
-				</p>
 			</div>
-		</section>
+		</header>
+		<div class="lg:w-105 lg:shrink-0">
+			<MeCode />
+		</div>
+	</div>
 
-		<section class="other-section">
-			<h2 class="section-heading">Other interests</h2>
-			<div class="content-block">
-				<p>I'm also fascinated by astronomy and physics, topics I enjoy exploring outside of my technical work.</p>
-			</div>
-		</section>
-	</main>
+	<Section title="at work" command=":e work.md">
+		<p>
+			I'm tech lead on the <Link href="https://www.patientjourneyapp.com">Patient Journey App</Link> at{" "}
+			<Link href="https://www.interactivestudios.nl">Interactive Studios</Link>, an app that guides patients through their
+			treatment by giving them the right information at exactly the right moment. My work runs the whole stack:
+			application architecture, code review, CI/CD, and keeping our Kubernetes clusters happy. I've been writing code
+			since I was 14, and part of Interactive Studios since 2012.
+		</p>
+	</Section>
+
+	<Section title="technologies" command=":e stack.md">
+		<p>
+			Laravel on the backend, React and TypeScript on the frontend, React Native + Expo on mobile, and Kubernetes
+			underneath it all. Lately I've been poking at <Link href="https://www.rust-lang.org">Rust</Link>, mostly for fun and
+			sometimes for speed. Open source is close to my heart, as an idea and in practice: I contribute where I can and
+			want to do more of it. See <a href="/projects/">projects</a> for the results.
+		</p>
+	</Section>
+
+	<Section title="homelab" command=":e homelab.md">
+		<p>
+			The most over-engineered corner of the house: a dedicated Proxmox box that runs Home Assistant, an Unraid server
+			hosting Immich, Paperless-ngx, Syncthing, and more containers than strictly necessary (protected by a parity
+			disk, whatever RAID level that makes it), and a UniFi network tying it all together.
+		</p>
+		<p>
+			The 3D printers count as lab equipment too: a Bambu Lab P1S and a heavily modded Ender 3 running Klipper and
+			Mainsail. Tinkering with it all is half the point; the other half is that the lights turn on by themselves.
+		</p>
+	</Section>
+
+	<Section title="outside of work" command=":e life.md">
+		<p>
+			When I'm not at a keyboard, I'm with my partner, our two kids, and the dog. The rest of my time goes to drumming,
+			collecting vinyl, 3D printing, gaming, and evenings with friends.
+		</p>
+		<p>
+			The drumming happens on an acoustic kit when the house allows it and an e-kit when it doesn't, to a soundtrack of
+			Drum 'n Bass, deadmau5, rock, metal, metalcore, and much more.
+		</p>
+		<p>
+			Big sci-fi and fantasy fan, on screen and on paper: Star Wars, Lord of the Rings, and Brandon Sanderson's
+			Mistborn series.
+		</p>
+		<p>Also: astronomy and physics. I will happily lose an evening to a video about black holes.</p>
+	</Section>
 </Layout>
 
 <style>
-	@reference "tailwindcss";
-	
-	.section-heading {
-		@apply text-xl font-medium mb-4 text-slate-800 dark:text-slate-200;
-		border-left: 2px solid;
-		padding-left: 12px;
-	}
-	
-	.work-section .section-heading {
-		border-color: #d97706; /* amber-600 */
-	}
-	
-	.tech-section .section-heading {
-		border-color: #b45309; /* amber-700 */
-	}
-	
-	.interests-section .section-heading {
-		border-color: #f59e0b; /* amber-500 */
-	}
-	
-	.other-section .section-heading {
-		border-color: #92400e; /* amber-800 */
-	}
-	
-	.content-block {
-		@apply bg-slate-50 dark:bg-slate-700/50 rounded-lg p-6 shadow-sm border border-slate-200/50 dark:border-slate-600/50;
-	}
-	
-	.interest-grid {
-		@apply grid grid-cols-2 md:grid-cols-3 gap-2 mt-3;
-	}
-	
-	.interest-tag {
-		@apply bg-slate-200 dark:bg-slate-600 text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-md text-sm font-medium;
-	}
-	
-	.content-block p {
-		@apply mb-0 leading-relaxed;
-	}
-	
-	.content-block p:not(:last-child) {
-		@apply mb-4;
-	}
-	
-	p {
-		@apply mb-3 leading-relaxed;
+	p + p {
+		margin-top: 1rem;
 	}
 </style>

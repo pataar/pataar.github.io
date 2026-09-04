@@ -1,0 +1,111 @@
+---
+interface Token {
+	class?: string;
+	text: string;
+}
+
+// Key order here is render order in the code block.
+const me = {
+	name: "Pieter Willekens",
+	role: "Tech Lead",
+	org: "Interactive Studios",
+	stack: ["Laravel", "React", "TS", "K8s"],
+	base: "The Netherlands",
+	uptime: "since 1992",
+};
+
+const kw = "text-magenta";
+const prop = "text-blue";
+const str = "text-green";
+const op = "text-cyan";
+
+const keyPadding = Math.max(...Object.keys(me).map(key => key.length));
+const stringValue = (value: string): Token => ({ class: str, text: `"${value}"` });
+const arrayValue = (values: string[]): Token[] => [
+	{ text: "[" },
+	...values.flatMap((value, index) => [...(index > 0 ? [{ text: ", " }] : []), stringValue(value)]),
+	{ text: "]" },
+];
+
+const lines: Token[][] = [
+	[{ class: kw, text: "const" }, { text: " me " }, { class: op, text: "=" }, { text: " {" }],
+	...Object.entries(me).map(([key, value]) => [
+		{ text: "  " },
+		{ class: prop, text: key },
+		{ text: `:${" ".repeat(keyPadding - key.length)} ` },
+		...(Array.isArray(value) ? arrayValue(value) : [stringValue(value)]),
+		{ text: "," },
+	]),
+	[{ text: "} " }, { class: kw, text: "as const" }, { text: ";" }],
+];
+
+// Typing delays are randomized at build time; the animation is pure CSS, no client JS.
+let elapsedSeconds = 1.0;
+const typedLines = lines.map(tokens => {
+	const start = elapsedSeconds;
+	const typedTokens = tokens.map(token => ({
+		class: token.class,
+		chars: token.text.split("").map(char => {
+			const delaySeconds = elapsedSeconds;
+			elapsedSeconds += 0.01 + Math.random() * 0.03;
+			return { char, delaySeconds };
+		}),
+	}));
+	return { end: elapsedSeconds, start, tokens: typedTokens };
+});
+---
+
+<figure class="me-code overflow-hidden rounded-lg border border-edge bg-bg-dark/70 text-sm" aria-label="me.ts">
+	<figcaption class="border-b border-edge px-4 py-1.5 text-xs text-comment">
+		me.ts <span class="text-green">[+]</span>
+	</figcaption>
+	<div class="overflow-x-auto p-4 leading-relaxed">
+		<pre
+			aria-hidden="true"><code>{typedLines.map(line => {
+	const lineStyle = `--start: ${line.start.toFixed(2)}s; --end: ${line.end.toFixed(2)}s`;
+	return [
+		<span class="line" style={lineStyle}>{line.tokens.map(token => <span class={token.class}>{token.chars.map(({ char, delaySeconds }) => <span class="letter" style={`animation-delay: ${delaySeconds.toFixed(2)}s`}>{char}</span>)}</span>)}</span>,
+		"\n",
+	];
+})}</code></pre>
+	</div>
+</figure>
+
+<style is:global>
+	.me-code code {
+		counter-reset: line;
+	}
+
+	.me-code .line {
+		counter-increment: line;
+	}
+
+	.me-code .line::before {
+		color: var(--tn-comment);
+		content: counter(line);
+		display: inline-block;
+		margin-right: 1.25rem;
+		text-align: right;
+		user-select: none;
+		width: 1ch;
+	}
+
+	/* Block cursor rides each line only during that line's typing window, then vanishes:
+	   the name in the hero keeps the site's single blinking cursor */
+	.me-code .line::after {
+		color: var(--tn-blue);
+		content: "▊";
+		opacity: 0;
+		animation: cursor-window calc(var(--end) - var(--start)) linear var(--start) 1;
+	}
+
+	@keyframes cursor-window {
+		0%,
+		99% {
+			opacity: 1;
+		}
+		100% {
+			opacity: 0;
+		}
+	}
+</style>

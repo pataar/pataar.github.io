@@ -1,53 +1,61 @@
 export interface ContactItem {
+	icon: string;
 	label: string;
+	/** Extra rel values appended to the Link default (noreferrer). */
+	rel?: string;
 	url: string;
-	faIconName: string; // For FontAwesome icon reference
 }
 
 export const contacts: ContactItem[] = [
 	{
-		label: "Twitter",
-		url: "https://twitter.com/1pieter",
-		faIconName: "faTwitter",
+		icon: "simple-icons:x",
+		label: "X",
+		url: "https://x.com/1pieter",
 	},
 	{
+		icon: "simple-icons:mastodon",
 		label: "Mastodon",
+		rel: "me",
 		url: "https://mastodon.social/@pataar",
-		faIconName: "faMastodon",
 	},
 	{
+		icon: "simple-icons:github",
 		label: "GitHub",
 		url: "https://github.com/pataar",
-		faIconName: "faGithub",
 	},
 	{
+		icon: "simple-icons:gitlab",
 		label: "GitLab",
 		url: "https://gitlab.com/pataar",
-		faIconName: "faGitlab",
 	},
 	{
-		label: "NPM",
-		url: "https://npmjs.com/pataar",
-		faIconName: "faNpm",
+		icon: "simple-icons:npm",
+		label: "npm",
+		url: "https://www.npmjs.com/~pataar",
 	},
 	{
+		icon: "simple-icons:bluesky",
 		label: "Bluesky",
 		url: "https://bsky.app/profile/pataar.nl",
-		faIconName: "faBluesky",
 	},
 	{
-		label: "StackOverflow",
+		icon: "simple-icons:stackoverflow",
+		label: "Stack Overflow",
 		url: "https://stackoverflow.com/users/3173382/pataar",
-		faIconName: "faStackOverflow",
 	},
 	{
-		label: "Dev",
+		icon: "simple-icons:devdotto",
+		label: "DEV",
 		url: "https://dev.to/pataar",
-		faIconName: "faDev",
 	},
 	{
+		icon: "simple-icons:bambulab",
+		label: "MakerWorld",
+		url: "https://makerworld.com/en/@pataar",
+	},
+	{
+		icon: "lucide:mail",
 		label: "Email",
 		url: "mailto:pataar@pm.me",
-		faIconName: "faEnvelope",
 	},
 ];
