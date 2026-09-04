@@ -1,0 +1,44 @@
+---
+const me = {
+	base: "The Netherlands",
+	name: "Pieter Willekens",
+	org: "Interactive Studios",
+	role: "Tech Lead",
+	stack: ["Laravel", "React", "TS", "K8s"],
+	uptime: "since 1992",
+};
+---
+
+<figure class="overflow-hidden rounded-lg border border-edge bg-bg-dark/70 text-sm" aria-label="me.ts">
+	<figcaption class="border-b border-edge px-4 py-1.5 text-xs text-comment">me.ts <span class="text-green">[+]</span></figcaption>
+	<div class="overflow-x-auto p-4 leading-relaxed">
+	<pre><code><span class="line"><span class="text-magenta">const</span> me <span class="text-cyan">=</span> {'{'}</span>
+<span class="line">	<span class="text-blue">name</span>: <span class="text-green">"{me.name}"</span>,</span>
+<span class="line">	<span class="text-blue">role</span>: <span class="text-green">"{me.role}"</span>,</span>
+<span class="line">	<span class="text-blue">org</span>:  <span class="text-green">"{me.org}"</span>,</span>
+<span class="line">	<span class="text-blue">stack</span>: [{me.stack.map((tech, index) => <Fragment><span class="text-green">"{tech}"</span>{index < me.stack.length - 1 && ", "}</Fragment>)}],</span>
+<span class="line">	<span class="text-blue">base</span>: <span class="text-green">"{me.base}"</span>,</span>
+<span class="line">	<span class="text-blue">uptime</span>: <span class="text-green">"{me.uptime}"</span>,</span>
+<span class="line">{'}'} <span class="text-magenta">as const</span>;</span></code></pre>
+	</div>
+</figure>
+
+<style>
+	code {
+		counter-reset: line;
+	}
+
+	code .line {
+		counter-increment: line;
+	}
+
+	code .line::before {
+		color: var(--tn-comment);
+		content: counter(line);
+		display: inline-block;
+		margin-right: 1.25rem;
+		text-align: right;
+		user-select: none;
+		width: 1ch;
+	}
+</style>

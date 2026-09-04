@@ -1,84 +1,22 @@
 ---
-import "devicon/devicon.min.css";
-import {
-	faBluesky,
-	faDev,
-	faGithub,
-	faGitlab,
-	faMastodon,
-	faNpm,
-	faStackOverflow,
-	faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Icon } from "astro-icon/components";
+import { contacts } from "../config/contacts";
 ---
 
-<ul>
-	<li>
-		<a aria-label="Twitter" href="https://twitter.com/1pieter" target="_blank" rel="noreferrer">
-			<FontAwesomeIcon icon={faTwitter} />
-		</a>
-	</li>
-	<li>
-		<a aria-label="Mastodon" href="https://mastodon.social/@pataar" target="_blank" rel="noreferrer">
-			<FontAwesomeIcon icon={faMastodon} />
-		</a>
-	</li>
-	<li>
-		<a aria-label="Github" href="https://github.com/pataar" target="_blank" rel="noreferrer">
-			<FontAwesomeIcon icon={faGithub} />
-		</a>
-	</li>
-	<li>
-		<a aria-label="Gitlab" href="https://gitlab.com/pataar" target="_blank" rel="noreferrer">
-			<FontAwesomeIcon icon={faGitlab} />
-		</a>
-	</li>
-	<li>
-		<a aria-label="NPM" href="https://npmjs.com/pataar" target="_blank" rel="noreferrer">
-			<FontAwesomeIcon icon={faNpm} />
-		</a>
-	</li>
-	<li>
-		<a aria-label="NPM" href="https://bsky.app/profile/pataar.nl" target="_blank" rel="noreferrer">
-			<FontAwesomeIcon icon={faBluesky} />
-		</a>
-	</li>
-	<li>
-		<a
-			aria-label="StackOverflow"
-			href="https://stackoverflow.com/users/3173382/pataar"
-			target="_blank"
-			rel="noreferrer">
-			<FontAwesomeIcon icon={faStackOverflow} />
-		</a>
-	</li>
-	<li>
-		<a aria-label="Dev" href="https://dev.to/pataar" target="_blank" rel="noreferrer">
-			<FontAwesomeIcon icon={faDev} />
-		</a>
-	</li>
-	<li>
-		<a aria-label="Mail" href="mailto:pataar@pm.me" target="_blank" rel="noreferrer">
-			<FontAwesomeIcon icon={faEnvelope} />
-		</a>
-	</li>
+<ul class="flex flex-wrap gap-1">
+	{
+		contacts.map(({ icon, label, url }) => (
+			<li>
+				<a
+					aria-label={label}
+					title={label}
+					href={url}
+					target="_blank"
+					rel="noreferrer"
+					class="inline-flex h-8 w-8 items-center justify-center text-fg-muted no-underline transition-transform hover:scale-110 hover:text-blue">
+					<Icon name={icon} class="h-[18px] w-[18px]" />
+				</a>
+			</li>
+		))
+	}
 </ul>
-
-<style>
-	@reference "tailwindcss";
-	li {
-		@apply inline-block m-1;
-	}
-
-	li a {
-		@apply h-6 w-6 no-underline inline-flex items-center justify-center;
-		font-size: 1.05em;
-	}
-
-	li a:hover {
-		transform: scale(1.1);
-		opacity: 0.8;
-	}
-</style>

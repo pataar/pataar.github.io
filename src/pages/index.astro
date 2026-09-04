@@ -1,111 +1,113 @@
 ---
+import { Image } from "astro:assets";
+import portrait from "../assets/icon.png";
+import ContactIcons from "../components/ContactIcons.astro";
+import MeCode from "../components/MeCode.astro";
+import Section from "../components/Section.astro";
 import Layout from "../layouts/Layout.astro";
+
+const projects = [
+	{
+		description:
+			"web UI for Klipper 3D printers. I'm part of the Mainsail-crew; this is where my 3D printing hobby and my day job overlap.",
+		name: "mainsail",
+		url: "https://github.com/mainsail-crew/mainsail",
+	},
+	{
+		description: "a terminal dashboard for your GitLab activity, written in Go. Yes, this site and that tool share an aesthetic.",
+		name: "gast",
+		url: "https://github.com/pataar/gast",
+	},
+	{
+		description:
+			"a Prometheus exporter for ride wait times at the Efteling. Built to learn Rust; kept because Grafana dashboards of rollercoaster queues are great.",
+		name: "efteling-node-exporter",
+		url: "https://github.com/pataar/efteling-node-exporter",
+	},
+	{
+		description: "browser detection for Laravel. I keep the package alive through my fork.",
+		name: "browser-detect",
+		url: "https://github.com/pataar/browser-detect",
+	},
+];
+
+const interests = [
+	"#music-and-drums",
+	"#vinyl-collecting",
+	"#iot-and-home-automation",
+	"#3d-printing",
+	"#homelab",
+	"#gaming",
+	"#socializing-with-friends",
+];
 ---
 
 <Layout title="Home">
-	<main class="space-y-10">
-		<header class="intro-section">
-			<h1 class="text-3xl font-normal mb-4 text-slate-900 dark:text-slate-100">Hi, I'm Pieter Willekens.</h1>
-			<p class="text-base leading-relaxed text-slate-700 dark:text-slate-300">
-				I'm a developer driven by curiosity about technology. The field's constant evolution keeps me engaged and motivated to explore new possibilities.
-			</p>
-		</header>
-
-		<section class="work-section">
-			<h2 class="section-heading">At work</h2>
-			<div class="content-block">
-				<p>
-					At <a href="https://www.interactivestudios.nl">Interactive Studios</a>, I serve as tech lead for the 
-					<a href="https://www.patientjourneyapp.com">Patient Journey App</a>, a health-focused application that provides patients with contextual information at critical moments. I manage both the technical development and infrastructure, handling everything from application architecture to CI/CD optimization and DevOps work using Kubernetes.
-				</p>
-			</div>
-		</section>
-
-		<section class="tech-section">
-			<h2 class="section-heading">Technologies</h2>
-			<div class="content-block">
-				<p>
-					My technical work spans backend development with Laravel and PHP, frontend development using React and TypeScript, and mobile development with React Native and Expo. I work extensively with Kubernetes for deployment orchestration and am exploring <a href="https://www.rust-lang.org">Rust</a> for its performance characteristics. I actively contribute to open source projects and aim to increase my involvement in the community.
-				</p>
-			</div>
-		</section>
-
-		<section class="interests-section">
-			<h2 class="section-heading">Outside of work</h2>
-			<div class="content-block">
-				<p>
-					Beyond my professional work, I balance family life with my partner, two kids, and our dog, alongside various personal interests:
-				</p>
-				<div class="interest-grid">
-					<span class="interest-tag">Music & Drums</span>
-					<span class="interest-tag">Vinyl Collecting</span>
-					<span class="interest-tag">IoT & Home Automation</span>
-					<span class="interest-tag">3D Printing</span>
-					<span class="interest-tag">Homelab Server</span>
-					<span class="interest-tag">Gaming</span>
-					<span class="interest-tag">Socializing with friends</span>
+	<div class="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
+		<header class="flex items-center gap-6">
+			<Image
+				alt="Pieter's profile"
+				src={portrait}
+				width="240"
+				class="h-24 w-24 shrink-0 rounded-full border-2 border-edge object-cover object-[50%_18%] sm:h-28 sm:w-28"
+			/>
+			<div>
+				<h1 class="text-3xl font-bold text-fg">
+					Pieter Willekens<span aria-hidden="true" class="ml-1 animate-blink select-none text-blue">▊</span>
+				</h1>
+				<p class="mt-2 text-fg-muted"><span class="text-comment select-none">// </span>Dad, developer and drummer.</p>
+				<div class="mt-4">
+					<ContactIcons />
 				</div>
-				<p class="mt-4">
-					I'm particularly drawn to science fiction and fantasy, with a special appreciation for Star Wars and Lord of the Rings.
-				</p>
 			</div>
-		</section>
+		</header>
+		<div class="lg:w-105 lg:shrink-0">
+			<MeCode />
+		</div>
+	</div>
 
-		<section class="other-section">
-			<h2 class="section-heading">Other interests</h2>
-			<div class="content-block">
-				<p>I'm also fascinated by astronomy and physics, topics I enjoy exploring outside of my technical work.</p>
-			</div>
-		</section>
-	</main>
+	<Section title="at work" command=":e work.md">
+		<p>
+			I'm tech lead on the <a href="https://www.patientjourneyapp.com">Patient Journey App</a> at{" "}
+			<a href="https://www.interactivestudios.nl">Interactive Studios</a> — an app that guides patients through their
+			treatment, giving them the right information at exactly the right moment. My work runs the whole stack:
+			application architecture, code review, CI/CD, and keeping our Kubernetes clusters happy.
+		</p>
+	</Section>
+
+	<Section title="technologies" command=":e stack.md">
+		<p>
+			Laravel on the backend, React and TypeScript on the frontend, React Native + Expo on mobile, and Kubernetes
+			underneath it all. Lately I've been poking at <a href="https://www.rust-lang.org">Rust</a> — mostly for fun,
+			sometimes for speed. I contribute to open source where I can and want to do more of it.
+		</p>
+	</Section>
+
+	<Section title="projects" command=":e projects.md">
+		<ul class="space-y-3">
+			{
+				projects.map(project => (
+					<li>
+						<span class="select-none text-comment">- </span>
+						<a href={project.url}>{project.name}</a> — {project.description}
+					</li>
+				))
+			}
+		</ul>
+	</Section>
+
+	<Section title="outside of work" command=":e life.md">
+		<p>When I'm not at a keyboard, I'm with my partner, our two kids, and the dog. The rest of my time goes to:</p>
+		<ul class="my-4 flex flex-wrap gap-x-3 gap-y-1.5">
+			{interests.map(interest => <li class="text-sm text-comment">{interest}</li>)}
+		</ul>
+		<p>Big sci-fi and fantasy fan — Star Wars and Lord of the Rings above all.</p>
+		<p>Also: astronomy and physics. I will happily lose an evening to a video about black holes.</p>
+	</Section>
 </Layout>
 
 <style>
-	@reference "tailwindcss";
-	
-	.section-heading {
-		@apply text-xl font-medium mb-4 text-slate-800 dark:text-slate-200;
-		border-left: 2px solid;
-		padding-left: 12px;
-	}
-	
-	.work-section .section-heading {
-		border-color: #d97706; /* amber-600 */
-	}
-	
-	.tech-section .section-heading {
-		border-color: #b45309; /* amber-700 */
-	}
-	
-	.interests-section .section-heading {
-		border-color: #f59e0b; /* amber-500 */
-	}
-	
-	.other-section .section-heading {
-		border-color: #92400e; /* amber-800 */
-	}
-	
-	.content-block {
-		@apply bg-slate-50 dark:bg-slate-700/50 rounded-lg p-6 shadow-sm border border-slate-200/50 dark:border-slate-600/50;
-	}
-	
-	.interest-grid {
-		@apply grid grid-cols-2 md:grid-cols-3 gap-2 mt-3;
-	}
-	
-	.interest-tag {
-		@apply bg-slate-200 dark:bg-slate-600 text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-md text-sm font-medium;
-	}
-	
-	.content-block p {
-		@apply mb-0 leading-relaxed;
-	}
-	
-	.content-block p:not(:last-child) {
-		@apply mb-4;
-	}
-	
-	p {
-		@apply mb-3 leading-relaxed;
+	p + p {
+		margin-top: 1rem;
 	}
 </style>

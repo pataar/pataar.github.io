@@ -1,201 +1,106 @@
 ---
-import {
-	faAngular,
-	faApple,
-	faDocker,
-	faGit,
-	faGithub,
-	faGitlab,
-	faJs,
-	faLaravel,
-	faNodeJs,
-	faPhp,
-	faReact,
-	faSass,
-	faUbuntu,
-	faVuejs,
-} from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Skill from "../components/Skill.astro";
 import Layout from "../layouts/Layout.astro";
+
+interface SkillItem {
+	icon: string;
+	label: string;
+}
+
+interface Category {
+	name: string;
+	skills: SkillItem[];
+}
+
+// Skills are ordered by preference, not alphabetically.
+const categories: Category[] = [
+	{
+		name: "languages & runtimes",
+		skills: [
+			{ icon: "simple-icons:typescript", label: "TypeScript" },
+			{ icon: "simple-icons:javascript", label: "JavaScript (ES6+)" },
+			{ icon: "simple-icons:nodedotjs", label: "Node.js" },
+			{ icon: "simple-icons:php", label: "PHP" },
+			{ icon: "simple-icons:sass", label: "Sass" },
+			{ icon: "simple-icons:go", label: "Go" },
+		],
+	},
+	{
+		name: "frameworks & libraries",
+		skills: [
+			{ icon: "simple-icons:react", label: "React" },
+			{ icon: "simple-icons:laravel", label: "Laravel" },
+			{ icon: "simple-icons:tailwindcss", label: "Tailwind CSS" },
+			{ icon: "simple-icons:expo", label: "Expo + React Native" },
+			{ icon: "simple-icons:vuedotjs", label: "Vue" },
+		],
+	},
+	{
+		name: "tools",
+		skills: [
+			{ icon: "simple-icons:gnubash", label: "zsh / bash" },
+			{ icon: "simple-icons:git", label: "git" },
+			{ icon: "simple-icons:webpack", label: "webpack" },
+			{ icon: "simple-icons:vite", label: "Vite" },
+			{ icon: "simple-icons:mysql", label: "MySQL" },
+			{ icon: "simple-icons:redis", label: "Redis" },
+			{ icon: "simple-icons:grafana", label: "Grafana" },
+			{ icon: "simple-icons:prometheus", label: "Prometheus" },
+			{ icon: "simple-icons:vitest", label: "Jest / Vitest" },
+			{ icon: "simple-icons:helm", label: "Helm" },
+			{ icon: "simple-icons:reactquery", label: "TanStack Query" },
+			{ icon: "lucide:paw-print", label: "Zustand" },
+		],
+	},
+	{
+		name: "operating systems",
+		skills: [
+			{ icon: "simple-icons:debian", label: "Debian" },
+			{ icon: "simple-icons:ubuntu", label: "Ubuntu" },
+			{ icon: "simple-icons:apple", label: "macOS" },
+		],
+	},
+	{
+		name: "devops",
+		skills: [
+			{ icon: "simple-icons:kubernetes", label: "Kubernetes" },
+			{ icon: "simple-icons:rancher", label: "Rancher" },
+			{ icon: "simple-icons:docker", label: "Docker" },
+			{ icon: "simple-icons:github", label: "GitHub Actions" },
+			{ icon: "simple-icons:gitlab", label: "GitLab CI" },
+		],
+	},
+	{
+		name: "networking",
+		skills: [
+			{ icon: "simple-icons:nginx", label: "nginx" },
+			{ icon: "simple-icons:traefikproxy", label: "Traefik" },
+			{ icon: "simple-icons:caddy", label: "Caddy" },
+		],
+	},
+];
 ---
 
-<Layout title="Things I like to work with" description="Technologies and tools I enjoy working with: TypeScript, React, Laravel, Kubernetes, Docker, and more. My preferred development stack and DevOps tools.">
-	<header class="intro-section mb-8">
-		<h1 class="text-3xl font-normal mb-4 text-slate-900 dark:text-slate-100">Things I like to work with.</h1>
-		<p class="text-base leading-relaxed text-slate-700 dark:text-slate-300">
-			While I code I like to use a combination of several languages and frameworks. These are the technologies I enjoy working with the most, ordered by preference.
+<Layout
+	title="Things I like to work with"
+	description="The languages, frameworks, and tools I reach for first: TypeScript, React, Laravel, Kubernetes, and more.">
+	<header>
+		<h1 class="text-3xl font-bold text-fg"><span class="select-none text-comment"># </span>Things I like to work with.</h1>
+		<p class="mt-4 leading-relaxed text-fg-muted">
+			The languages, frameworks, and tools I reach for first — ordered by preference, not alphabetically.
 		</p>
 	</header>
-	<div>
-		<div class="skills">
-			<div class="category">
-				<div class="category-name"><span>Languages</span></div>
-				<Skill>
-					<svg slot="icon" viewBox="0 0 128 128">
-						<path fill="#000" d="M22.67 47h99.67v73.67H22.67z"></path>
-						<path
-							data-name="original"
-							fill="white"
-							d="M1.5 63.91v62.5h125v-125H1.5zm100.73-5a15.56 15.56 0 017.82 4.5 20.58 20.58 0 013 4c0 .16-5.4 3.81-8.69 5.85-.12.08-.6-.44-1.13-1.23a7.09 7.09 0 00-5.87-3.53c-3.79-.26-6.23 1.73-6.21 5a4.58 4.58 0 00.54 2.34c.83 1.73 2.38 2.76 7.24 4.86 8.95 3.85 12.78 6.39 15.16 10 2.66 4 3.25 10.46 1.45 15.24-2 5.2-6.9 8.73-13.83 9.9a38.32 38.32 0 01-9.52-.1 23 23 0 01-12.72-6.63c-1.15-1.27-3.39-4.58-3.25-4.82a9.34 9.34 0 011.15-.73L82 101l3.59-2.08.75 1.11a16.78 16.78 0 004.74 4.54c4 2.1 9.46 1.81 12.16-.62a5.43 5.43 0 00.69-6.92c-1-1.39-3-2.56-8.59-5-6.45-2.78-9.23-4.5-11.77-7.24a16.48 16.48 0 01-3.43-6.25 25 25 0 01-.22-8c1.33-6.23 6-10.58 12.82-11.87a31.66 31.66 0 019.49.26zm-29.34 5.24v5.12H56.66v46.23H45.15V69.26H28.88v-5a49.19 49.19 0 01.12-5.17C29.08 59 39 59 51 59h21.83z">
-						</path>
-					</svg>
-					 TypeScript
-				</Skill>
-				<Skill>
-					<FontAwesomeIcon slot="icon" icon={faJs} />
-					 JavaScript (ES6+)
-				</Skill>
-				<Skill>
-					<FontAwesomeIcon slot="icon" icon={faNodeJs} />
-					 NodeJS
-				</Skill>
-				<Skill>
-					<FontAwesomeIcon slot="icon" icon={faPhp} />
-					 PHP
-				</Skill>
-				<Skill icon="mysql-plain">MySQL</Skill>
-				<Skill>
-					<FontAwesomeIcon slot="icon" icon={faSass} />
-					 Sass
-				</Skill>
-				<Skill icon="go-plain">Go</Skill>
-			</div>
-			<div class="category">
-				<div class="category-name"><span>Frameworks &amp; libraries</span></div>
-				<Skill>
-					<FontAwesomeIcon slot="icon" icon={faReact} />
-					 React
-				</Skill>
-				<Skill>
-					<FontAwesomeIcon slot="icon" icon={faLaravel} />
-					 Laravel
-				</Skill>
-				<Skill icon="tailwindcss-plain">Tailwind CSS</Skill>
-				<Skill icon="react-plain">
-					 Expo + React Native
-				</Skill>
-				<Skill>
-					<FontAwesomeIcon slot="icon" icon={faVuejs} />
-					 Vue
-				</Skill>
-				<Skill>
-					<FontAwesomeIcon slot="icon" icon={faAngular} />
-					 Angular
-				</Skill>
-			</div>
-			<div class="category">
-				<div class="category-name"><span>Tools</span></div>
 
-				<Skill icon="bash-plain">zsh / bash</Skill>
-				<Skill>
-					<FontAwesomeIcon slot="icon" icon={faGit} />
-					 git
-				</Skill>
-				<Skill icon="webpack-plain">webpack</Skill>
-				<Skill icon="vite-plain">Vite</Skill>
-				<Skill icon="redis-plain">Redis</Skill>
-				<Skill icon="grafana-plain">grafana</Skill>
-				<Skill icon="prometheus-original">Prometheus</Skill>
-				<Skill icon="jest-plain">Jest / Vitest</Skill>
-				<Skill icon="helm-original">Helm</Skill>
-				<Skill icon="react-original">TanStack Query</Skill>
-				<Skill icon="javascript-plain">Zustand</Skill>
-			</div>
-			<div class="category">
-				<div class="category-name"><span>Operating Systems</span></div>
-
-				<Skill icon="debian-plain">Debian</Skill>
-				<Skill>
-					<FontAwesomeIcon slot="icon" icon={faUbuntu} />
-					 Ubuntu
-				</Skill>
-				<Skill>
-					<FontAwesomeIcon slot="icon" icon={faApple} />
-					 MacOS
-				</Skill>
-			</div>
-			<div class="category">
-				<div class="category-name"><span>DevOps</span></div>
-				<Skill icon={"kubernetes-plain"}>
-					 Kubernetes
-				</Skill>
-				<Skill icon={"rancher-plain"}>
-					 Rancher
-				</Skill>
-				<Skill>
-					<FontAwesomeIcon slot="icon" icon={faDocker} />
-					 Docker
-				</Skill>
-				<Skill>
-					<FontAwesomeIcon slot="icon" icon={faGithub} />
-					 Github (actions)
-				</Skill>
-				<Skill>
-					<FontAwesomeIcon slot="icon" icon={faGitlab} />
-					 Gitlab (CI)
-				</Skill>
-			</div>
-			<div class="category">
-				<div class="category-name"><span>Networking</span></div>
-
-				<Skill icon="nginx-plain">nginx</Skill>
-
-				<Skill icon="traefikproxy-plain">Traefik</Skill>
-
-				<Skill icon="go-plain">Caddy</Skill>
-
-				<Skill icon="apache-plain">Apache</Skill>
-			</div>
-		</div>
+	<div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+		{
+			categories.map(category => (
+				<section class="rounded-lg border border-edge bg-bg-dark/70 p-5">
+					<h2 class="mb-4 font-semibold text-blue">[{category.name}]</h2>
+					{category.skills.map(skill => (
+						<Skill icon={skill.icon}>{skill.label}</Skill>
+					))}
+				</section>
+			))
+		}
 	</div>
 </Layout>
-
-<style>
-	@reference "tailwindcss";
-	@import "devicon/devicon.min.css";
-
-	.skills {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		grid-template-rows: repeat(2, 1fr);
-		gap: 30px;
-		margin-top: 40px;
-		width: 100%;
-	}
-
-	.skills .category {
-		@apply border-r border-slate-200 dark:border-slate-600;
-		padding-bottom: 30px;
-		padding-right: 20px;
-		background: linear-gradient(to bottom, transparent, rgba(148, 163, 184, 0.03));
-	}
-
-	.skills .category:last-child {
-		@apply border-r-0;
-	}
-
-	@media (max-width: 768px) {
-		.skills {
-			grid-template-columns: 1fr;
-		}
-		.skills .category {
-			@apply border-r-0;
-		}
-	}
-
-	.skills .category .category-name {
-		@apply flex items-center justify-center text-center;
-		@apply border-t border-b border-slate-300 dark:border-slate-600;
-		@apply bg-slate-50 dark:bg-slate-700/30;
-		@apply text-slate-800 dark:text-slate-200;
-		@apply font-semibold;
-		font-size: 1.15em;
-		height: 70px;
-		margin-bottom: 20px;
-	}
-
-	.skills .category a {
-		@apply underline-offset-4;
-	}
-</style>

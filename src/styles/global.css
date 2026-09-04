@@ -1,0 +1,89 @@
+@import "tailwindcss";
+@import "@fontsource-variable/jetbrains-mono";
+
+/* Tokyo Night (night) — swapped for Tokyo Night Day on light-mode systems */
+:root {
+	--tn-bg: #1a1b26;
+	--tn-bg-dark: #16161e;
+	--tn-bg-highlight: #292e42;
+	--tn-blue: #7aa2f7;
+	--tn-comment: #565f89;
+	--tn-cyan: #7dcfff;
+	--tn-edge: #3b4261;
+	--tn-fg: #c0caf5;
+	--tn-fg-muted: #a9b1d6;
+	--tn-green: #9ece6a;
+	--tn-magenta: #bb9af7;
+	--tn-orange: #ff9e64;
+	--tn-red: #f7768e;
+	--tn-yellow: #e0af68;
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		--tn-bg: #e1e2e7;
+		--tn-bg-dark: #d0d5e3;
+		--tn-bg-highlight: #c4c8da;
+		--tn-blue: #2e7de9;
+		--tn-comment: #848cb5;
+		--tn-cyan: #007197;
+		--tn-edge: #a8aecb;
+		--tn-fg: #3760bf;
+		--tn-fg-muted: #6172b0;
+		--tn-green: #587539;
+		--tn-magenta: #9854f1;
+		--tn-orange: #b15c00;
+		--tn-red: #f52a65;
+		--tn-yellow: #8c6c3e;
+	}
+}
+
+@theme inline {
+	--color-bg: var(--tn-bg);
+	--color-bg-dark: var(--tn-bg-dark);
+	--color-bg-highlight: var(--tn-bg-highlight);
+	--color-blue: var(--tn-blue);
+	--color-comment: var(--tn-comment);
+	--color-cyan: var(--tn-cyan);
+	--color-edge: var(--tn-edge);
+	--color-fg: var(--tn-fg);
+	--color-fg-muted: var(--tn-fg-muted);
+	--color-green: var(--tn-green);
+	--color-magenta: var(--tn-magenta);
+	--color-orange: var(--tn-orange);
+	--color-red: var(--tn-red);
+	--color-yellow: var(--tn-yellow);
+	--font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+	--animate-blink: blink 1.2s step-end infinite;
+}
+
+@keyframes blink {
+	50% {
+		opacity: 0;
+	}
+}
+
+@layer base {
+	html {
+		background-color: var(--tn-bg);
+		color: var(--tn-fg);
+		font-family: var(--font-mono);
+		font-size: 15px;
+		scrollbar-color: var(--tn-edge) var(--tn-bg);
+		scrollbar-gutter: stable;
+	}
+
+	::selection {
+		background-color: var(--tn-bg-highlight);
+	}
+
+	a {
+		text-decoration: underline;
+		text-decoration-color: var(--tn-comment);
+		text-underline-offset: 4px;
+	}
+
+	a:hover {
+		text-decoration-color: currentColor;
+	}
+}

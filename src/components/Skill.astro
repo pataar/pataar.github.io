@@ -1,37 +1,14 @@
 ---
-import "devicon/devicon.min.css";
+import { Icon } from "astro-icon/components";
+
+interface Props {
+	icon: string;
+}
 
 const { icon } = Astro.props;
 ---
 
-<div class="skill">
-	<div class="icon">
-		<slot name="icon" />
-		{icon && <i class={`devicon-${icon}`} />}
-	</div>
-	<div class="label">
-		<slot />
-	</div>
+<div class="flex items-center gap-3 py-2 text-fg-muted transition-transform hover:translate-x-0.5 hover:text-fg">
+	<Icon name={icon} class="h-4.5 w-4.5 shrink-0" />
+	<span><slot /></span>
 </div>
-<style>
-	@reference "tailwindcss";
-	
-	.skill {
-		@apply flex items-center my-3 h-10;
-		font-size: 0.9em;
-	}
-
-	.skill:hover {
-		transform: translateX(2px);
-		opacity: 0.9;
-	}
-
-	.skill .icon {
-		@apply flex items-center justify-start mr-4 w-8 h-8 flex-shrink-0 pl-1;
-		font-size: 1.3em;
-	}
-	
-	.skill .label {
-		@apply flex-1;
-	}
-</style>

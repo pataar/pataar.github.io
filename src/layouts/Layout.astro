@@ -1,166 +1,78 @@
 ---
-import MobileMenuContainer from "../components/MobileMenuContainer.tsx";
-import Sidebar from "../components/Sidebar.astro";
+import { getImage } from "astro:assets";
+import portrait from "../assets/icon.png";
+import StatusLine from "../components/StatusLine.astro";
+import TopBar from "../components/TopBar.astro";
+import { contacts } from "../config/contacts";
+import "../styles/global.css";
 
 interface Props {
-	title: string;
 	description?: string;
+	title: string;
 }
 
 const {
+	description = "Pieter Willekens — tech lead on the Patient Journey App at Interactive Studios. Laravel, React, TypeScript, Kubernetes. Dad, developer and drummer, based in the Netherlands.",
 	title,
-	description = "Pieter Willekens - Tech Lead & Full Stack Developer specializing in Laravel, React, TypeScript, and Kubernetes. Helping hundreds of thousands of patients through innovative healthcare applications.",
 } = Astro.props;
+
+const fullTitle = `${title} | Pieter Willekens`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL((await getImage({ format: "jpeg", height: 512, src: portrait, width: 512 })).src, Astro.site);
+
+const personSchema = {
+	"@context": "https://schema.org",
+	"@type": "Person",
+	description:
+		"Tech lead on the Patient Journey App at Interactive Studios. Full-stack development with Laravel, React, TypeScript, and Kubernetes.",
+	jobTitle: "Tech Lead & Full Stack Developer",
+	knowsAbout: ["Laravel", "React", "TypeScript", "PHP", "Kubernetes", "Docker", "React Native", "Rust", "Go", "DevOps"],
+	name: "Pieter Willekens",
+	sameAs: contacts.map(contact => contact.url).filter(url => url.startsWith("https://")),
+	url: Astro.site?.href,
+	worksFor: { "@type": "Organization", name: "Interactive Studios" },
+};
 ---
 
 <!doctype html>
-<html lang="en" class="bg-white dark:bg-slate-800 font-light h-full">
+<html lang="en" class="h-full">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
 		<meta name="author" content="Pieter Willekens" />
-		<meta name="keywords" content="Pieter Willekens, Tech Lead, Full Stack Developer, Laravel, React, TypeScript, Kubernetes, Patient Journey App, Interactive Studios" />
-		
-		<!-- Open Graph / Facebook -->
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://pieterwillekens.nl/" />
-		<meta property="og:title" content={`${title} | Pieter Willekens`} />
-		<meta property="og:description" content={description} />
-		<meta property="og:image" content="https://pieterwillekens.nl/og-image.png" />
-		<meta property="og:site_name" content="Pieter Willekens - Developer Portfolio" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#16161e" />
+		<meta name="theme-color" media="(prefers-color-scheme: light)" content="#d0d5e3" />
 
-		<!-- Twitter -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:url" content="https://pieterwillekens.nl/" />
-		<meta name="twitter:title" content={`${title} | Pieter Willekens`} />
-		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content="https://pieterwillekens.nl/og-image.png" />
-
-		<title>{title} | Pieter Willekens</title>
+		<title>{fullTitle}</title>
+		<link rel="canonical" href={canonical} />
 		<link rel="sitemap" href="/sitemap-index.xml" />
-		<link rel="canonical" href="https://pieterwillekens.nl/" />
 
-		<!-- Performance optimizations -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link rel="dns-prefetch" href="https://github.com" />
-		<link rel="dns-prefetch" href="https://twitter.com" />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:title" content={fullTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:site_name" content="Pieter Willekens" />
+
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={fullTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
 
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-		
-		<!-- Structured Data -->
-		<script type="application/ld+json" is:inline>
-		{
-			"@context": "https://schema.org",
-			"@type": "Person",
-			"name": "Pieter Willekens",
-			"jobTitle": "Tech Lead & Full Stack Developer",
-			"worksFor": {
-				"@type": "Organization",
-				"name": "Interactive Studios"
-			},
-			"url": "https://pieterwillekens.nl",
-			"sameAs": [
-				"https://github.com/pataar",
-				"https://twitter.com/pataar",
-				"https://linkedin.com/in/pieter-willekens"
-			],
-			"knowsAbout": [
-				"Laravel", "React", "TypeScript", "JavaScript", "PHP", "Kubernetes", 
-				"Docker", "Vue.js", "Angular", "Node.js", "MySQL", "DevOps"
-			],
-			"description": "Tech Lead specializing in full-stack development with expertise in Laravel, React, and Kubernetes. Leading development of Patient Journey App helping hundreds of thousands of patients."
-		}
-		</script>
-	</head>
-	<body class="bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-200 h-full">
-		<MobileMenuContainer client:idle />
 
-		<div class="flex h-full">
-			<div class="hidden md:block">
-				<Sidebar />
-			</div>
-			<div class="flex-1 p-4 md:p-10 pt-20 md:pt-10 h-full overflow-auto">
-				<div class="max-w-5xl">
-					<slot />
-				</div>
-			</div>
-		</div>
+		<script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+	</head>
+	<body class="flex min-h-dvh flex-col bg-bg text-fg">
+		<TopBar />
+		<main class="mx-auto w-full max-w-6xl flex-1 px-4 py-8 md:px-8 md:py-12">
+			<slot />
+			<div aria-hidden="true" class="mt-12 select-none leading-8 text-comment/70">~<br />~<br />~</div>
+		</main>
+		<StatusLine />
 	</body>
 </html>
-<style is:global>
-	@import "tailwindcss";
-
-	:root {
-		--accent: 180, 83, 9;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #d97706 30%, white 60%);
-	}
-
-	* {
-	}
-
-	html {
-		font-family:
-			JetBrains Mono,
-			ui-monospace,
-			monospace;
-		background-color: #f6f6f6;
-		font-size: 14px;
-	}
-
-	a {
-		@apply underline;
-	}
-
-	h1 {
-		font-size: 1.75em;
-		font-weight: 400;
-	}
-
-	h2 {
-		font-size: 1.05em;
-		font-weight: bold;
-		@apply my-4;
-	}
-
-	p {
-		@apply mb-3;
-	}
-
-	/* Hamburger menu styles */
-	.hamburger-icon {
-		display: flex;
-		flex-direction: column;
-		width: 24px;
-		height: 18px;
-		justify-content: space-between;
-		cursor: pointer;
-	}
-
-	.hamburger-icon span {
-		display: block;
-		height: 2px;
-		width: 100%;
-		background-color: currentColor;
-		border-radius: 1px;
-		transition: all 0.3s ease;
-		transform-origin: center;
-	}
-
-	/* Hamburger animation */
-	.hamburger-icon.active span:nth-child(1) {
-		transform: translateY(8px) rotate(45deg);
-	}
-
-	.hamburger-icon.active span:nth-child(2) {
-		opacity: 0;
-	}
-
-	.hamburger-icon.active span:nth-child(3) {
-		transform: translateY(-8px) rotate(-45deg);
-	}
-</style>
