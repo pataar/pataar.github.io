@@ -1,5 +1,6 @@
 ---
 import { getImage } from "astro:assets";
+import fontLatinUrl from "@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2?url";
 import portrait from "../assets/icon.png";
 import StatusLine from "../components/StatusLine.astro";
 import TopBar from "../components/TopBar.astro";
@@ -7,14 +8,14 @@ import { contacts } from "../config/contacts";
 import "../styles/global.css";
 
 interface Props {
-	description?: string;
+	description: string;
+	/** Page title; omit only on the homepage, which uses the brand title. */
 	title?: string;
 }
 
-const {
-	description = "Pieter Willekens, tech lead at Interactive Studios. Laravel, React, TypeScript, Kubernetes. Dad, developer and drummer, based in the Netherlands.",
-	title,
-} = Astro.props;
+const { description, title } = Astro.props;
+
+const fontFace = `@font-face{font-family:"JetBrains Mono Variable";font-style:normal;font-weight:100 800;font-display:swap;src:url(${fontLatinUrl}) format("woff2-variations");}`;
 
 const fullTitle = title ? `${title} | Pieter Willekens` : "Pieter Willekens - Tech Lead & Full Stack Developer";
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -58,6 +59,9 @@ const websiteSchema = {
 		<title>{fullTitle}</title>
 		<link rel="canonical" href={canonical} />
 		<link rel="sitemap" href="/sitemap-index.xml" />
+
+		<link rel="preload" as="font" type="font/woff2" crossorigin href={fontLatinUrl} />
+		<style is:inline set:html={fontFace}></style>
 
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={canonical} />

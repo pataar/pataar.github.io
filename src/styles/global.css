@@ -1,5 +1,6 @@
 @import "tailwindcss";
-@import "@fontsource-variable/jetbrains-mono";
+
+/* The latin @font-face lives in Layout.astro, built from the ?url import that also feeds the preload link */
 
 /* Tokyo Night (night), swapped for Tokyo Night Day on light-mode systems */
 :root {
@@ -14,9 +15,7 @@
 	--tn-fg-muted: #a9b1d6;
 	--tn-green: #9ece6a;
 	--tn-magenta: #bb9af7;
-	--tn-orange: #ff9e64;
 	--tn-red: #f7768e;
-	--tn-yellow: #e0af68;
 }
 
 /* Day palette; fg-muted, comment and green run darker than upstream Tokyo Night Day for WCAG contrast */
@@ -33,9 +32,7 @@
 		--tn-fg-muted: #4c5d99;
 		--tn-green: #4a632f;
 		--tn-magenta: #9854f1;
-		--tn-orange: #b15c00;
 		--tn-red: #f52a65;
-		--tn-yellow: #8c6c3e;
 	}
 }
 
@@ -51,11 +48,29 @@
 	--color-fg-muted: var(--tn-fg-muted);
 	--color-green: var(--tn-green);
 	--color-magenta: var(--tn-magenta);
-	--color-orange: var(--tn-orange);
 	--color-red: var(--tn-red);
-	--color-yellow: var(--tn-yellow);
 	--font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
 	--animate-blink: blink 1.2s step-end infinite;
+}
+
+@utility panel {
+	@apply rounded-lg border border-edge bg-bg-dark/70 p-5;
+}
+
+/* Typewriter effect shared by TypedName and MeCode: build-time randomized animation-delay per letter */
+.letter {
+	animation: typed 0s steps(1) forwards;
+	display: inline-block;
+	overflow: hidden;
+	vertical-align: bottom;
+	white-space: pre;
+	width: 0;
+}
+
+@keyframes typed {
+	to {
+		width: 1ch;
+	}
 }
 
 @keyframes blink {

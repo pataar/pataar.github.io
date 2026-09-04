@@ -4,18 +4,16 @@
 		"correctness": "error",
 		"suspicious": "warn"
 	},
-	"plugins": ["oxc", "react", "typescript", "unicorn"],
 	"ignorePatterns": [".astro/**", "dist/**"],
 	"rules": {
-		// automatic JSX runtime (react-jsx) — no React import needed
-		"react/react-in-jsx-scope": "off",
 		// Astro's src/env.d.ts requires triple-slash references
 		"typescript/triple-slash-reference": "off"
 	},
 	"overrides": [
 		{
-			"files": ["**/*.astro", "**/*.svelte", "**/*.vue"],
+			"files": ["**/*.astro"],
 			"rules": {
+				// template usage isn't visible to the linter
 				"no-unused-vars": "off"
 			}
 		}

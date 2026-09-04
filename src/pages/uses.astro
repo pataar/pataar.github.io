@@ -1,5 +1,8 @@
 ---
 import { Icon } from "astro-icon/components";
+import CategoryCard from "../components/CategoryCard.astro";
+import Link from "../components/Link.astro";
+import PageHeader from "../components/PageHeader.astro";
 import Layout from "../layouts/Layout.astro";
 
 interface UsesItem {
@@ -130,31 +133,27 @@ const categories: UsesCategory[] = [
 <Layout
 	title="Things I use"
 	description="The daily setup of Pieter Willekens: CachyOS, Ghostty, Zed, Claude Code, and the rest of the toolbox.">
-	<header>
-		<h1 class="text-3xl font-bold text-fg"><span class="select-none text-comment"># </span>Things I use</h1>
-		<p class="mt-4 leading-relaxed text-fg-muted">
-			The daily setup: always changing, never finished. Tech preferences live in <a href="/likes/">likes.toml</a>.
-		</p>
-	</header>
+	<PageHeader title="Things I use">
+		The daily setup: always changing, never finished. Tech preferences live in <a href="/likes/">likes.toml</a>.
+	</PageHeader>
 
 	<div class="mt-10 grid gap-6 lg:grid-cols-2">
 		{
 			categories.map(category => (
-				<section class="rounded-lg border border-edge bg-bg-dark/70 p-5">
-					<h2 class="mb-4 font-semibold text-blue">[{category.name}]</h2>
+				<CategoryCard name={category.name}>
 					<div class="grid grid-cols-[auto_auto_auto_1fr] gap-x-3 gap-y-3">
 						{category.items.map(item => (
 							<>
 								<Icon name={item.icon} class="mt-[3px] h-4.5 w-4.5 self-start text-fg-muted" />
-								<a href={item.url} target="_blank" rel="noreferrer" class="text-fg no-underline hover:underline">
+								<Link href={item.url} class="text-fg no-underline hover:underline">
 									{item.name}
-								</a>
-								<span class="select-none text-cyan">=</span>
+								</Link>
+								<span aria-hidden="true" class="select-none text-cyan">=</span>
 								<span class="text-green">"{item.description}"</span>
 							</>
 						))}
 					</div>
-				</section>
+				</CategoryCard>
 			))
 		}
 	</div>

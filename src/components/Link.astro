@@ -1,0 +1,12 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+// External links (http/https) open in a new tab and always carry noreferrer; a rel prop is appended, not replacing.
+type Props = HTMLAttributes<"a"> & { href: string };
+
+const { href, rel, ...rest } = Astro.props;
+const isExternal = href.startsWith("http");
+const mergedRel = [isExternal ? "noreferrer" : undefined, rel].filter(Boolean).join(" ") || undefined;
+---
+
+<a href={href} target={isExternal ? "_blank" : undefined} rel={mergedRel} {...rest}><slot /></a>

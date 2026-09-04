@@ -21,7 +21,7 @@ const words = text.split(" ").map(word => ({
 	{
 		words.map((word, index) => (
 			<>
-				<span class="word">
+				<span class="inline-block">
 					{word.letters.map(({ delaySeconds, letter }) => (
 						<span class="letter" style={`animation-delay: ${delaySeconds.toFixed(2)}s`}>
 							{letter}
@@ -31,30 +31,5 @@ const words = text.split(" ").map(word => ({
 				{index < words.length - 1 && " "}
 			</>
 		))
-	}<span class="cursor ml-1 animate-blink select-none text-blue">▊</span>
+	}<span class="ml-1 animate-blink select-none text-blue">▊</span>
 </span>
-
-<style>
-	.word {
-		display: inline-block;
-	}
-
-	.letter {
-		animation: typed-letter 0s steps(1) forwards;
-		display: inline-block;
-		overflow: hidden;
-		vertical-align: bottom;
-		white-space: pre;
-		width: 0;
-	}
-
-	.cursor {
-		animation-delay: 0.4s;
-	}
-
-	@keyframes typed-letter {
-		to {
-			width: 1ch;
-		}
-	}
-</style>

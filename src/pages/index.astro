@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import portrait from "../assets/icon.png";
 import ContactIcons from "../components/ContactIcons.astro";
+import Link from "../components/Link.astro";
 import MeCode from "../components/MeCode.astro";
 import Section from "../components/Section.astro";
 import TypedName from "../components/TypedName.astro";
@@ -9,7 +10,7 @@ import Layout from "../layouts/Layout.astro";
 
 ---
 
-<Layout>
+<Layout description="Pieter Willekens, tech lead at Interactive Studios. Laravel, React, TypeScript, Kubernetes. Dad, developer and drummer, based in the Netherlands.">
 	<div class="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
 		<header class="flex items-center gap-6">
 			<Image
@@ -35,8 +36,8 @@ import Layout from "../layouts/Layout.astro";
 
 	<Section title="at work" command=":e work.md">
 		<p>
-			I'm tech lead on the <a href="https://www.patientjourneyapp.com" target="_blank" rel="noreferrer">Patient Journey App</a> at{" "}
-			<a href="https://www.interactivestudios.nl" target="_blank" rel="noreferrer">Interactive Studios</a>, an app that guides patients through their
+			I'm tech lead on the <Link href="https://www.patientjourneyapp.com">Patient Journey App</Link> at{" "}
+			<Link href="https://www.interactivestudios.nl">Interactive Studios</Link>, an app that guides patients through their
 			treatment by giving them the right information at exactly the right moment. My work runs the whole stack:
 			application architecture, code review, CI/CD, and keeping our Kubernetes clusters happy. I've been writing code
 			since I was 14, and part of Interactive Studios since 2012.
@@ -46,7 +47,7 @@ import Layout from "../layouts/Layout.astro";
 	<Section title="technologies" command=":e stack.md">
 		<p>
 			Laravel on the backend, React and TypeScript on the frontend, React Native + Expo on mobile, and Kubernetes
-			underneath it all. Lately I've been poking at <a href="https://www.rust-lang.org" target="_blank" rel="noreferrer">Rust</a>, mostly for fun and
+			underneath it all. Lately I've been poking at <Link href="https://www.rust-lang.org">Rust</Link>, mostly for fun and
 			sometimes for speed. Open source is close to my heart, as an idea and in practice: I contribute where I can and
 			want to do more of it. See <a href="/projects/">projects</a> for the results.
 		</p>

@@ -1,21 +1,21 @@
 ---
 import { Icon } from "astro-icon/components";
 import { contacts } from "../config/contacts";
+import Link from "./Link.astro";
 ---
 
 <ul class="flex flex-wrap gap-1">
 	{
 		contacts.map(({ icon, label, rel, url }) => (
 			<li>
-				<a
+				<Link
 					aria-label={label}
 					title={label}
 					href={url}
-					target={url.startsWith("mailto:") ? undefined : "_blank"}
-					rel={rel ?? "noreferrer"}
+					rel={rel}
 					class="inline-flex h-10 w-10 items-center justify-center text-fg-muted no-underline transition-transform hover:scale-110 hover:text-blue sm:h-8 sm:w-8">
 					<Icon name={icon} class="h-[18px] w-[18px]" />
-				</a>
+				</Link>
 			</li>
 		))
 	}

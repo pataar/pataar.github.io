@@ -4,12 +4,13 @@ interface Token {
 	text: string;
 }
 
+// Key order here is render order in the code block.
 const me = {
-	base: "The Netherlands",
 	name: "Pieter Willekens",
-	org: "Interactive Studios",
 	role: "Tech Lead",
+	org: "Interactive Studios",
 	stack: ["Laravel", "React", "TS", "K8s"],
+	base: "The Netherlands",
 	uptime: "since 1992",
 };
 
@@ -20,28 +21,21 @@ const op = "text-cyan";
 
 const keyPadding = Math.max(...Object.keys(me).map(key => key.length));
 const stringValue = (value: string): Token => ({ class: str, text: `"${value}"` });
-const entry = (key: string, values: Token[]): Token[] => [
-	{ text: "  " },
-	{ class: prop, text: key },
-	{ text: `:${" ".repeat(keyPadding - key.length)} ` },
-	...values,
-	{ text: "," },
-];
-
-const stackTokens: Token[] = [
+const arrayValue = (values: string[]): Token[] => [
 	{ text: "[" },
-	...me.stack.flatMap((tech, index) => [...(index > 0 ? [{ text: ", " }] : []), stringValue(tech)]),
+	...values.flatMap((value, index) => [...(index > 0 ? [{ text: ", " }] : []), stringValue(value)]),
 	{ text: "]" },
 ];
 
 const lines: Token[][] = [
 	[{ class: kw, text: "const" }, { text: " me " }, { class: op, text: "=" }, { text: " {" }],
-	entry("name", [stringValue(me.name)]),
-	entry("role", [stringValue(me.role)]),
-	entry("org", [stringValue(me.org)]),
-	entry("stack", stackTokens),
-	entry("base", [stringValue(me.base)]),
-	entry("uptime", [stringValue(me.uptime)]),
+	...Object.entries(me).map(([key, value]) => [
+		{ text: "  " },
+		{ class: prop, text: key },
+		{ text: `:${" ".repeat(keyPadding - key.length)} ` },
+		...(Array.isArray(value) ? arrayValue(value) : [stringValue(value)]),
+		{ text: "," },
+	]),
 	[{ text: "} " }, { class: kw, text: "as const" }, { text: ";" }],
 ];
 
@@ -61,7 +55,7 @@ const typedLines = lines.map(tokens => {
 });
 ---
 
-<figure class="overflow-hidden rounded-lg border border-edge bg-bg-dark/70 text-sm" aria-label="me.ts">
+<figure class="me-code overflow-hidden rounded-lg border border-edge bg-bg-dark/70 text-sm" aria-label="me.ts">
 	<figcaption class="border-b border-edge px-4 py-1.5 text-xs text-comment">
 		me.ts <span class="text-green">[+]</span>
 	</figcaption>
@@ -78,16 +72,16 @@ const typedLines = lines.map(tokens => {
 	</div>
 </figure>
 
-<style>
-	code {
+<style is:global>
+	.me-code code {
 		counter-reset: line;
 	}
 
-	code .line {
+	.me-code .line {
 		counter-increment: line;
 	}
 
-	code .line::before {
+	.me-code .line::before {
 		color: var(--tn-comment);
 		content: counter(line);
 		display: inline-block;
@@ -97,30 +91,15 @@ const typedLines = lines.map(tokens => {
 		width: 1ch;
 	}
 
-	.letter {
-		animation: typed-char 0s steps(1) forwards;
-		display: inline-block;
-		overflow: hidden;
-		vertical-align: bottom;
-		white-space: pre;
-		width: 0;
-	}
-
-	@keyframes typed-char {
-		to {
-			width: 1ch;
-		}
-	}
-
 	/* Block cursor rides each line only during that line's typing window */
-	code .line::after {
+	.me-code .line::after {
 		color: var(--tn-blue);
 		content: "▊";
 		opacity: 0;
 		animation: cursor-window calc(var(--end) - var(--start)) linear var(--start) 1;
 	}
 
-	code .line[data-last]::after {
+	.me-code .line[data-last]::after {
 		animation:
 			cursor-window calc(var(--end) - var(--start)) linear var(--start) 1,
 			cursor-blink 1.2s step-end var(--end) infinite;
@@ -136,6 +115,7 @@ const typedLines = lines.map(tokens => {
 		}
 	}
 
+	/* Not the global blink keyframe: base opacity is 0 here, so the visible frames must be explicit */
 	@keyframes cursor-blink {
 		0%,
 		100% {

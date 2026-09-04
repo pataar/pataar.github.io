@@ -1,9 +1,10 @@
 ---
 import { Icon } from "astro-icon/components";
+import Link from "./Link.astro";
 
 interface Props {
 	icon: string;
-	url?: string;
+	url: string;
 }
 
 const { icon, url } = Astro.props;
@@ -11,15 +12,7 @@ const { icon, url } = Astro.props;
 
 <div class="flex items-center gap-3 py-2 text-fg-muted transition-transform hover:translate-x-0.5 hover:text-fg">
 	<Icon name={icon} class="h-4.5 w-4.5 shrink-0" />
-	<span>
-		{
-			url ? (
-				<a href={url} target="_blank" rel="noreferrer" class="no-underline hover:underline">
-					<slot />
-				</a>
-			) : (
-				<slot />
-			)
-		}
-	</span>
+	<Link href={url} class="no-underline hover:underline">
+		<slot />
+	</Link>
 </div>

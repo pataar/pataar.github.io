@@ -1,4 +1,6 @@
 ---
+import Link from "../components/Link.astro";
+import PageHeader from "../components/PageHeader.astro";
 import Layout from "../layouts/Layout.astro";
 
 interface Project {
@@ -43,27 +45,22 @@ const projects: Project[] = [
 ---
 
 <Layout title="Projects" description="Open source projects by Pieter Willekens: terminal tools, Prometheus exporters, Laravel packages, and 3D printing software.">
-	<header>
-		<h1 class="text-3xl font-bold text-fg"><span class="select-none text-comment"># </span>Projects</h1>
-		<p class="mt-4 leading-relaxed text-fg-muted">
-			Open source is close to my heart, as an idea and in practice: software gets better when it's built in the open.
-			I contribute where I can and want to do more of it. Some things I've built or helped build:
-		</p>
-	</header>
+	<PageHeader title="Projects">
+		Open source is close to my heart, as an idea and in practice: software gets better when it's built in the open. I
+		contribute where I can and want to do more of it. Some things I've built or helped build:
+	</PageHeader>
 
 	<ul class="mt-10 space-y-4">
 		{
 			projects.map(project => (
-				<li class="rounded-lg border border-edge bg-bg-dark/70 p-5 leading-relaxed text-fg-muted">
-					<span class="select-none text-comment">- </span>
+				<li class="panel leading-relaxed text-fg-muted">
+					<span aria-hidden="true" class="select-none text-comment">- </span>
 					<h2 class="inline text-base font-normal">
-						<a href={project.url} target="_blank" rel="noreferrer">
-							{project.name}
-						</a>
+						<Link href={project.url}>{project.name}</Link>
 					</h2>: {project.description}
 					{project.install && (
 						<div class="mt-2 text-sm">
-							<span class="select-none text-comment">$ </span>
+							<span aria-hidden="true" class="select-none text-comment">$ </span>
 							<code class="text-green">{project.install}</code>
 						</div>
 					)}

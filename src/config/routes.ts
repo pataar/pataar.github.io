@@ -12,7 +12,7 @@ export const routes: Route[] = [
 ];
 
 // Dev serves /likes while GitHub Pages serves /likes/, so compare normalized paths only.
-export const normalizePath = (path: string): string => (path.endsWith("/") ? path : `${path}/`);
+const normalizePath = (path: string): string => (path.endsWith("/") ? path : `${path}/`);
 
 export const currentRoute = (pathname: string): Route | undefined =>
 	routes.find(route => normalizePath(route.path) === normalizePath(pathname));

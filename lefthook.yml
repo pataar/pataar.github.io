@@ -1,10 +1,10 @@
 pre-commit:
   commands:
     format:
-      glob: "*.{cjs,cts,js,json,jsonc,jsx,md,mjs,mts,ts,tsx,yaml,yml}"
+      glob: "*.{cjs,js,json,jsonc,md,mjs,ts,yaml,yml}"
       run: bun oxfmt --no-error-on-unmatched-pattern {staged_files}
       stage_fixed: true
     lint:
-      glob: "*.{astro,cjs,cts,js,jsx,mjs,mts,svelte,ts,tsx,vue}"
+      glob: "*.{astro,cjs,js,mjs,ts}"
       run: bun oxlint --fix {staged_files}
       stage_fixed: true

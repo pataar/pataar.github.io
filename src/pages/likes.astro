@@ -1,4 +1,6 @@
 ---
+import CategoryCard from "../components/CategoryCard.astro";
+import PageHeader from "../components/PageHeader.astro";
 import Skill from "../components/Skill.astro";
 import Layout from "../layouts/Layout.astro";
 
@@ -101,25 +103,21 @@ const categories: Category[] = [
 <Layout
 	title="Things I like to work with"
 	description="The languages, frameworks, and tools I reach for first: TypeScript, React, Laravel, Kubernetes, and more.">
-	<header>
-		<h1 class="text-3xl font-bold text-fg"><span class="select-none text-comment"># </span>Things I like to work with</h1>
-		<p class="mt-4 leading-relaxed text-fg-muted">
-			The languages, frameworks, and tools I reach for first, ordered by preference rather than alphabetically. The
-			daily setup lives in <a href="/uses/">uses.toml</a>.
-		</p>
-	</header>
+	<PageHeader title="Things I like to work with">
+		The languages, frameworks, and tools I reach for first, ordered by preference rather than alphabetically. The daily
+		setup lives in <a href="/uses/">uses.toml</a>.
+	</PageHeader>
 
 	<div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 		{
 			categories.map(category => (
-				<section class="rounded-lg border border-edge bg-bg-dark/70 p-5">
-					<h2 class="mb-4 font-semibold text-blue">[{category.name}]</h2>
+				<CategoryCard name={category.name}>
 					{category.skills.map(skill => (
 						<Skill icon={skill.icon} url={skill.url}>
 							{skill.label}
 						</Skill>
 					))}
-				</section>
+				</CategoryCard>
 			))
 		}
 	</div>

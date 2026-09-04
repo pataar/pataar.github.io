@@ -1,6 +1,7 @@
 export interface ContactItem {
 	icon: string;
 	label: string;
+	/** Extra rel values appended to the Link default (noreferrer). */
 	rel?: string;
 	url: string;
 }
@@ -14,7 +15,7 @@ export const contacts: ContactItem[] = [
 	{
 		icon: "simple-icons:mastodon",
 		label: "Mastodon",
-		rel: "me noreferrer",
+		rel: "me",
 		url: "https://mastodon.social/@pataar",
 	},
 	{
