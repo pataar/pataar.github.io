@@ -8,29 +8,39 @@ import "../styles/global.css";
 
 interface Props {
 	description?: string;
-	title: string;
+	title?: string;
 }
 
 const {
-	description = "Pieter Willekens, tech lead on the Patient Journey App at Interactive Studios. Laravel, React, TypeScript, Kubernetes. Dad, developer and drummer, based in the Netherlands.",
+	description = "Pieter Willekens, tech lead at Interactive Studios. Laravel, React, TypeScript, Kubernetes. Dad, developer and drummer, based in the Netherlands.",
 	title,
 } = Astro.props;
 
-const fullTitle = `${title} | Pieter Willekens`;
+const fullTitle = title ? `${title} | Pieter Willekens` : "Pieter Willekens - Tech Lead & Full Stack Developer";
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL((await getImage({ format: "jpeg", height: 512, src: portrait, width: 512 })).src, Astro.site);
 
 const personSchema = {
 	"@context": "https://schema.org",
+	"@id": new URL("/#person", Astro.site).href,
 	"@type": "Person",
 	description:
 		"Tech lead on the Patient Journey App at Interactive Studios. Full-stack development with Laravel, React, TypeScript, and Kubernetes.",
+	image: ogImage.href,
 	jobTitle: "Tech Lead & Full Stack Developer",
 	knowsAbout: ["Laravel", "React", "TypeScript", "PHP", "Kubernetes", "Docker", "React Native", "Rust", "Go", "DevOps"],
 	name: "Pieter Willekens",
 	sameAs: contacts.map(contact => contact.url).filter(url => url.startsWith("https://")),
 	url: Astro.site?.href,
-	worksFor: { "@type": "Organization", name: "Interactive Studios" },
+	worksFor: { "@type": "Organization", name: "Interactive Studios", url: "https://www.interactivestudios.nl" },
+};
+
+const websiteSchema = {
+	"@context": "https://schema.org",
+	"@type": "WebSite",
+	name: "Pieter Willekens",
+	publisher: { "@id": personSchema["@id"] },
+	url: Astro.site?.href,
 };
 ---
 
@@ -54,6 +64,10 @@ const personSchema = {
 		<meta property="og:title" content={fullTitle} />
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:width" content="512" />
+		<meta property="og:image:height" content="512" />
+		<meta property="og:image:type" content="image/jpeg" />
+		<meta property="og:image:alt" content="Portrait of Pieter Willekens" />
 		<meta property="og:site_name" content="Pieter Willekens" />
 
 		<meta name="twitter:card" content="summary" />
@@ -64,8 +78,10 @@ const personSchema = {
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+		<link rel="manifest" href="/site.webmanifest" />
 
 		<script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+		<script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
 	</head>
 	<body class="flex min-h-dvh flex-col bg-bg text-fg">
 		<TopBar />

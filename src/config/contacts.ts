@@ -1,6 +1,7 @@
 export interface ContactItem {
 	icon: string;
 	label: string;
+	rel?: string;
 	url: string;
 }
 
@@ -13,6 +14,7 @@ export const contacts: ContactItem[] = [
 	{
 		icon: "simple-icons:mastodon",
 		label: "Mastodon",
+		rel: "me noreferrer",
 		url: "https://mastodon.social/@pataar",
 	},
 	{

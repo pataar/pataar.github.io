@@ -9,8 +9,8 @@ const year = new Date().getFullYear();
 
 <footer class="sticky bottom-0 z-10 mt-auto border-t border-edge bg-bg-dark text-xs">
 	<div class="mx-auto flex max-w-6xl items-center gap-3 px-4 md:px-8">
-		<span class="bg-blue px-2 py-1.5 font-bold text-bg-dark">NORMAL</span>
-		<span class="hidden items-center gap-1 text-fg-muted md:inline-flex">
+		<span aria-hidden="true" class="bg-blue px-2 py-1.5 font-bold text-bg-dark">NORMAL</span>
+		<span aria-hidden="true" class="hidden items-center gap-1 text-fg-muted md:inline-flex">
 			<Icon name="lucide:git-branch" class="h-3 w-3" /> master
 		</span>
 		<span class="text-fg-muted">{file}</span>
@@ -22,9 +22,9 @@ const year = new Date().getFullYear();
 			class="hidden text-comment no-underline hover:text-fg-muted sm:inline">
 			:e source
 		</a>
-		<span class="hidden text-comment md:inline">utf-8</span>
-		<span class="hidden text-comment md:inline">{filetype}</span>
-		<span class="hidden text-comment md:inline">1:1</span>
-		<span class="hidden bg-blue px-2 py-1.5 font-bold text-bg-dark sm:inline">All</span>
+		<span aria-hidden="true" class="hidden text-comment md:inline">utf-8</span>
+		<span aria-hidden="true" class="hidden text-comment md:inline">{filetype}</span>
+		<span aria-hidden="true" class="hidden text-comment md:inline">1:1</span>
+		<span aria-hidden="true" class="hidden bg-blue px-2 py-1.5 font-bold text-bg-dark sm:inline">All</span>
 	</div>
 </footer>

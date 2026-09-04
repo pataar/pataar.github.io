@@ -5,6 +5,7 @@ import Layout from "../layouts/Layout.astro";
 interface SkillItem {
 	icon: string;
 	label: string;
+	url: string;
 }
 
 interface Category {
@@ -17,77 +18,81 @@ const categories: Category[] = [
 	{
 		name: "languages & runtimes",
 		skills: [
-			{ icon: "simple-icons:typescript", label: "TypeScript" },
-			{ icon: "simple-icons:javascript", label: "JavaScript (ES6+)" },
-			{ icon: "simple-icons:nodedotjs", label: "Node.js" },
-			{ icon: "simple-icons:php", label: "PHP" },
-			{ icon: "simple-icons:sass", label: "Sass" },
-			{ icon: "simple-icons:go", label: "Go" },
-			{ icon: "simple-icons:rust", label: "Rust" },
-			{ icon: "simple-icons:bun", label: "Bun" },
+			{ icon: "simple-icons:typescript", label: "TypeScript", url: "https://www.typescriptlang.org" },
+			{ icon: "simple-icons:javascript", label: "JavaScript (ES6+)", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
+			{ icon: "simple-icons:nodedotjs", label: "Node.js", url: "https://nodejs.org" },
+			{ icon: "simple-icons:php", label: "PHP", url: "https://www.php.net" },
+			{ icon: "simple-icons:sass", label: "Sass", url: "https://sass-lang.com" },
+			{ icon: "simple-icons:go", label: "Go", url: "https://go.dev" },
+			{ icon: "simple-icons:rust", label: "Rust", url: "https://www.rust-lang.org" },
+			{ icon: "simple-icons:bun", label: "Bun", url: "https://bun.com" },
 		],
 	},
 	{
 		name: "frameworks & libraries",
 		skills: [
-			{ icon: "simple-icons:react", label: "React" },
-			{ icon: "simple-icons:laravel", label: "Laravel" },
-			{ icon: "simple-icons:tailwindcss", label: "Tailwind CSS" },
-			{ icon: "simple-icons:expo", label: "Expo + React Native" },
-			{ icon: "simple-icons:vuedotjs", label: "Vue" },
-			{ icon: "simple-icons:astro", label: "Astro" },
+			{ icon: "simple-icons:react", label: "React", url: "https://react.dev" },
+			{ icon: "simple-icons:laravel", label: "Laravel", url: "https://laravel.com" },
+			{ icon: "simple-icons:tailwindcss", label: "Tailwind CSS", url: "https://tailwindcss.com" },
+			{ icon: "simple-icons:expo", label: "Expo + React Native", url: "https://expo.dev" },
+			{ icon: "simple-icons:vuedotjs", label: "Vue", url: "https://vuejs.org" },
+			{ icon: "simple-icons:astro", label: "Astro", url: "https://astro.build" },
 		],
 	},
 	{
 		name: "tools",
 		skills: [
-			{ icon: "simple-icons:gnubash", label: "zsh / bash" },
-			{ icon: "simple-icons:git", label: "git" },
-			{ icon: "simple-icons:webpack", label: "webpack" },
-			{ icon: "simple-icons:vite", label: "Vite" },
-			{ icon: "simple-icons:mysql", label: "MySQL" },
-			{ icon: "simple-icons:redis", label: "Redis" },
-			{ icon: "simple-icons:grafana", label: "Grafana" },
-			{ icon: "simple-icons:prometheus", label: "Prometheus" },
-			{ icon: "simple-icons:vitest", label: "Jest / Vitest" },
-			{ icon: "simple-icons:helm", label: "Helm" },
-			{ icon: "simple-icons:reactquery", label: "TanStack Query" },
-			{ icon: "lucide:paw-print", label: "Zustand" },
+			{ icon: "simple-icons:gnubash", label: "zsh / bash", url: "https://www.zsh.org" },
+			{ icon: "simple-icons:git", label: "git", url: "https://git-scm.com" },
+			{ icon: "simple-icons:webpack", label: "webpack", url: "https://webpack.js.org" },
+			{ icon: "simple-icons:vite", label: "Vite", url: "https://vite.dev" },
+			{ icon: "simple-icons:mysql", label: "MySQL", url: "https://www.mysql.com" },
+			{ icon: "simple-icons:redis", label: "Redis", url: "https://redis.io" },
+			{ icon: "simple-icons:grafana", label: "Grafana", url: "https://grafana.com" },
+			{ icon: "simple-icons:prometheus", label: "Prometheus", url: "https://prometheus.io" },
+			{ icon: "simple-icons:vitest", label: "Jest / Vitest", url: "https://vitest.dev" },
+			{ icon: "simple-icons:helm", label: "Helm", url: "https://helm.sh" },
+			{ icon: "simple-icons:reactquery", label: "TanStack Query", url: "https://tanstack.com/query" },
+			{ icon: "lucide:paw-print", label: "Zustand", url: "https://github.com/pmndrs/zustand" },
 		],
 	},
 	{
 		name: "operating systems",
 		skills: [
-			{ icon: "simple-icons:cachyos", label: "CachyOS (daily driver)" },
-			{ icon: "simple-icons:debian", label: "Debian" },
-			{ icon: "simple-icons:ubuntu", label: "Ubuntu" },
-			{ icon: "simple-icons:apple", label: "macOS" },
+			{ icon: "simple-icons:cachyos", label: "CachyOS (daily driver)", url: "https://cachyos.org" },
+			{ icon: "simple-icons:debian", label: "Debian", url: "https://www.debian.org" },
+			{ icon: "simple-icons:ubuntu", label: "Ubuntu", url: "https://ubuntu.com" },
+			{ icon: "simple-icons:apple", label: "macOS", url: "https://www.apple.com/macos/" },
 		],
 	},
 	{
 		name: "devops",
 		skills: [
-			{ icon: "simple-icons:kubernetes", label: "Kubernetes" },
-			{ icon: "simple-icons:rancher", label: "Rancher" },
-			{ icon: "simple-icons:docker", label: "Docker" },
-			{ icon: "simple-icons:github", label: "GitHub Actions" },
-			{ icon: "simple-icons:gitlab", label: "GitLab CI" },
+			{ icon: "simple-icons:kubernetes", label: "Kubernetes", url: "https://kubernetes.io" },
+			{ icon: "simple-icons:rancher", label: "Rancher", url: "https://www.rancher.com" },
+			{ icon: "simple-icons:docker", label: "Docker", url: "https://www.docker.com" },
+			{ icon: "simple-icons:github", label: "GitHub Actions", url: "https://github.com/features/actions" },
+			{ icon: "simple-icons:gitlab", label: "GitLab CI", url: "https://docs.gitlab.com/ci/" },
 		],
 	},
 	{
 		name: "networking",
 		skills: [
-			{ icon: "simple-icons:nginx", label: "nginx" },
-			{ icon: "simple-icons:traefikproxy", label: "Traefik" },
-			{ icon: "simple-icons:caddy", label: "Caddy" },
+			{ icon: "simple-icons:nginx", label: "nginx", url: "https://nginx.org" },
+			{ icon: "simple-icons:traefikproxy", label: "Traefik", url: "https://traefik.io" },
+			{ icon: "simple-icons:caddy", label: "Caddy", url: "https://caddyserver.com" },
 		],
 	},
 	{
 		name: "homelab",
 		skills: [
-			{ icon: "simple-icons:unraid", label: "Unraid" },
-			{ icon: "simple-icons:homeassistant", label: "Home Assistant" },
-			{ icon: "simple-icons:ubiquiti", label: "UniFi" },
+			{ icon: "simple-icons:unraid", label: "Unraid", url: "https://unraid.net" },
+			{ icon: "simple-icons:proxmox", label: "Proxmox", url: "https://www.proxmox.com" },
+			{ icon: "simple-icons:homeassistant", label: "Home Assistant", url: "https://www.home-assistant.io" },
+			{ icon: "simple-icons:immich", label: "Immich", url: "https://immich.app" },
+			{ icon: "simple-icons:paperlessngx", label: "Paperless-ngx", url: "https://docs.paperless-ngx.com" },
+			{ icon: "simple-icons:syncthing", label: "Syncthing", url: "https://syncthing.net" },
+			{ icon: "simple-icons:ubiquiti", label: "UniFi", url: "https://ui.com" },
 		],
 	},
 ];
@@ -97,9 +102,10 @@ const categories: Category[] = [
 	title="Things I like to work with"
 	description="The languages, frameworks, and tools I reach for first: TypeScript, React, Laravel, Kubernetes, and more.">
 	<header>
-		<h1 class="text-3xl font-bold text-fg"><span class="select-none text-comment"># </span>Things I like to work with.</h1>
+		<h1 class="text-3xl font-bold text-fg"><span class="select-none text-comment"># </span>Things I like to work with</h1>
 		<p class="mt-4 leading-relaxed text-fg-muted">
-			The languages, frameworks, and tools I reach for first, ordered by preference rather than alphabetically.
+			The languages, frameworks, and tools I reach for first, ordered by preference rather than alphabetically. The
+			daily setup lives in <a href="/uses/">uses.toml</a>.
 		</p>
 	</header>
 
@@ -109,7 +115,9 @@ const categories: Category[] = [
 				<section class="rounded-lg border border-edge bg-bg-dark/70 p-5">
 					<h2 class="mb-4 font-semibold text-blue">[{category.name}]</h2>
 					{category.skills.map(skill => (
-						<Skill icon={skill.icon}>{skill.label}</Skill>
+						<Skill icon={skill.icon} url={skill.url}>
+							{skill.label}
+						</Skill>
 					))}
 				</section>
 			))

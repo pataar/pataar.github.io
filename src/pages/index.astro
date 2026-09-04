@@ -8,7 +8,7 @@ import Layout from "../layouts/Layout.astro";
 
 ---
 
-<Layout title="Home">
+<Layout>
 	<div class="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
 		<header class="flex items-center gap-6">
 			<Image
@@ -34,17 +34,18 @@ import Layout from "../layouts/Layout.astro";
 
 	<Section title="at work" command=":e work.md">
 		<p>
-			I'm tech lead on the <a href="https://www.patientjourneyapp.com">Patient Journey App</a> at{" "}
-			<a href="https://www.interactivestudios.nl">Interactive Studios</a>, an app that guides patients through their
+			I'm tech lead on the <a href="https://www.patientjourneyapp.com" target="_blank" rel="noreferrer">Patient Journey App</a> at{" "}
+			<a href="https://www.interactivestudios.nl" target="_blank" rel="noreferrer">Interactive Studios</a>, an app that guides patients through their
 			treatment by giving them the right information at exactly the right moment. My work runs the whole stack:
-			application architecture, code review, CI/CD, and keeping our Kubernetes clusters happy.
+			application architecture, code review, CI/CD, and keeping our Kubernetes clusters happy. I've been writing code
+			since I was 14, and part of Interactive Studios since 2012.
 		</p>
 	</Section>
 
 	<Section title="technologies" command=":e stack.md">
 		<p>
 			Laravel on the backend, React and TypeScript on the frontend, React Native + Expo on mobile, and Kubernetes
-			underneath it all. Lately I've been poking at <a href="https://www.rust-lang.org">Rust</a>, mostly for fun and
+			underneath it all. Lately I've been poking at <a href="https://www.rust-lang.org" target="_blank" rel="noreferrer">Rust</a>, mostly for fun and
 			sometimes for speed. Open source is close to my heart, as an idea and in practice: I contribute where I can and
 			want to do more of it. See <a href="/projects/">projects</a> for the results.
 		</p>
@@ -52,9 +53,13 @@ import Layout from "../layouts/Layout.astro";
 
 	<Section title="homelab" command=":e homelab.md">
 		<p>
-			The most over-engineered corner of the house: an Unraid server running more containers than strictly necessary,
-			Home Assistant automating whatever lets itself be automated, and a UniFi network tying it all together. Tinkering
-			with it is half the point; the other half is that the lights turn on by themselves.
+			The most over-engineered corner of the house: a dedicated Proxmox box that runs Home Assistant, an Unraid server
+			hosting Immich, Paperless-ngx, Syncthing, and more containers than strictly necessary (protected by a parity
+			disk, whatever RAID level that makes it), and a UniFi network tying it all together.
+		</p>
+		<p>
+			The 3D printers count as lab equipment too: a Bambu Lab P1S and a heavily modded Ender 3 running Klipper and
+			Mainsail. Tinkering with it all is half the point; the other half is that the lights turn on by themselves.
 		</p>
 	</Section>
 
@@ -62,6 +67,10 @@ import Layout from "../layouts/Layout.astro";
 		<p>
 			When I'm not at a keyboard, I'm with my partner, our two kids, and the dog. The rest of my time goes to drumming,
 			collecting vinyl, 3D printing, gaming, and evenings with friends.
+		</p>
+		<p>
+			The drumming happens on an acoustic kit when the house allows it and an e-kit when it doesn't, to a soundtrack of
+			Drum 'n Bass, deadmau5, rock, metal, metalcore, and much more.
 		</p>
 		<p>
 			Big sci-fi and fantasy fan, on screen and on paper: Star Wars, Lord of the Rings, and Brandon Sanderson's

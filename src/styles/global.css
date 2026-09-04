@@ -19,18 +19,19 @@
 	--tn-yellow: #e0af68;
 }
 
+/* Day palette; fg-muted, comment and green run darker than upstream Tokyo Night Day for WCAG contrast */
 @media (prefers-color-scheme: light) {
 	:root {
 		--tn-bg: #e1e2e7;
 		--tn-bg-dark: #d0d5e3;
 		--tn-bg-highlight: #c4c8da;
 		--tn-blue: #2e7de9;
-		--tn-comment: #848cb5;
+		--tn-comment: #71789e;
 		--tn-cyan: #007197;
 		--tn-edge: #a8aecb;
 		--tn-fg: #3760bf;
-		--tn-fg-muted: #6172b0;
-		--tn-green: #587539;
+		--tn-fg-muted: #4c5d99;
+		--tn-green: #4a632f;
 		--tn-magenta: #9854f1;
 		--tn-orange: #b15c00;
 		--tn-red: #f52a65;
@@ -85,5 +86,20 @@
 
 	a:hover {
 		text-decoration-color: currentColor;
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--tn-blue);
+		outline-offset: 2px;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+		}
 	}
 }

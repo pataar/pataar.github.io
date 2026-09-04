@@ -132,7 +132,9 @@ const categories: UsesCategory[] = [
 	description="The daily setup of Pieter Willekens: CachyOS, Ghostty, Zed, Claude Code, and the rest of the toolbox.">
 	<header>
 		<h1 class="text-3xl font-bold text-fg"><span class="select-none text-comment"># </span>Things I use</h1>
-		<p class="mt-4 leading-relaxed text-fg-muted">The daily setup: hardware-adjacent, always changing, never finished.</p>
+		<p class="mt-4 leading-relaxed text-fg-muted">
+			The daily setup: always changing, never finished. Tech preferences live in <a href="/likes/">likes.toml</a>.
+		</p>
 	</header>
 
 	<div class="mt-10 grid gap-6 lg:grid-cols-2">
@@ -144,7 +146,7 @@ const categories: UsesCategory[] = [
 						{category.items.map(item => (
 							<>
 								<Icon name={item.icon} class="mt-[3px] h-4.5 w-4.5 self-start text-fg-muted" />
-								<a href={item.url} class="text-fg no-underline hover:underline">
+								<a href={item.url} target="_blank" rel="noreferrer" class="text-fg no-underline hover:underline">
 									{item.name}
 								</a>
 								<span class="select-none text-cyan">=</span>

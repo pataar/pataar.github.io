@@ -56,7 +56,11 @@ const projects: Project[] = [
 			projects.map(project => (
 				<li class="rounded-lg border border-edge bg-bg-dark/70 p-5 leading-relaxed text-fg-muted">
 					<span class="select-none text-comment">- </span>
-					<a href={project.url}>{project.name}</a>: {project.description}
+					<h2 class="inline text-base font-normal">
+						<a href={project.url} target="_blank" rel="noreferrer">
+							{project.name}
+						</a>
+					</h2>: {project.description}
 					{project.install && (
 						<div class="mt-2 text-sm">
 							<span class="select-none text-comment">$ </span>
