@@ -7,6 +7,7 @@ export interface Route {
 export const routes: Route[] = [
 	{ file: "index.md", label: "Home", path: "/" },
 	{ file: "projects.md", label: "Projects", path: "/projects/" },
+	{ file: "uses.toml", label: "Things I use", path: "/uses/" },
 	{ file: "likes.toml", label: "Things I like to work with", path: "/likes/" },
 ];
 

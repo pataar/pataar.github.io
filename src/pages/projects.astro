@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 
 interface Project {
 	description: string;
+	install?: string;
 	name: string;
 	url: string;
 }
@@ -11,8 +12,15 @@ const projects: Project[] = [
 	{
 		description:
 			"a terminal dashboard for your GitLab activity, written in Go. Yes, this site and that tool share an aesthetic.",
+		install: "brew install pataar/tap/gast",
 		name: "gast",
 		url: "https://github.com/pataar/gast",
+	},
+	{
+		description:
+			"this website. Astro, Tailwind, zero client-side JavaScript, and the terminal aesthetic you're looking at.",
+		name: "pataar.github.io",
+		url: "https://github.com/pataar/pataar.github.io",
 	},
 	{
 		description:
@@ -49,6 +57,12 @@ const projects: Project[] = [
 				<li class="rounded-lg border border-edge bg-bg-dark/70 p-5 leading-relaxed text-fg-muted">
 					<span class="select-none text-comment">- </span>
 					<a href={project.url}>{project.name}</a>: {project.description}
+					{project.install && (
+						<div class="mt-2 text-sm">
+							<span class="select-none text-comment">$ </span>
+							<code class="text-green">{project.install}</code>
+						</div>
+					)}
 				</li>
 			))
 		}
