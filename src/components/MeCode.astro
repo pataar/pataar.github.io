@@ -61,11 +61,10 @@ const typedLines = lines.map(tokens => {
 	</figcaption>
 	<div class="overflow-x-auto p-4 leading-relaxed">
 		<pre
-			aria-hidden="true"><code>{typedLines.map((line, index) => {
+			aria-hidden="true"><code>{typedLines.map(line => {
 	const lineStyle = `--start: ${line.start.toFixed(2)}s; --end: ${line.end.toFixed(2)}s`;
-	const isLast = index === typedLines.length - 1 ? "true" : undefined;
 	return [
-		<span class="line" data-last={isLast} style={lineStyle}>{line.tokens.map(token => <span class={token.class}>{token.chars.map(({ char, delaySeconds }) => <span class="letter" style={`animation-delay: ${delaySeconds.toFixed(2)}s`}>{char}</span>)}</span>)}</span>,
+		<span class="line" style={lineStyle}>{line.tokens.map(token => <span class={token.class}>{token.chars.map(({ char, delaySeconds }) => <span class="letter" style={`animation-delay: ${delaySeconds.toFixed(2)}s`}>{char}</span>)}</span>)}</span>,
 		"\n",
 	];
 })}</code></pre>
@@ -91,18 +90,13 @@ const typedLines = lines.map(tokens => {
 		width: 1ch;
 	}
 
-	/* Block cursor rides each line only during that line's typing window */
+	/* Block cursor rides each line only during that line's typing window, then vanishes:
+	   the name in the hero keeps the site's single blinking cursor */
 	.me-code .line::after {
 		color: var(--tn-blue);
 		content: "▊";
 		opacity: 0;
 		animation: cursor-window calc(var(--end) - var(--start)) linear var(--start) 1;
-	}
-
-	.me-code .line[data-last]::after {
-		animation:
-			cursor-window calc(var(--end) - var(--start)) linear var(--start) 1,
-			cursor-blink 1.2s step-end var(--end) infinite;
 	}
 
 	@keyframes cursor-window {
@@ -111,17 +105,6 @@ const typedLines = lines.map(tokens => {
 			opacity: 1;
 		}
 		100% {
-			opacity: 0;
-		}
-	}
-
-	/* Not the global blink keyframe: base opacity is 0 here, so the visible frames must be explicit */
-	@keyframes cursor-blink {
-		0%,
-		100% {
-			opacity: 1;
-		}
-		50% {
 			opacity: 0;
 		}
 	}
