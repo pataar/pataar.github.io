@@ -23,3 +23,6 @@ pnpm-debug.log*
 .idea/
 
 pnpm-lock.yaml
+
+# playwright-mcp browser artifacts
+.playwright-mcp/
