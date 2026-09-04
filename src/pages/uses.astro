@@ -140,18 +140,18 @@ const categories: UsesCategory[] = [
 			categories.map(category => (
 				<section class="rounded-lg border border-edge bg-bg-dark/70 p-5">
 					<h2 class="mb-4 font-semibold text-blue">[{category.name}]</h2>
-					{category.items.map(item => (
-						<div class="flex items-baseline gap-3 py-1.5">
-							<Icon name={item.icon} class="h-4.5 w-4.5 shrink-0 self-center text-fg-muted" />
-							<span class="text-nowrap">
+					<div class="grid grid-cols-[auto_auto_auto_1fr] gap-x-3 gap-y-3">
+						{category.items.map(item => (
+							<>
+								<Icon name={item.icon} class="mt-[3px] h-4.5 w-4.5 self-start text-fg-muted" />
 								<a href={item.url} class="text-fg no-underline hover:underline">
 									{item.name}
 								</a>
-								<span class="text-cyan"> = </span>
-							</span>
-							<span class="text-green">"{item.description}"</span>
-						</div>
-					))}
+								<span class="select-none text-cyan">=</span>
+								<span class="text-green">"{item.description}"</span>
+							</>
+						))}
+					</div>
 				</section>
 			))
 		}
