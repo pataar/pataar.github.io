@@ -1,0 +1,11 @@
+{
+	"background_color": "#1a1b26",
+	"display": "browser",
+	"icons": [
+		{ "sizes": "192x192", "src": "/android-chrome-192x192.png", "type": "image/png" },
+		{ "sizes": "512x512", "src": "/android-chrome-512x512.png", "type": "image/png" }
+	],
+	"name": "Pieter Willekens",
+	"short_name": "pataar",
+	"theme_color": "#16161e"
+}
