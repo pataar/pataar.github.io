@@ -17,17 +17,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
-        
+
       - name: Setup Node.js
         uses: actions/setup-node@v7
         with:
-          node-version: '22'
-        
+          node-version: "22"
+
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
-          
+
       - name: Cache dependencies
         uses: actions/cache@v6
         with:
@@ -35,16 +35,16 @@ jobs:
           key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
           restore-keys: |
             ${{ runner.os }}-bun-
-            
+
       - name: Install dependencies
         run: bun install --frozen-lockfile
-        
+
       - name: Type check
         run: bun run astro check
-        
+
       - name: Build check
         run: bun run build
-        
+
       - name: Upload build artifacts
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v7
@@ -65,24 +65,24 @@ jobs:
       contents: write
       pages: write
       id-token: write
-    
+
     steps:
       - name: Download build artifacts
         uses: actions/download-artifact@v8
         with:
           name: dist
           path: dist/
-          
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           cname: www.pieterwillekens.nl
-          
+
       - name: Wait for deployment
         run: sleep 30
-        
+
       - name: Purge Cloudflare cache
         uses: jakejarvis/cloudflare-purge-action@v0.3.0
         env:

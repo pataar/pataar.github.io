@@ -1,6 +1,10 @@
 pre-commit:
   commands:
-    check:
-      glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
-      run: bun biome check --write --no-errors-on-unmatched --files-ignore-unknown=true --colors=off {staged_files}
+    format:
+      glob: "*.{cjs,cts,js,json,jsonc,jsx,md,mjs,mts,ts,tsx,yaml,yml}"
+      run: bun oxfmt --no-error-on-unmatched-pattern {staged_files}
+      stage_fixed: true
+    lint:
+      glob: "*.{astro,cjs,cts,js,jsx,mjs,mts,svelte,ts,tsx,vue}"
+      run: bun oxlint --fix {staged_files}
       stage_fixed: true
