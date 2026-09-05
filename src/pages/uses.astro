@@ -1,133 +1,12 @@
 ---
 import { Icon } from "astro-icon/components";
+import { getCollection } from "astro:content";
 import CategoryCard from "../components/CategoryCard.astro";
 import Link from "../components/Link.astro";
 import PageHeader from "../components/PageHeader.astro";
 import Layout from "../layouts/Layout.astro";
 
-interface UsesItem {
-	description: string;
-	icon: string;
-	name: string;
-	url: string;
-}
-
-interface UsesCategory {
-	items: UsesItem[];
-	name: string;
-}
-
-const categories: UsesCategory[] = [
-	{
-		name: "os",
-		items: [
-			{
-				description: "Arch-based and fast, my daily driver",
-				icon: "simple-icons:cachyos",
-				name: "cachyos",
-				url: "https://cachyos.org",
-			},
-		],
-	},
-	{
-		name: "terminal",
-		items: [
-			{
-				description: "GPU-accelerated terminal emulator",
-				icon: "simple-icons:ghostty",
-				name: "ghostty",
-				url: "https://ghostty.org",
-			},
-			{
-				description: "cross-shell prompt",
-				icon: "simple-icons:starship",
-				name: "starship",
-				url: "https://starship.rs",
-			},
-			{
-				description: "a smarter cd",
-				icon: "lucide:folder-symlink",
-				name: "zoxide",
-				url: "https://github.com/ajeetdsouza/zoxide",
-			},
-			{
-				description: "fuzzy finder for everything",
-				icon: "lucide:text-search",
-				name: "fzf",
-				url: "https://github.com/junegunn/fzf",
-			},
-			{
-				description: "git TUI that makes rebasing bearable",
-				icon: "lucide:git-merge",
-				name: "lazygit",
-				url: "https://github.com/jesseduffield/lazygit",
-			},
-			{
-				description: "one version manager for every runtime",
-				icon: "lucide:wrench",
-				name: "mise",
-				url: "https://mise.jdx.dev",
-			},
-		],
-	},
-	{
-		name: "editors",
-		items: [
-			{
-				description: "fast, my main editor",
-				icon: "simple-icons:zedindustries",
-				name: "zed",
-				url: "https://zed.dev",
-			},
-			{
-				description: "when the project calls for a full IDE",
-				icon: "simple-icons:jetbrains",
-				name: "jetbrains",
-				url: "https://www.jetbrains.com",
-			},
-		],
-	},
-	{
-		name: "agents",
-		items: [
-			{
-				description: "AI pair programmer that lives in the terminal",
-				icon: "simple-icons:claudecode",
-				name: "claude-code",
-				url: "https://claude.com/product/claude-code",
-			},
-			{
-				description: "tmux for coding agents, keeps the fleet in line",
-				icon: "lucide:bot",
-				name: "herdr",
-				url: "https://github.com/herdrdev/herdr",
-			},
-		],
-	},
-	{
-		name: "apps",
-		items: [
-			{
-				description: "browser without the ads",
-				icon: "simple-icons:brave",
-				name: "brave",
-				url: "https://brave.com",
-			},
-			{
-				description: "notes, linked and local",
-				icon: "simple-icons:obsidian",
-				name: "obsidian",
-				url: "https://obsidian.md",
-			},
-			{
-				description: "todos and reminders",
-				icon: "simple-icons:ticktick",
-				name: "ticktick",
-				url: "https://ticktick.com",
-			},
-		],
-	},
-];
+const categories = (await getCollection("uses")).toSorted((a, b) => a.data.order - b.data.order);
 ---
 
 <Layout
@@ -140,9 +19,9 @@ const categories: UsesCategory[] = [
 	<div class="mt-10 grid gap-6 lg:grid-cols-2">
 		{
 			categories.map(category => (
-				<CategoryCard name={category.name}>
+				<CategoryCard name={category.data.name}>
 					<div class="grid grid-cols-[auto_auto_auto_1fr] gap-x-3 gap-y-3">
-						{category.items.map(item => (
+						{category.data.items.map(item => (
 							<>
 								<Icon name={item.icon} class="mt-[3px] h-4.5 w-4.5 self-start text-fg-muted" />
 								<Link href={item.url} class="text-fg no-underline hover:underline">
