@@ -51,21 +51,21 @@ const keystrokeSeconds = (): number => {
 };
 
 let elapsedSeconds = 1.0;
+let cursorLandsSeconds = elapsedSeconds;
 const typedLines = lines.map((tokens, lineIndex) => {
-	const start = elapsedSeconds;
 	if (lineIndex > 0) elapsedSeconds += 0.12 + Math.random() * 0.25;
 	let atLineStart = true;
-	const typedTokens = tokens.map(token => ({
+	return tokens.map(token => ({
 		class: token.class,
 		chars: token.text.split("").map(char => {
-			const delaySeconds = elapsedSeconds;
-			if (atLineStart && char === " ") return { char, delaySeconds };
+			if (atLineStart && char === " ") return { char, fromSeconds: cursorLandsSeconds, revealSeconds: cursorLandsSeconds };
 			atLineStart = false;
+			const fromSeconds = cursorLandsSeconds;
 			elapsedSeconds += keystrokeSeconds();
-			return { char, delaySeconds };
+			cursorLandsSeconds = elapsedSeconds;
+			return { char, fromSeconds, revealSeconds: elapsedSeconds };
 		}),
 	}));
-	return { end: elapsedSeconds, start, tokens: typedTokens };
 });
 ---
 
@@ -75,13 +75,10 @@ const typedLines = lines.map((tokens, lineIndex) => {
 	</figcaption>
 	<div class="overflow-x-auto p-4 leading-relaxed">
 		<pre
-			aria-hidden="true"><code>{typedLines.map(line => {
-	const lineStyle = `--start: ${line.start.toFixed(2)}s; --end: ${line.end.toFixed(2)}s`;
-	return [
-		<span class="line" style={lineStyle}>{line.tokens.map(token => <span class={token.class}>{token.chars.map(({ char, delaySeconds }) => <span class="letter" style={`animation-delay: ${delaySeconds.toFixed(2)}s`}>{char}</span>)}</span>)}</span>,
-		"\n",
-	];
-})}</code></pre>
+			aria-hidden="true"><code>{typedLines.map(line => [
+	<span class="line">{line.map(token => <span class={token.class}>{token.chars.map(({ char, fromSeconds, revealSeconds }) => <span class="letter" style={`--from: ${fromSeconds.toFixed(2)}s; --at: ${revealSeconds.toFixed(2)}s`}>{char}</span>)}</span>)}</span>,
+	"\n",
+])}</code></pre>
 	</div>
 </figure>
 
@@ -104,22 +101,6 @@ const typedLines = lines.map((tokens, lineIndex) => {
 		width: 1ch;
 	}
 
-	/* Block cursor rides each line only during that line's typing window, then vanishes:
+	/* The riding block cursor comes from the shared .letter cursor-cell animation (global.css);
 	   the name in the hero keeps the site's single blinking cursor */
-	.me-code .line::after {
-		color: var(--tn-blue);
-		content: "▊";
-		opacity: 0;
-		animation: cursor-window calc(var(--end) - var(--start)) linear var(--start) 1;
-	}
-
-	@keyframes cursor-window {
-		0%,
-		99% {
-			opacity: 1;
-		}
-		100% {
-			opacity: 0;
-		}
-	}
 </style>
