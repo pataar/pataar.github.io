@@ -8,7 +8,8 @@
 	--tn-bg-dark: #16161e;
 	--tn-bg-highlight: #292e42;
 	--tn-blue: #7aa2f7;
-	--tn-comment: #565f89;
+	/* lightened from upstream #565f89 for WCAG contrast on --tn-bg */
+	--tn-comment: #7982ab;
 	--tn-cyan: #7dcfff;
 	--tn-edge: #3b4261;
 	--tn-fg: #c0caf5;
@@ -18,18 +19,18 @@
 	--tn-red: #f7768e;
 }
 
-/* Day palette; fg-muted, comment and green run darker than upstream Tokyo Night Day for WCAG contrast */
+/* Day palette; blue, comment, cyan, fg-muted and green run darker than upstream Tokyo Night Day for WCAG contrast */
 @media (prefers-color-scheme: light) {
 	:root {
 		--tn-bg: #e1e2e7;
 		--tn-bg-dark: #d0d5e3;
 		--tn-bg-highlight: #c4c8da;
-		--tn-blue: #2e7de9;
-		--tn-comment: #71789e;
-		--tn-cyan: #007197;
+		--tn-blue: #1359b7;
+		--tn-comment: #555b7d;
+		--tn-cyan: #006485;
 		--tn-edge: #a8aecb;
 		--tn-fg: #3760bf;
-		--tn-fg-muted: #4c5d99;
+		--tn-fg-muted: #495a94;
 		--tn-green: #4a632f;
 		--tn-magenta: #9854f1;
 		--tn-red: #f52a65;
@@ -50,27 +51,44 @@
 	--color-magenta: var(--tn-magenta);
 	--color-red: var(--tn-red);
 	--font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
-	--animate-blink: blink 1.2s step-end infinite;
 }
 
 @utility panel {
 	@apply rounded-lg border border-edge bg-bg-dark/70 p-5;
 }
 
-/* Typewriter effect shared by TypedName and MeCode: build-time randomized animation-delay per letter */
+/* Typewriter effect shared by TypedName and MeCode, with build-time randomized timings per letter.
+
+   Letters keep their natural width and reveal via visibility so the layout never moves (zero CLS);
+   the cell about to be typed renders as a solid block from --from to --at, like a terminal cursor. */
 .letter {
-	animation: typed 0s steps(1) forwards;
-	display: inline-block;
-	overflow: hidden;
-	vertical-align: bottom;
-	white-space: pre;
-	width: 0;
+	animation:
+		typed 0s var(--at) forwards,
+		cursor-cell calc(var(--at) - var(--from, var(--at))) var(--from, var(--at));
+	visibility: hidden;
 }
 
 @keyframes typed {
 	to {
-		width: 1ch;
+		visibility: visible;
 	}
+}
+
+@keyframes cursor-cell {
+	0%,
+	100% {
+		background-color: var(--tn-blue);
+		color: transparent;
+		visibility: visible;
+	}
+}
+
+/* End-of-typing cursor: hidden until its text finishes, then blinks in place */
+.typed-cursor {
+	animation:
+		typed 0s var(--at) forwards,
+		blink 1.2s step-end var(--at) infinite;
+	visibility: hidden;
 }
 
 @keyframes blink {
