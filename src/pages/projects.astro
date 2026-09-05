@@ -1,47 +1,10 @@
 ---
 import Link from "../components/Link.astro";
 import PageHeader from "../components/PageHeader.astro";
+import { renderedCollection } from "../config/content";
 import Layout from "../layouts/Layout.astro";
 
-interface Project {
-	description: string;
-	install?: string;
-	name: string;
-	url: string;
-}
-
-const projects: Project[] = [
-	{
-		description:
-			"a terminal dashboard for your GitLab activity, written in Go. Yes, this site and that tool share an aesthetic.",
-		install: "brew install pataar/tap/gast",
-		name: "gast",
-		url: "https://github.com/pataar/gast",
-	},
-	{
-		description:
-			"this website. Astro, Tailwind, zero client-side JavaScript, and the terminal aesthetic you're looking at.",
-		name: "pataar.github.io",
-		url: "https://github.com/pataar/pataar.github.io",
-	},
-	{
-		description:
-			"a Prometheus exporter for ride wait times at the Efteling. Built to learn Rust; kept because Grafana dashboards of rollercoaster queues are great.",
-		name: "efteling-node-exporter",
-		url: "https://github.com/pataar/efteling-node-exporter",
-	},
-	{
-		description: "browser detection for Laravel. I keep the package alive through my fork.",
-		name: "browser-detect",
-		url: "https://github.com/pataar/browser-detect",
-	},
-	{
-		description:
-			"web UI for Klipper 3D printers. I was part of the Mainsail-crew for a while, back when my 3D printing hobby and my day job overlapped.",
-		name: "mainsail",
-		url: "https://github.com/mainsail-crew/mainsail",
-	},
-];
+const projects = await renderedCollection("projects");
 ---
 
 <Layout title="Projects" description="Open source projects by Pieter Willekens: terminal tools, Prometheus exporters, Laravel packages, and 3D printing software.">
@@ -52,16 +15,16 @@ const projects: Project[] = [
 
 	<ul class="mt-10 space-y-4">
 		{
-			projects.map(project => (
+			projects.map(({ Content, data, id }) => (
 				<li class="panel leading-relaxed text-fg-muted">
 					<span aria-hidden="true" class="select-none text-comment">- </span>
 					<h2 class="inline text-base font-normal">
-						<Link href={project.url}>{project.name}</Link>
-					</h2>: {project.description}
-					{project.install && (
+						<Link href={data.url}>{id}</Link>
+					</h2>: <span class="[&_p]:inline"><Content /></span>
+					{data.install && (
 						<div class="mt-2 text-sm">
 							<span aria-hidden="true" class="select-none text-comment">$ </span>
-							<code class="text-green">{project.install}</code>
+							<code class="text-green">{data.install}</code>
 						</div>
 					)}
 				</li>

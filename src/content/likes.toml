@@ -1,0 +1,81 @@
+# Skills are ordered by preference, not alphabetically.
+
+["languages & runtimes"]
+order = 1
+skills = [
+	{ icon = "simple-icons:typescript", label = "TypeScript", url = "https://www.typescriptlang.org" },
+	{ icon = "simple-icons:javascript", label = "JavaScript (ES6+)", url = "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
+	{ icon = "simple-icons:nodedotjs", label = "Node.js", url = "https://nodejs.org" },
+	{ icon = "simple-icons:php", label = "PHP", url = "https://www.php.net" },
+	{ icon = "simple-icons:sass", label = "Sass", url = "https://sass-lang.com" },
+	{ icon = "simple-icons:go", label = "Go", url = "https://go.dev" },
+	{ icon = "simple-icons:rust", label = "Rust", url = "https://www.rust-lang.org" },
+	{ icon = "simple-icons:bun", label = "Bun", url = "https://bun.com" },
+]
+
+["frameworks & libraries"]
+order = 2
+skills = [
+	{ icon = "simple-icons:react", label = "React", url = "https://react.dev" },
+	{ icon = "simple-icons:laravel", label = "Laravel", url = "https://laravel.com" },
+	{ icon = "simple-icons:tailwindcss", label = "Tailwind CSS", url = "https://tailwindcss.com" },
+	{ icon = "simple-icons:expo", label = "Expo + React Native", url = "https://expo.dev" },
+	{ icon = "simple-icons:vuedotjs", label = "Vue", url = "https://vuejs.org" },
+	{ icon = "simple-icons:astro", label = "Astro", url = "https://astro.build" },
+]
+
+[tools]
+order = 3
+skills = [
+	{ icon = "simple-icons:gnubash", label = "zsh / bash", url = "https://www.zsh.org" },
+	{ icon = "simple-icons:git", label = "git", url = "https://git-scm.com" },
+	{ icon = "simple-icons:webpack", label = "webpack", url = "https://webpack.js.org" },
+	{ icon = "simple-icons:vite", label = "Vite", url = "https://vite.dev" },
+	{ icon = "simple-icons:mysql", label = "MySQL", url = "https://www.mysql.com" },
+	{ icon = "simple-icons:redis", label = "Redis", url = "https://redis.io" },
+	{ icon = "simple-icons:grafana", label = "Grafana", url = "https://grafana.com" },
+	{ icon = "simple-icons:prometheus", label = "Prometheus", url = "https://prometheus.io" },
+	{ icon = "simple-icons:vitest", label = "Jest / Vitest", url = "https://vitest.dev" },
+	{ icon = "simple-icons:helm", label = "Helm", url = "https://helm.sh" },
+	{ icon = "simple-icons:reactquery", label = "TanStack Query", url = "https://tanstack.com/query" },
+	{ icon = "lucide:paw-print", label = "Zustand", url = "https://github.com/pmndrs/zustand" },
+]
+
+["operating systems"]
+order = 4
+skills = [
+	{ icon = "simple-icons:cachyos", label = "CachyOS (daily driver)", url = "https://cachyos.org" },
+	{ icon = "simple-icons:debian", label = "Debian", url = "https://www.debian.org" },
+	{ icon = "simple-icons:ubuntu", label = "Ubuntu", url = "https://ubuntu.com" },
+	{ icon = "simple-icons:apple", label = "macOS", url = "https://www.apple.com/macos/" },
+]
+
+[devops]
+order = 5
+skills = [
+	{ icon = "simple-icons:kubernetes", label = "Kubernetes", url = "https://kubernetes.io" },
+	{ icon = "simple-icons:rancher", label = "Rancher", url = "https://www.rancher.com" },
+	{ icon = "simple-icons:docker", label = "Docker", url = "https://www.docker.com" },
+	{ icon = "simple-icons:github", label = "GitHub Actions", url = "https://github.com/features/actions" },
+	{ icon = "simple-icons:gitlab", label = "GitLab CI", url = "https://docs.gitlab.com/ci/" },
+]
+
+[networking]
+order = 6
+skills = [
+	{ icon = "simple-icons:nginx", label = "nginx", url = "https://nginx.org" },
+	{ icon = "simple-icons:traefikproxy", label = "Traefik", url = "https://traefik.io" },
+	{ icon = "simple-icons:caddy", label = "Caddy", url = "https://caddyserver.com" },
+]
+
+[homelab]
+order = 7
+skills = [
+	{ icon = "simple-icons:unraid", label = "Unraid", url = "https://unraid.net" },
+	{ icon = "simple-icons:proxmox", label = "Proxmox", url = "https://www.proxmox.com" },
+	{ icon = "simple-icons:homeassistant", label = "Home Assistant", url = "https://www.home-assistant.io" },
+	{ icon = "simple-icons:immich", label = "Immich", url = "https://immich.app" },
+	{ icon = "simple-icons:paperlessngx", label = "Paperless-ngx", url = "https://docs.paperless-ngx.com" },
+	{ icon = "simple-icons:syncthing", label = "Syncthing", url = "https://syncthing.net" },
+	{ icon = "simple-icons:ubiquiti", label = "UniFi", url = "https://ui.com" },
+]
