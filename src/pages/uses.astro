@@ -19,7 +19,7 @@ const categories = (await getCollection("uses")).toSorted((a, b) => a.data.order
 	<div class="mt-10 grid gap-6 lg:grid-cols-2">
 		{
 			categories.map(category => (
-				<CategoryCard name={category.data.name}>
+				<CategoryCard name={category.id}>
 					<div class="grid grid-cols-[auto_auto_auto_1fr] gap-x-3 gap-y-3">
 						{category.data.items.map(item => (
 							<>

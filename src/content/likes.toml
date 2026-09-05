@@ -1,7 +1,7 @@
 # Skills are ordered by preference, not alphabetically.
 
-[[categories]]
-name = "languages & runtimes"
+["languages & runtimes"]
+order = 1
 skills = [
 	{ icon = "simple-icons:typescript", label = "TypeScript", url = "https://www.typescriptlang.org" },
 	{ icon = "simple-icons:javascript", label = "JavaScript (ES6+)", url = "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
@@ -13,8 +13,8 @@ skills = [
 	{ icon = "simple-icons:bun", label = "Bun", url = "https://bun.com" },
 ]
 
-[[categories]]
-name = "frameworks & libraries"
+["frameworks & libraries"]
+order = 2
 skills = [
 	{ icon = "simple-icons:react", label = "React", url = "https://react.dev" },
 	{ icon = "simple-icons:laravel", label = "Laravel", url = "https://laravel.com" },
@@ -24,8 +24,8 @@ skills = [
 	{ icon = "simple-icons:astro", label = "Astro", url = "https://astro.build" },
 ]
 
-[[categories]]
-name = "tools"
+[tools]
+order = 3
 skills = [
 	{ icon = "simple-icons:gnubash", label = "zsh / bash", url = "https://www.zsh.org" },
 	{ icon = "simple-icons:git", label = "git", url = "https://git-scm.com" },
@@ -41,8 +41,8 @@ skills = [
 	{ icon = "lucide:paw-print", label = "Zustand", url = "https://github.com/pmndrs/zustand" },
 ]
 
-[[categories]]
-name = "operating systems"
+["operating systems"]
+order = 4
 skills = [
 	{ icon = "simple-icons:cachyos", label = "CachyOS (daily driver)", url = "https://cachyos.org" },
 	{ icon = "simple-icons:debian", label = "Debian", url = "https://www.debian.org" },
@@ -50,8 +50,8 @@ skills = [
 	{ icon = "simple-icons:apple", label = "macOS", url = "https://www.apple.com/macos/" },
 ]
 
-[[categories]]
-name = "devops"
+[devops]
+order = 5
 skills = [
 	{ icon = "simple-icons:kubernetes", label = "Kubernetes", url = "https://kubernetes.io" },
 	{ icon = "simple-icons:rancher", label = "Rancher", url = "https://www.rancher.com" },
@@ -60,16 +60,16 @@ skills = [
 	{ icon = "simple-icons:gitlab", label = "GitLab CI", url = "https://docs.gitlab.com/ci/" },
 ]
 
-[[categories]]
-name = "networking"
+[networking]
+order = 6
 skills = [
 	{ icon = "simple-icons:nginx", label = "nginx", url = "https://nginx.org" },
 	{ icon = "simple-icons:traefikproxy", label = "Traefik", url = "https://traefik.io" },
 	{ icon = "simple-icons:caddy", label = "Caddy", url = "https://caddyserver.com" },
 ]
 
-[[categories]]
-name = "homelab"
+[homelab]
+order = 7
 skills = [
 	{ icon = "simple-icons:unraid", label = "Unraid", url = "https://unraid.net" },
 	{ icon = "simple-icons:proxmox", label = "Proxmox", url = "https://www.proxmox.com" },

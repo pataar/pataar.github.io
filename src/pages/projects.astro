@@ -1,14 +1,10 @@
 ---
-import { getCollection, render } from "astro:content";
 import Link from "../components/Link.astro";
 import PageHeader from "../components/PageHeader.astro";
+import { renderedCollection } from "../config/content";
 import Layout from "../layouts/Layout.astro";
 
-const projects = await Promise.all(
-	(await getCollection("projects"))
-		.toSorted((a, b) => a.data.order - b.data.order)
-		.map(async entry => ({ Content: (await render(entry)).Content, data: entry.data, name: entry.id })),
-);
+const projects = await renderedCollection("projects");
 ---
 
 <Layout title="Projects" description="Open source projects by Pieter Willekens: terminal tools, Prometheus exporters, Laravel packages, and 3D printing software.">
@@ -19,11 +15,11 @@ const projects = await Promise.all(
 
 	<ul class="mt-10 space-y-4">
 		{
-			projects.map(({ Content, data, name }) => (
+			projects.map(({ Content, data, id }) => (
 				<li class="panel leading-relaxed text-fg-muted">
 					<span aria-hidden="true" class="select-none text-comment">- </span>
 					<h2 class="inline text-base font-normal">
-						<Link href={data.url}>{name}</Link>
+						<Link href={data.url}>{id}</Link>
 					</h2>: <span class="[&_p]:inline"><Content /></span>
 					{data.install && (
 						<div class="mt-2 text-sm">

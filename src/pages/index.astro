@@ -1,18 +1,14 @@
 ---
 import { Image } from "astro:assets";
-import { getCollection, render } from "astro:content";
 import portrait from "../assets/icon.png";
 import ContactIcons from "../components/ContactIcons.astro";
 import MeCode from "../components/MeCode.astro";
 import Section from "../components/Section.astro";
 import TypedName from "../components/TypedName.astro";
+import { renderedCollection } from "../config/content";
 import Layout from "../layouts/Layout.astro";
 
-const sections = await Promise.all(
-	(await getCollection("home"))
-		.toSorted((a, b) => a.data.order - b.data.order)
-		.map(async entry => ({ Content: (await render(entry)).Content, data: entry.data })),
-);
+const sections = await renderedCollection("home");
 ---
 
 <Layout description="Pieter Willekens, tech lead at Interactive Studios. Laravel, React, TypeScript, Kubernetes. Dad, developer and drummer, based in the Netherlands.">

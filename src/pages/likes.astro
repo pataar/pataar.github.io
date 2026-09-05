@@ -19,7 +19,7 @@ const categories = (await getCollection("likes")).toSorted((a, b) => a.data.orde
 	<div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 		{
 			categories.map(category => (
-				<CategoryCard name={category.data.name}>
+				<CategoryCard name={category.id}>
 					{category.data.skills.map(skill => (
 						<Skill icon={skill.icon} url={skill.url}>
 							{skill.label}

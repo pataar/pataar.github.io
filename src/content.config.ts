@@ -1,18 +1,9 @@
 import { file, glob } from "astro/loaders";
 import { z } from "astro/zod";
 import { defineCollection } from "astro:content";
-import { parse } from "smol-toml";
 
-// file() has no TOML support, so parse with smol-toml; array position becomes the render order
-const tomlCategories = (path: string) =>
-	file(path, {
-		parser: text =>
-			(parse(text) as { categories: { name: string }[] }).categories.map((category, index) => ({
-				...category,
-				id: category.name,
-				order: index,
-			})),
-	});
+/* Every collection carries an explicit `order` (frontmatter or TOML field) that pages sort on:
+   getCollection() does NOT preserve file order. A TOML category's name is its entry id. */
 
 const home = defineCollection({
 	loader: glob({ base: "./src/content/home", pattern: "*.md" }),
@@ -24,9 +15,8 @@ const home = defineCollection({
 });
 
 const likes = defineCollection({
-	loader: tomlCategories("./src/content/likes.toml"),
+	loader: file("./src/content/likes.toml"),
 	schema: z.object({
-		name: z.string(),
 		order: z.number(),
 		skills: z.array(z.object({ icon: z.string(), label: z.string(), url: z.url() })),
 	}),
@@ -47,10 +37,9 @@ const projects = defineCollection({
 });
 
 const uses = defineCollection({
-	loader: tomlCategories("./src/content/uses.toml"),
+	loader: file("./src/content/uses.toml"),
 	schema: z.object({
 		items: z.array(z.object({ description: z.string(), icon: z.string(), name: z.string(), url: z.url() })),
-		name: z.string(),
 		order: z.number(),
 	}),
 });
