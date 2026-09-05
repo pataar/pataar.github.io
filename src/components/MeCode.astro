@@ -39,15 +39,29 @@ const lines: Token[][] = [
 	[{ text: "} " }, { class: kw, text: "as const" }, { text: ";" }],
 ];
 
-// Typing delays are randomized at build time; the animation is pure CSS, no client JS.
+/* Typing delays are randomized at build time; the animation is pure CSS, no client JS.
+
+   Uniform delays read as a slide-in, so mimic a human rhythm instead: bursts of quick keystrokes
+   (squaring the random skews toward fast keys with a long tail), occasional hesitations, and a
+   breath after each Enter. Leading indentation appears instantly, like an editor's auto-indent. */
+const keystrokeSeconds = (): number => {
+	const burst = 0.008 + Math.random() ** 2 * 0.06;
+	const hesitation = Math.random() < 0.04 ? 0.08 + Math.random() * 0.18 : 0;
+	return burst + hesitation;
+};
+
 let elapsedSeconds = 1.0;
-const typedLines = lines.map(tokens => {
+const typedLines = lines.map((tokens, lineIndex) => {
 	const start = elapsedSeconds;
+	if (lineIndex > 0) elapsedSeconds += 0.12 + Math.random() * 0.25;
+	let atLineStart = true;
 	const typedTokens = tokens.map(token => ({
 		class: token.class,
 		chars: token.text.split("").map(char => {
 			const delaySeconds = elapsedSeconds;
-			elapsedSeconds += 0.01 + Math.random() * 0.03;
+			if (atLineStart && char === " ") return { char, delaySeconds };
+			atLineStart = false;
+			elapsedSeconds += keystrokeSeconds();
 			return { char, delaySeconds };
 		}),
 	}));
