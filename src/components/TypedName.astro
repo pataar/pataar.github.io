@@ -7,11 +7,13 @@ const { text } = Astro.props;
 
 // Delays are randomized at build time so the rhythm feels human-typed without shipping any JS.
 let elapsedSeconds = 0.4;
+let cursorLandsSeconds = elapsedSeconds;
 const words = text.split(" ").map(word => ({
 	letters: word.split("").map(letter => {
-		const delaySeconds = elapsedSeconds;
+		const fromSeconds = cursorLandsSeconds;
 		elapsedSeconds += 0.05 + Math.random() * 0.14;
-		return { delaySeconds, letter };
+		cursorLandsSeconds = elapsedSeconds;
+		return { fromSeconds, letter, revealSeconds: elapsedSeconds };
 	}),
 }));
 ---
@@ -22,8 +24,8 @@ const words = text.split(" ").map(word => ({
 		words.map((word, index) => (
 			<>
 				<span class="inline-block">
-					{word.letters.map(({ delaySeconds, letter }) => (
-						<span class="letter" style={`animation-delay: ${delaySeconds.toFixed(2)}s`}>
+					{word.letters.map(({ fromSeconds, letter, revealSeconds }) => (
+						<span class="letter" style={`--from: ${fromSeconds.toFixed(2)}s; --at: ${revealSeconds.toFixed(2)}s`}>
 							{letter}
 						</span>
 					))}
@@ -31,5 +33,5 @@ const words = text.split(" ").map(word => ({
 				{index < words.length - 1 && " "}
 			</>
 		))
-	}<span class="ml-1 animate-blink select-none text-blue">▊</span>
+	}<span class="typed-cursor ml-1 select-none text-blue" style={`--at: ${elapsedSeconds.toFixed(2)}s`}>▊</span>
 </span>

@@ -39,19 +39,33 @@ const lines: Token[][] = [
 	[{ text: "} " }, { class: kw, text: "as const" }, { text: ";" }],
 ];
 
-// Typing delays are randomized at build time; the animation is pure CSS, no client JS.
+/* Typing delays are randomized at build time; the animation is pure CSS, no client JS.
+
+   Uniform delays read as a slide-in, so mimic a human rhythm instead: bursts of quick keystrokes
+   (squaring the random skews toward fast keys with a long tail), occasional hesitations, and a
+   breath after each Enter. Leading indentation appears instantly, like an editor's auto-indent. */
+const keystrokeSeconds = (): number => {
+	const burst = 0.008 + Math.random() ** 2 * 0.06;
+	const hesitation = Math.random() < 0.04 ? 0.08 + Math.random() * 0.18 : 0;
+	return burst + hesitation;
+};
+
 let elapsedSeconds = 1.0;
-const typedLines = lines.map(tokens => {
-	const start = elapsedSeconds;
-	const typedTokens = tokens.map(token => ({
+let cursorLandsSeconds = elapsedSeconds;
+const typedLines = lines.map((tokens, lineIndex) => {
+	if (lineIndex > 0) elapsedSeconds += 0.12 + Math.random() * 0.25;
+	let atLineStart = true;
+	return tokens.map(token => ({
 		class: token.class,
 		chars: token.text.split("").map(char => {
-			const delaySeconds = elapsedSeconds;
-			elapsedSeconds += 0.01 + Math.random() * 0.03;
-			return { char, delaySeconds };
+			if (atLineStart && char === " ") return { char, fromSeconds: cursorLandsSeconds, revealSeconds: cursorLandsSeconds };
+			atLineStart = false;
+			const fromSeconds = cursorLandsSeconds;
+			elapsedSeconds += keystrokeSeconds();
+			cursorLandsSeconds = elapsedSeconds;
+			return { char, fromSeconds, revealSeconds: elapsedSeconds };
 		}),
 	}));
-	return { end: elapsedSeconds, start, tokens: typedTokens };
 });
 ---
 
@@ -61,13 +75,10 @@ const typedLines = lines.map(tokens => {
 	</figcaption>
 	<div class="overflow-x-auto p-4 leading-relaxed">
 		<pre
-			aria-hidden="true"><code>{typedLines.map(line => {
-	const lineStyle = `--start: ${line.start.toFixed(2)}s; --end: ${line.end.toFixed(2)}s`;
-	return [
-		<span class="line" style={lineStyle}>{line.tokens.map(token => <span class={token.class}>{token.chars.map(({ char, delaySeconds }) => <span class="letter" style={`animation-delay: ${delaySeconds.toFixed(2)}s`}>{char}</span>)}</span>)}</span>,
-		"\n",
-	];
-})}</code></pre>
+			aria-hidden="true"><code>{typedLines.map(line => [
+	<span class="line">{line.map(token => <span class={token.class}>{token.chars.map(({ char, fromSeconds, revealSeconds }) => <span class="letter" style={`--from: ${fromSeconds.toFixed(2)}s; --at: ${revealSeconds.toFixed(2)}s`}>{char}</span>)}</span>)}</span>,
+	"\n",
+])}</code></pre>
 	</div>
 </figure>
 
@@ -90,22 +101,6 @@ const typedLines = lines.map(tokens => {
 		width: 1ch;
 	}
 
-	/* Block cursor rides each line only during that line's typing window, then vanishes:
+	/* The riding block cursor comes from the shared .letter cursor-cell animation (global.css);
 	   the name in the hero keeps the site's single blinking cursor */
-	.me-code .line::after {
-		color: var(--tn-blue);
-		content: "▊";
-		opacity: 0;
-		animation: cursor-window calc(var(--end) - var(--start)) linear var(--start) 1;
-	}
-
-	@keyframes cursor-window {
-		0%,
-		99% {
-			opacity: 1;
-		}
-		100% {
-			opacity: 0;
-		}
-	}
 </style>
