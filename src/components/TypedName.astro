@@ -1,21 +1,12 @@
 ---
+import type { TypedText } from "../lib/typewriter";
+
 interface Props {
-	text: string;
+	typed: TypedText;
 }
 
-const { text } = Astro.props;
-
-// Delays are randomized at build time so the rhythm feels human-typed without shipping any JS.
-let elapsedSeconds = 0.4;
-let cursorLandsSeconds = elapsedSeconds;
-const words = text.split(" ").map(word => ({
-	letters: word.split("").map(letter => {
-		const fromSeconds = cursorLandsSeconds;
-		elapsedSeconds += 0.05 + Math.random() * 0.14;
-		cursorLandsSeconds = elapsedSeconds;
-		return { fromSeconds, letter, revealSeconds: elapsedSeconds };
-	}),
-}));
+const { typed } = Astro.props;
+const { text, words, endSeconds } = typed;
 ---
 
 <span class="sr-only">{text}</span>
@@ -33,5 +24,5 @@ const words = text.split(" ").map(word => ({
 				{index < words.length - 1 && " "}
 			</>
 		))
-	}<span class="typed-cursor ml-1 select-none text-blue" style={`--at: ${elapsedSeconds.toFixed(2)}s`}>▊</span>
+	}<span class="typed-cursor ml-1 select-none text-blue" style={`--at: ${endSeconds.toFixed(2)}s`}>▊</span>
 </span>
