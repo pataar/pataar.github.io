@@ -6,9 +6,14 @@ import MeCode from "../components/MeCode.astro";
 import Section from "../components/Section.astro";
 import TypedName from "../components/TypedName.astro";
 import { renderedCollection } from "../config/content";
+import { typeWords } from "../lib/typewriter";
 import Layout from "../layouts/Layout.astro";
 
 const sections = await renderedCollection("home");
+
+// The name types first; me.ts starts once the cursor lands on the last letter, with a short pause.
+const name = typeWords("Pieter Willekens", 0.4);
+const meCodeStartAt = name.endSeconds + 0.4;
 ---
 
 <Layout description="Pieter Willekens, tech lead at Interactive Studios. Laravel, React, TypeScript, Kubernetes. Dad, developer and drummer, based in the Netherlands.">
@@ -23,7 +28,7 @@ const sections = await renderedCollection("home");
 			/>
 			<div>
 				<h1 class="text-3xl font-bold text-fg">
-					<TypedName text="Pieter Willekens" />
+					<TypedName text="Pieter Willekens" typed={name} />
 				</h1>
 				<p class="mt-2 text-fg-muted"><span class="text-comment select-none">// </span>Dad, developer and drummer.</p>
 				<div class="mt-4">
@@ -32,7 +37,7 @@ const sections = await renderedCollection("home");
 			</div>
 		</header>
 		<div class="lg:w-105 lg:shrink-0">
-			<MeCode />
+			<MeCode startAt={meCodeStartAt} />
 		</div>
 	</div>
 
