@@ -1,4 +1,6 @@
 ---
+import { makeClock } from "../lib/typewriter";
+
 interface Props {
 	startAt?: number;
 }
@@ -56,20 +58,16 @@ const keystrokeSeconds = (): number => {
 	return burst + hesitation;
 };
 
-let elapsedSeconds = startAt;
-let cursorLandsSeconds = elapsedSeconds;
+const clock = makeClock(startAt);
 const typedLines = lines.map((tokens, lineIndex) => {
-	if (lineIndex > 0) elapsedSeconds += 0.12 + Math.random() * 0.25;
+	if (lineIndex > 0) clock.tick(0.12 + Math.random() * 0.25);
 	let atLineStart = true;
 	return tokens.map(token => ({
 		class: token.class,
 		chars: token.text.split("").map(char => {
-			if (atLineStart && char === " ") return { char, fromSeconds: cursorLandsSeconds, revealSeconds: cursorLandsSeconds };
+			if (atLineStart && char === " ") return { char, ...clock.hold() };
 			atLineStart = false;
-			const fromSeconds = cursorLandsSeconds;
-			elapsedSeconds += keystrokeSeconds();
-			cursorLandsSeconds = elapsedSeconds;
-			return { char, fromSeconds, revealSeconds: elapsedSeconds };
+			return { char, ...clock.tick(keystrokeSeconds()) };
 		}),
 	}));
 });

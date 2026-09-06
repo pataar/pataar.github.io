@@ -2,12 +2,11 @@
 import type { TypedText } from "../lib/typewriter";
 
 interface Props {
-	text: string;
 	typed: TypedText;
 }
 
-const { text, typed } = Astro.props;
-const { words, endSeconds } = typed;
+const { typed } = Astro.props;
+const { text, words, endSeconds } = typed;
 ---
 
 <span class="sr-only">{text}</span>
