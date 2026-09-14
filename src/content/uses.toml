@@ -25,7 +25,7 @@ items = [
 [agents]
 order = 4
 items = [
-	{ description = "AI pair programmer that lives in the terminal", icon = "simple-icons:claudecode", name = "claude-code", url = "https://claude.com/product/claude-code" },
+	{ description = "coding agent that fits the terminal habit", icon = "simple-icons:claudecode", name = "claude-code", url = "https://claude.com/product/claude-code" },
 	{ description = "tmux for coding agents, keeps the fleet in line", icon = "lucide:bot", name = "herdr", url = "https://github.com/herdrdev/herdr" },
 ]
 

@@ -19,7 +19,7 @@ const projects = await renderedCollection("projects");
 				<li class="panel leading-relaxed text-fg-muted">
 					<span aria-hidden="true" class="select-none text-comment">- </span>
 					<h2 class="inline text-base font-normal">
-						<Link href={data.url}>{id}</Link>
+						<Link href={data.url} class="text-magenta">{id}</Link>
 					</h2>: <span class="[&_p]:inline"><Content /></span>
 					{data.install && (
 						<div class="mt-2 text-sm">
