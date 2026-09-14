@@ -9,13 +9,13 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/markdown-satteri": "^0.4.0",
+		"@astrojs/markdown-satteri": "^0.4.1",
 		"@astrojs/sitemap": "3.7.4",
 		"@fontsource-variable/jetbrains-mono": "^5.3.0",
 		"@iconify-json/lucide": "^1.2.129",
 		"@iconify-json/simple-icons": "^1.2.94",
 		"@tailwindcss/vite": "^4.3.3",
-		"astro": "7.3.1",
+		"astro": "7.3.2",
 		"astro-icon": "^1.2.0",
 		"tailwindcss": "^4.3.3"
 	},
