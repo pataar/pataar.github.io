@@ -83,15 +83,20 @@
 	}
 }
 
-/* End-of-typing cursor: hidden until its text finishes, then blinks in place */
+/* End-of-typing cursor: hidden until its text finishes, then blinks in place a few times and rests
+   solid, so it reads as a terminal prompt without pulling the eye for the rest of the visit */
 .typed-cursor {
 	animation:
 		typed 0s var(--at) forwards,
-		blink 1.2s step-end var(--at) infinite;
+		blink 1.2s step-end var(--at) 6 forwards;
 	visibility: hidden;
 }
 
 @keyframes blink {
+	0%,
+	100% {
+		opacity: 1;
+	}
 	50% {
 		opacity: 0;
 	}
