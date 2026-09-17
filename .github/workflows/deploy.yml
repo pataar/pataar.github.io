@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [master]
     types: [opened, synchronize]
+  schedule:
+    # daily rebuild so the pull request stream on /open-source/ stays fresh
+    - cron: "0 5 * * *"
 
 env:
   NODE_ENV: production
@@ -14,6 +17,9 @@ jobs:
   # Quality checks job
   quality:
     runs-on: ubuntu-latest
+    env:
+      # authenticates the build-time pull request fetch; unauthenticated search is rate-limited per (shared) runner IP
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -46,16 +52,16 @@ jobs:
         run: bun run build
 
       - name: Upload build artifacts
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        if: github.event_name != 'pull_request'
         uses: actions/upload-artifact@v7
         with:
           name: dist
           path: dist/
           retention-days: 1
 
-  # Deploy job (only on push to master)
+  # Deploy job (push to master and the daily schedule)
   deploy:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    if: github.event_name != 'pull_request'
     needs: quality
     runs-on: ubuntu-latest
     concurrency:

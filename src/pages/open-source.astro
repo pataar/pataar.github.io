@@ -1,0 +1,63 @@
+---
+import { Icon } from "astro-icon/components";
+import { getCollection } from "astro:content";
+import Link from "../components/Link.astro";
+import PageHeader from "../components/PageHeader.astro";
+import Layout from "../layouts/Layout.astro";
+
+const pullRequests = (await getCollection("pullRequests")).toSorted((a, b) =>
+	b.data.createdAt.localeCompare(a.data.createdAt),
+);
+
+const statuses = {
+	closed: { color: "text-red", icon: "lucide:git-pull-request-closed" },
+	merged: { color: "text-green", icon: "lucide:git-merge" },
+	open: { color: "text-blue", icon: "lucide:git-pull-request" },
+};
+---
+
+<Layout
+	title="Open source"
+	description="Recent open source contributions by Pieter Willekens: a stream of pull requests to other people's projects.">
+	<PageHeader title="Open source">
+		Fixing things upstream instead of working around them. My latest pull requests to other people's projects; my own
+		live in <a href="/projects/">projects.md</a>.
+	</PageHeader>
+
+	<div class="panel mt-10 text-sm">
+		<div>
+			<span aria-hidden="true" class="select-none text-comment">$ </span>
+			<code class="text-green">gh search prs --author pataar --limit {pullRequests.length}</code>
+		</div>
+
+		<ol class="mt-4 grid gap-x-4 gap-y-3 md:grid-cols-[auto_auto_fit-content(20rem)_1fr] md:gap-y-1.5">
+			{
+				pullRequests.map(({ data }) => (
+					<li class="flex flex-wrap gap-x-3 md:col-span-full md:grid md:grid-cols-subgrid">
+						<time datetime={data.createdAt} class="text-comment">
+							{data.createdAt.slice(0, 10)}
+						</time>
+						<span class:list={["flex items-center gap-1.5 self-start", statuses[data.status].color]}>
+							<Icon name={statuses[data.status].icon} class="h-3.5 w-3.5" />
+							{data.status}
+						</span>
+						<Link href={data.url} class="wrap-anywhere text-magenta">
+							{data.repository}#{data.number}
+						</Link>
+						<span class="w-full min-w-0 text-fg-muted md:w-auto md:truncate" title={data.title}>
+							{data.title}
+						</span>
+					</li>
+				))
+			}
+		</ol>
+
+		<div class="mt-4 text-comment">
+			<span aria-hidden="true" class="select-none">-- </span>
+			<Link href="https://github.com/search?q=author%3Apataar+type%3Apr+-user%3Apataar&type=pullrequests" class="text-comment">
+				more on GitHub
+			</Link>
+			<span aria-hidden="true" class="select-none"> --</span>
+		</div>
+	</div>
+</Layout>

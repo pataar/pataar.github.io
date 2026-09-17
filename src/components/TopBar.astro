@@ -18,7 +18,7 @@ const activeFile = currentRoute(Astro.url.pathname)?.file;
 							title={label}
 							aria-current={active ? "page" : undefined}
 							class:list={[
-								"shrink-0 border-b-2 px-2 py-2.5 no-underline sm:px-3",
+								"shrink-0 border-b-2 px-1.5 py-2.5 no-underline sm:px-3",
 								active ? "border-blue bg-bg text-fg" : "border-transparent text-fg-muted hover:text-fg",
 							]}>
 							{base}
