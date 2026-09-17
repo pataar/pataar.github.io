@@ -36,6 +36,39 @@ const projects = defineCollection({
 	}),
 });
 
+/* Pull requests to repositories I don't own, fetched once per build; the daily cron in deploy.yml keeps them fresh.
+
+   A failed fetch fails the build on purpose: yesterday's deploy beats an empty stream. */
+const pullRequests = defineCollection({
+	loader: async () => {
+		const token = process.env.GITHUB_TOKEN;
+		const response = await fetch(
+			"https://api.github.com/search/issues?q=author:pataar+type:pr+-user:pataar+is:public&sort=created&order=desc&per_page=30",
+			{ headers: token ? { Authorization: `Bearer ${token}` } : {} },
+		);
+		if (!response.ok) throw new Error(`GitHub pull request search failed: ${response.status} ${response.statusText}`);
+
+		const { items } = await response.json();
+		return items.map((item: Record<string, any>) => ({
+			createdAt: item.created_at,
+			id: String(item.id),
+			number: item.number,
+			repository: item.repository_url.replace("https://api.github.com/repos/", ""),
+			status: item.pull_request.merged_at ? "merged" : item.state,
+			title: item.title,
+			url: item.html_url,
+		}));
+	},
+	schema: z.object({
+		createdAt: z.iso.datetime(),
+		number: z.number(),
+		repository: z.string(),
+		status: z.enum(["closed", "merged", "open"]),
+		title: z.string(),
+		url: z.url(),
+	}),
+});
+
 const uses = defineCollection({
 	loader: file("./src/content/uses.toml"),
 	schema: z.object({
@@ -44,4 +77,4 @@ const uses = defineCollection({
 	}),
 });
 
-export const collections = { home, likes, projects, uses };
+export const collections = { home, likes, projects, pullRequests, uses };
