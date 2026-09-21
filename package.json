@@ -21,7 +21,7 @@
 	},
 	"devDependencies": {
 		"@astrojs/check": "^0.9.10",
-		"lefthook": "^2.1.12",
+		"lefthook": "^2.1.14",
 		"oxfmt": "^0.68.0",
 		"oxlint": "^1.82.0",
 		"sharp": "^0.35.4"
