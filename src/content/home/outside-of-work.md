@@ -10,4 +10,6 @@ I drum on an acoustic kit when the house allows it and an e-kit when it doesn't.
 
 Big sci-fi and fantasy fan: Star Wars, Lord of the Rings, and Brandon Sanderson's Mistborn series.
 
+Favourite games: Skyrim, The Witcher 3, Zelda: Breath of the Wild and Tears of the Kingdom, and Clair Obscur: Expedition 33.
+
 Also: astronomy and physics. I will happily lose an evening to a video about black holes.
