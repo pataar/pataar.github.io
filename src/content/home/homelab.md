@@ -4,6 +4,6 @@ order: 3
 title: homelab
 ---
 
-The most over-engineered corner of the house: a dedicated Proxmox box that runs Home Assistant, an Unraid server hosting Immich, Paperless-ngx, Syncthing, and more containers than strictly necessary (kept safe by Unraid's parity drives, not RAID), and a UniFi network tying it all together.
+The most over-engineered corner of the house. A Proxmox box runs Home Assistant. An Unraid server hosts Immich, Paperless-ngx, Syncthing, and more containers than I really need, with parity drives keeping the data safe. A UniFi network connects it all.
 
-The 3D printers count as lab equipment too: a Bambu Lab P1S and a heavily modded Ender 3 running Klipper and Mainsail. Tinkering with it all is the point.
+The 3D printers count too: a Bambu Lab P1S and a heavily modded Ender 3 running Klipper and Mainsail. Tinkering is the point.
