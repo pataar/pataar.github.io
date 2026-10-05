@@ -59,6 +59,7 @@ skills = [
 	{ icon = "simple-icons:docker", label = "Docker", url = "https://www.docker.com" },
 	{ icon = "simple-icons:github", label = "GitHub Actions", url = "https://github.com/features/actions" },
 	{ icon = "simple-icons:gitlab", label = "GitLab CI", url = "https://docs.gitlab.com/ci/" },
+	{ icon = "simple-icons:renovate", label = "Renovate", url = "https://docs.renovatebot.com" },
 ]
 
 [networking]
