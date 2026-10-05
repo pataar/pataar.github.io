@@ -5,26 +5,137 @@ import Link from "../components/Link.astro";
 import PageHeader from "../components/PageHeader.astro";
 import Layout from "../layouts/Layout.astro";
 
-const pullRequests = (await getCollection("pullRequests")).toSorted((a, b) =>
+type Status = "closed" | "merged" | "open";
+
+const allPullRequests = (await getCollection("pullRequests")).toSorted((a, b) =>
 	b.data.createdAt.localeCompare(a.data.createdAt),
 );
+const pullRequests = allPullRequests.slice(0, 30);
 
 const statuses = {
-	closed: { color: "text-red", icon: "lucide:git-pull-request-closed" },
-	merged: { color: "text-green", icon: "lucide:git-merge" },
-	open: { color: "text-blue", icon: "lucide:git-pull-request" },
+	closed: { bar: "bg-red", color: "text-red", icon: "lucide:git-pull-request-closed" },
+	merged: { bar: "bg-green", color: "text-green", icon: "lucide:git-merge" },
+	open: { bar: "bg-blue", color: "text-blue", icon: "lucide:git-pull-request" },
 };
+// stacking order of every bar segment and legend entry
+const order: Status[] = ["merged", "open", "closed"];
+
+const emptyCounts = (): Record<Status, number> => ({ closed: 0, merged: 0, open: 0 });
+const tally = (keyOf: (data: (typeof allPullRequests)[number]["data"]) => string) => {
+	const groups = new Map<string, Record<Status, number>>();
+	for (const { data } of allPullRequests) {
+		const counts = groups.get(keyOf(data)) ?? emptyCounts();
+		counts[data.status]++;
+		groups.set(keyOf(data), counts);
+	}
+	return [...groups].map(([label, counts]) => ({ counts, label, total: counts.closed + counts.merged + counts.open }));
+};
+
+const totals = emptyCounts();
+for (const { data } of allPullRequests) totals[data.status]++;
+
+const repositories = tally(data => data.repository);
+const topRepositories = repositories
+	.toSorted((a, b) => b.counts.merged - a.counts.merged || b.total - a.total || a.label.localeCompare(b.label))
+	.slice(0, 8);
+const firstYear = Number(allPullRequests.at(-1)?.data.createdAt.slice(0, 4) ?? new Date().getFullYear());
+const yearCounts = new Map(tally(data => data.createdAt.slice(0, 4)).map(year => [year.label, year]));
+// every year since the first pull request, quiet ones included, so the timeline doesn't skip
+const years = Array.from({ length: new Date().getFullYear() - firstYear + 1 }, (_, i) => {
+	const label = String(firstYear + i);
+	return yearCounts.get(label) ?? { counts: emptyCounts(), label, total: 0 };
+});
+
+const decided = totals.merged + totals.closed;
+const mergeRate = decided ? Math.round((totals.merged / decided) * 100) : 0;
+
+const stats = [
+	{ color: "text-fg", label: "pull requests", value: allPullRequests.length },
+	{ color: "text-green", label: "merged", value: totals.merged },
+	{ color: "text-magenta", label: "repositories", value: repositories.length },
+	{ color: "text-cyan", label: "merge rate", value: `${mergeRate}%` },
+];
+
+const summarize = (counts: Record<Status, number>) => order.map(status => `${counts[status]} ${status}`).join(", ");
+const barCharts = [
+	{ max: Math.max(...topRepositories.map(repo => repo.total)), rows: topRepositories, title: "top repositories" },
+	{ max: Math.max(...years.map(year => year.total)), rows: years, title: "per year" },
+];
 ---
 
 <Layout
 	title="Open source"
-	description="Recent open source contributions by Pieter Willekens: a stream of pull requests to other people's projects.">
+	description="Open source contributions by Pieter Willekens: stats and a stream of pull requests to other people's projects.">
 	<PageHeader title="Open source">
-		Fixing things upstream instead of working around them. My latest pull requests to other people's projects; my own
-		live in <a href="/projects/">projects.md</a>.
+		Fixing things upstream instead of working around them. My pull requests to other people's projects; my own live in
+		<a href="/projects/">projects.md</a>.
 	</PageHeader>
 
 	<div class="panel mt-10 text-sm">
+		<div>
+			<span aria-hidden="true" class="select-none text-comment">$ </span>
+			<code class="text-green">gh pr stats --author pataar --since {firstYear}</code>
+		</div>
+
+		<dl class="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">
+			{
+				stats.map(stat => (
+					<div class="flex flex-col-reverse rounded border border-edge bg-bg px-4 py-3">
+						<dt class="text-xs text-comment">{stat.label}</dt>
+						<dd class:list={["text-2xl font-bold tabular-nums", stat.color]}>{stat.value}</dd>
+					</div>
+				))
+			}
+		</dl>
+
+		<div class="mt-6 grid gap-6 md:grid-cols-2">
+			{
+				barCharts.map(chart => (
+					<section>
+						<h2 class="mb-2 text-comment">
+							<span aria-hidden="true" class="select-none"># </span>
+							{chart.title}
+						</h2>
+						<ul class="grid grid-cols-[fit-content(55%)_1fr_auto] items-center gap-x-3 gap-y-1.5">
+							{chart.rows.map(row => (
+								<li class="col-span-full grid grid-cols-subgrid items-center">
+									<span class="truncate text-fg-muted" title={row.label}>
+										{row.label}
+									</span>
+									<span
+										role="img"
+										aria-label={`${row.label}: ${summarize(row.counts)}`}
+										title={summarize(row.counts)}
+										class="flex h-2.5 overflow-hidden rounded-sm bg-bg-highlight">
+										{order.map(status => (
+											<span
+												class={statuses[status].bar}
+												style={`width: ${(row.counts[status] / chart.max) * 100}%`}
+											/>
+										))}
+									</span>
+									<span class="text-right tabular-nums text-comment">{row.total}</span>
+								</li>
+							))}
+						</ul>
+					</section>
+				))
+			}
+		</div>
+
+		<ul class="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-xs text-comment">
+			{
+				order.map(status => (
+					<li class="flex items-center gap-1.5">
+						<span aria-hidden="true" class:list={["h-2 w-2 rounded-sm", statuses[status].bar]} />
+						{status} <span class="tabular-nums">{totals[status]}</span>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+
+	<div class="panel mt-6 text-sm">
 		<div>
 			<span aria-hidden="true" class="select-none text-comment">$ </span>
 			<code class="text-green">gh search prs --author pataar --limit {pullRequests.length}</code>
