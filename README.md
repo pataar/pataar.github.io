@@ -16,7 +16,7 @@ Built with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.c
 
 ## Getting started
 
-Requirements: [Bun](https://bun.sh) and Node.js 24. With [mise](https://mise.jdx.dev) installed, `mise install` sets both up from `mise.toml`.
+Requirements: [Bun](https://bun.sh) and Node.js 26. With [mise](https://mise.jdx.dev) installed, `mise install` sets both up from `mise.toml`.
 
 ```sh
 bun install
