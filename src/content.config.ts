@@ -37,19 +37,28 @@ const projects = defineCollection({
 });
 
 /* Pull requests to repositories I don't own, fetched once per build; the daily cron in deploy.yml keeps them fresh.
+   All of them, not just the latest: /open-source/ derives its stats from the full set and streams the newest few.
 
    A failed fetch fails the build on purpose: yesterday's deploy beats an empty stream. */
 const pullRequests = defineCollection({
 	loader: async () => {
 		const token = process.env.GITHUB_TOKEN;
-		const response = await fetch(
-			"https://api.github.com/search/issues?q=author:pataar+type:pr+-user:pataar+is:public&sort=created&order=desc&per_page=30",
-			{ headers: token ? { Authorization: `Bearer ${token}` } : {} },
-		);
-		if (!response.ok) throw new Error(`GitHub pull request search failed: ${response.status} ${response.statusText}`);
+		const items: Record<string, any>[] = [];
 
-		const { items } = await response.json();
-		return items.map((item: Record<string, any>) => ({
+		// search returns at most 1000 results (10 pages of 100); stop once a page comes back short
+		for (let page = 1; page <= 10; page++) {
+			const response = await fetch(
+				`https://api.github.com/search/issues?q=author:pataar+type:pr+-user:pataar+is:public&sort=created&order=desc&per_page=100&page=${page}`,
+				{ headers: token ? { Authorization: `Bearer ${token}` } : {} },
+			);
+			if (!response.ok) throw new Error(`GitHub pull request search failed: ${response.status} ${response.statusText}`);
+
+			const { items: pageItems } = await response.json();
+			items.push(...pageItems);
+			if (pageItems.length < 100) break;
+		}
+
+		return items.map(item => ({
 			createdAt: item.created_at,
 			id: String(item.id),
 			number: item.number,
