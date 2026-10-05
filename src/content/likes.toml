@@ -4,13 +4,12 @@
 order = 1
 skills = [
 	{ icon = "simple-icons:typescript", label = "TypeScript", url = "https://www.typescriptlang.org" },
-	{ icon = "simple-icons:javascript", label = "JavaScript (ES6+)", url = "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
 	{ icon = "simple-icons:nodedotjs", label = "Node.js", url = "https://nodejs.org" },
 	{ icon = "simple-icons:php", label = "PHP", url = "https://www.php.net" },
-	{ icon = "simple-icons:sass", label = "Sass", url = "https://sass-lang.com" },
 	{ icon = "simple-icons:go", label = "Go", url = "https://go.dev" },
 	{ icon = "simple-icons:rust", label = "Rust", url = "https://www.rust-lang.org" },
 	{ icon = "simple-icons:bun", label = "Bun", url = "https://bun.com" },
+	{ icon = "simple-icons:gnubash", label = "Bash", url = "https://www.gnu.org/software/bash/" },
 ]
 
 ["frameworks & libraries"]
@@ -27,15 +26,17 @@ skills = [
 [tools]
 order = 3
 skills = [
-	{ icon = "simple-icons:gnubash", label = "zsh / bash", url = "https://www.zsh.org" },
+	{ icon = "simple-icons:zsh", label = "zsh", url = "https://www.zsh.org" },
 	{ icon = "simple-icons:git", label = "git", url = "https://git-scm.com" },
-	{ icon = "simple-icons:webpack", label = "webpack", url = "https://webpack.js.org" },
+	{ icon = "lucide:wrench", label = "mise", url = "https://mise.jdx.dev" },
 	{ icon = "simple-icons:vite", label = "Vite", url = "https://vite.dev" },
+	{ icon = "simple-icons:oxc", label = "oxlint / oxfmt", url = "https://oxc.rs" },
 	{ icon = "simple-icons:mysql", label = "MySQL", url = "https://www.mysql.com" },
+	{ icon = "simple-icons:sqlite", label = "SQLite", url = "https://sqlite.org" },
 	{ icon = "simple-icons:redis", label = "Redis", url = "https://redis.io" },
 	{ icon = "simple-icons:grafana", label = "Grafana", url = "https://grafana.com" },
 	{ icon = "simple-icons:prometheus", label = "Prometheus", url = "https://prometheus.io" },
-	{ icon = "simple-icons:vitest", label = "Jest / Vitest", url = "https://vitest.dev" },
+	{ icon = "simple-icons:vitest", label = "Vitest", url = "https://vitest.dev" },
 	{ icon = "simple-icons:helm", label = "Helm", url = "https://helm.sh" },
 	{ icon = "simple-icons:reactquery", label = "TanStack Query", url = "https://tanstack.com/query" },
 	{ icon = "lucide:paw-print", label = "Zustand", url = "https://github.com/pmndrs/zustand" },
