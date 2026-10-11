@@ -48,7 +48,7 @@ const pullRequests = defineCollection({
 		// search returns at most 1000 results (10 pages of 100); stop once a page comes back short
 		for (let page = 1; page <= 10; page++) {
 			const response = await fetch(
-				`https://api.github.com/search/issues?q=author:pataar+type:pr+-user:pataar+is:public&sort=created&order=desc&per_page=100&page=${page}`,
+				`https://api.github.com/search/issues?q=author:pataar+type:pr+-user:pataar+-user:postvak-app+is:public&sort=created&order=desc&per_page=100&page=${page}`,
 				{ headers: token ? { Authorization: `Bearer ${token}` } : {} },
 			);
 			if (!response.ok) throw new Error(`GitHub pull request search failed: ${response.status} ${response.statusText}`);
