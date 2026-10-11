@@ -36,9 +36,6 @@ const projects = defineCollection({
 	}),
 });
 
-// my own projects that live outside my user account, so -user:pataar doesn't already exclude them
-const ownProjects = ["postvak"];
-
 /* Pull requests to repositories I don't own, fetched once per build; the daily cron in deploy.yml keeps them fresh.
    All of them, not just the latest: /open-source/ derives its stats from the full set and streams the newest few.
 
@@ -51,7 +48,7 @@ const pullRequests = defineCollection({
 		// search returns at most 1000 results (10 pages of 100); stop once a page comes back short
 		for (let page = 1; page <= 10; page++) {
 			const response = await fetch(
-				`https://api.github.com/search/issues?q=author:pataar+type:pr+-user:pataar+is:public&sort=created&order=desc&per_page=100&page=${page}`,
+				`https://api.github.com/search/issues?q=author:pataar+type:pr+-user:pataar+-user:postvak-app+is:public&sort=created&order=desc&per_page=100&page=${page}`,
 				{ headers: token ? { Authorization: `Bearer ${token}` } : {} },
 			);
 			if (!response.ok) throw new Error(`GitHub pull request search failed: ${response.status} ${response.statusText}`);
@@ -61,17 +58,15 @@ const pullRequests = defineCollection({
 			if (pageItems.length < 100) break;
 		}
 
-		return items
-			.map(item => ({
-				createdAt: item.created_at,
-				id: String(item.id),
-				number: item.number,
-				repository: item.repository_url.replace("https://api.github.com/repos/", ""),
-				status: item.pull_request.merged_at ? "merged" : item.state,
-				title: item.title,
-				url: item.html_url,
-			}))
-			.filter(pr => !pr.repository.toLowerCase().split("/").some(part => ownProjects.includes(part)));
+		return items.map(item => ({
+			createdAt: item.created_at,
+			id: String(item.id),
+			number: item.number,
+			repository: item.repository_url.replace("https://api.github.com/repos/", ""),
+			status: item.pull_request.merged_at ? "merged" : item.state,
+			title: item.title,
+			url: item.html_url,
+		}));
 	},
 	schema: z.object({
 		createdAt: z.iso.datetime(),
