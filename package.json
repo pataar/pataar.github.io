@@ -12,7 +12,7 @@
 		"@astrojs/markdown-satteri": "^0.4.3",
 		"@astrojs/sitemap": "3.7.4",
 		"@fontsource-variable/jetbrains-mono": "^5.3.0",
-		"@iconify-json/lucide": "^1.2.142",
+		"@iconify-json/lucide": "^1.2.145",
 		"@iconify-json/simple-icons": "^1.2.99",
 		"@tailwindcss/vite": "^4.3.3",
 		"astro": "7.3.8",
