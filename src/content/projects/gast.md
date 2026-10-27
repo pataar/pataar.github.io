@@ -1,6 +1,6 @@
 ---
 install: brew install pataar/tap/gast
-order: 1
+order: 2
 url: https://github.com/pataar/gast
 ---
 

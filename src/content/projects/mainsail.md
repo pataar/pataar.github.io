@@ -1,5 +1,5 @@
 ---
-order: 5
+order: 6
 url: https://github.com/mainsail-crew/mainsail
 ---
 

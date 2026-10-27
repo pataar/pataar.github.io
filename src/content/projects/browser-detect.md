@@ -1,5 +1,5 @@
 ---
-order: 4
+order: 5
 url: https://github.com/pataar/browser-detect
 ---
 
