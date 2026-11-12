@@ -17,7 +17,7 @@ const { description, title } = Astro.props;
 
 const fontFace = `@font-face{font-family:"JetBrains Mono Variable";font-style:normal;font-weight:100 800;font-display:swap;src:url(${fontLatinUrl}) format("woff2-variations");}`;
 
-const fullTitle = title ? `${title} | Pieter Willekens` : "Pieter Willekens - Tech Lead & Full Stack Developer";
+const fullTitle = title ? `${title} | Pieter Willekens` : "Pieter Willekens - Full Stack Developer";
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL((await getImage({ format: "jpeg", height: 512, src: portrait, width: 512 })).src, Astro.site);
 
@@ -26,14 +26,14 @@ const personSchema = {
 	"@id": new URL("/#person", Astro.site).href,
 	"@type": "Person",
 	description:
-		"Tech lead on the Patient Journey App at Interactive Studios. Full-stack development with Laravel, React, TypeScript, and Kubernetes.",
+		"Full-stack developer building the Patient Journey App with Laravel, React, TypeScript, and Kubernetes.",
 	image: ogImage.href,
-	jobTitle: "Tech Lead & Full Stack Developer",
+	jobTitle: "Full Stack Developer",
 	knowsAbout: ["Laravel", "React", "TypeScript", "PHP", "Kubernetes", "Docker", "React Native", "Rust", "Go", "DevOps"],
 	name: "Pieter Willekens",
 	sameAs: contacts.map(contact => contact.url).filter(url => url.startsWith("https://")),
 	url: Astro.site?.href,
-	worksFor: { "@type": "Organization", name: "Interactive Studios", url: "https://www.interactivestudios.nl" },
+	worksFor: { "@type": "Organization", name: "Legrand Care", url: "https://www.legrand.com/care/int-en" },
 };
 
 const websiteSchema = {
