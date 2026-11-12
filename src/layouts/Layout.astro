@@ -26,14 +26,14 @@ const personSchema = {
 	"@id": new URL("/#person", Astro.site).href,
 	"@type": "Person",
 	description:
-		"Full-stack developer at Interactive Studios, building the Patient Journey App with Laravel, React, TypeScript, and Kubernetes.",
+		"Full-stack developer building the Patient Journey App with Laravel, React, TypeScript, and Kubernetes.",
 	image: ogImage.href,
 	jobTitle: "Full Stack Developer",
 	knowsAbout: ["Laravel", "React", "TypeScript", "PHP", "Kubernetes", "Docker", "React Native", "Rust", "Go", "DevOps"],
 	name: "Pieter Willekens",
 	sameAs: contacts.map(contact => contact.url).filter(url => url.startsWith("https://")),
 	url: Astro.site?.href,
-	worksFor: { "@type": "Organization", name: "Interactive Studios", url: "https://www.interactivestudios.nl" },
+	worksFor: { "@type": "Organization", name: "Legrand Care" },
 };
 
 const websiteSchema = {
