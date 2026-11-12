@@ -33,7 +33,7 @@ const personSchema = {
 	name: "Pieter Willekens",
 	sameAs: contacts.map(contact => contact.url).filter(url => url.startsWith("https://")),
 	url: Astro.site?.href,
-	worksFor: { "@type": "Organization", name: "Legrand", url: "https://www.legrand.com" },
+	worksFor: { "@type": "Organization", name: "Legrand Care", url: "https://www.legrand.com/care/int-en" },
 };
 
 const websiteSchema = {
